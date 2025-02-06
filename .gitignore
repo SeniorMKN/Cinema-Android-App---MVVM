@@ -15,3 +15,6 @@
 local.properties
 /.idea/vcs.xml
 /app/src/main/res/xml/backup_rules.xml
+/.idea/misc.xml
+/.idea/.name
+/.idea/deploymentTargetSelector.xml
