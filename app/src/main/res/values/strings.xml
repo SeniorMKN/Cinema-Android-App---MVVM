@@ -7,4 +7,11 @@
     <string name="phone_number">Phone Number</string>
     <string name="continue_btn">Continue</string>
     <string name="nur_sultan">Nur-Sultan</string>
+    <string name="eng">Eng</string>
+    <string name="log_in">Log in</string>
+    <string name="now_in_cinemas">Now in Cinemas</string>
+    <string name="spider_man_no_way_home">Spider-Man: No Way Home</string>
+    <string name="action">Action</string>
+    <string name="film_title">Film Title</string>
+    <string name="film_category">Film Category</string>
 </resources>
