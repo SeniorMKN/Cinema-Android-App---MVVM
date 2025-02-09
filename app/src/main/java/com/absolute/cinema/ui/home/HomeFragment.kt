@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
-import com.absolute.cinema.ui.data.RecyclerItemModel
+import com.absolute.cinema.data.model.RecyclerItemModel
 import com.absolute.cinema.ui.login.LoginDialogFragment
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var itemList: ArrayList<RecyclerItemModel>
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
@@ -31,23 +32,28 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemList = arrayListOf(
-            RecyclerItemModel(
-                R.drawable.cover_film, "Film Title 1", "Category 1",
-                R.drawable.cover_film, "Film Title 2", "Category 2"
-            ),
-            RecyclerItemModel(
-                R.drawable.cover_film, "Film Title 3", "Category 3",
-                R.drawable.cover_film, "Film Title 4", "Category 4"
-            )
-        )
-        recyclerViewAdapter = RecyclerViewAdapter(itemList)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = recyclerViewAdapter
+        initRecyclerView()
 
         binding.logo.setOnClickListener {
             LoginDialogFragment().show(parentFragmentManager, "LoginDialog")
         }
+    }
+
+    private fun initRecyclerView() {
+        itemList = arrayListOf(
+            RecyclerItemModel(
+                R.drawable.logo, "Film Title 1", "Category 1",
+                R.drawable.logo, "Film Title 2", "Category 2"
+            ),
+            RecyclerItemModel(
+                R.drawable.logo, "Film Title 3", "Category 3",
+                R.drawable.logo, "Film Title 4", "Category 4"
+            )
+        )
+
+        recyclerViewAdapter = RecyclerViewAdapter(itemList)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = recyclerViewAdapter
     }
 
     override fun onDestroyView() {

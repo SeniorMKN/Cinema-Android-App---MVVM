@@ -4,21 +4,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.databinding.RecyclerFilmLayoutBinding
-import com.absolute.cinema.ui.data.RecyclerItemModel
+import com.absolute.cinema.data.model.RecyclerItemModel
 
-class RecyclerViewAdapter(val itemList: ArrayList<RecyclerItemModel>) :
+class RecyclerViewAdapter(private val itemList: ArrayList<RecyclerItemModel>) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+
     inner class MyViewHolder(private val binding: RecyclerFilmLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: RecyclerItemModel) {
-            binding.imageFilm.setImageResource(item.img1)
-            binding.titleFilm.text = item.title1
-            binding.categoryFilm.text = item.category1
+            binding.imageFilmLeft.setImageResource(item.img1)
+            binding.titleFilmLeft.text = item.title1
+            binding.categoryFilmLeft.text = item.category1
 
-            binding.imageFilm1.setImageResource(item.img2)
-            binding.titleFilm2.text = item.title2
-            binding.categoryFilm2.text = item.category2
+            binding.imageFilmRight.setImageResource(item.img2)
+            binding.titleFilmRight.text = item.title2
+            binding.categoryFilmRight.text = item.category2
         }
     }
 
