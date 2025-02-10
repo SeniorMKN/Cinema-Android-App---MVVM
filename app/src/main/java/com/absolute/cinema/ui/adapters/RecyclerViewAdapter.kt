@@ -3,13 +3,13 @@ package com.absolute.cinema.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.absolute.cinema.databinding.RecyclerFilmLayoutBinding
+import com.absolute.cinema.databinding.RecyclerMovieLayoutBinding
 import com.absolute.cinema.data.model.MovieItemModel
 
 class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(private val binding: RecyclerFilmLayoutBinding) :
+    inner class MyViewHolder(private val binding: RecyclerMovieLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: MovieItemModel) {
@@ -27,7 +27,7 @@ class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
-            RecyclerFilmLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            RecyclerMovieLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
