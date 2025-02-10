@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,81 +10,13 @@
     <VideoView
         android:id="@+id/movie_trailer_tv"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/movie_rating_left_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/_8_3"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/movie_database_left_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/imbd"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/movie_rating_right_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/_7_9"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/movie_database_right_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/kinopoisk"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_height="200dp" />
 
     <TextView
         android:id="@+id/movie_description_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="16dp"
+        android:layout_margin="16dp"
         android:fontFamily="@font/pt_root_ui_regular"
         android:text="@string/movie_description"
         android:textColor="@color/white" />
@@ -93,26 +24,83 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:orientation="vertical">
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/movie_certificate_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/certificate"
+            android:textColor="@color/light_grey"
+            android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/movie_certificate_tv"
-                android:layout_width="match_parent"
+                android:id="@+id/movie_runtime_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/certificate"
+                android:text="@string/runtime"
                 android:textColor="@color/light_grey"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/movie_release_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:text="@string/release"
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/movie_genre_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:text="@string/genre"
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/movie_director_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:text="@string/director"
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/movie_cast_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:text="@string/cast"
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
                 android:id="@+id/movie_rating_age_tv"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rating_age_shape"
                 android:fontFamily="@font/pt_root_ui_regular"
@@ -120,135 +108,57 @@
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:id="@+id/movie_runtime_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/runtime"
-                android:textColor="@color/light_grey"
-                android:textSize="14sp" />
-
             <TextView
                 android:id="@+id/movie_runtime_length_tv"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/_02_56"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:id="@+id/movie_release_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/release"
-                android:textColor="@color/light_grey"
-                android:textSize="14sp" />
-
             <TextView
                 android:id="@+id/movie_release_year_tv"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/_2022"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:id="@+id/movie_genre_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/genre"
-                android:textColor="@color/light_grey"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/movie_genre_context_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/action_crime_drama"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:id="@+id/movie_director_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/director"
-                android:textColor="@color/light_grey"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/movie_director_name_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/matt_reeves"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/movie_genre_context_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/action_crime_drama"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/movie_cast_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/cast"
-                android:textColor="@color/light_grey"
-                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/movie_cast_names_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:text="@string/cast_names"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/movie_director_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/matt_reeves"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/movie_cast_names_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/cast_names"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -256,7 +166,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/select_session_btn"
@@ -267,7 +177,5 @@
             android:backgroundTint="@color/orange"
             android:text="@string/select_session"
             app:cornerRadius="8dp" />
-
     </LinearLayout>
-
 </LinearLayout>
