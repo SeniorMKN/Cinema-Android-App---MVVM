@@ -16,4 +16,13 @@
     <string name="film_category">Film Category</string>
     <string name="rating_right">8.1</string>
     <string name="rating_left">7.9</string>
+    <string name="enter_the_password_from_the_sms">Enter the password from the SMS</string>
+    <string name="change_number">Change number</string>
+    <string name="resend_0_59">Resend (0:59)</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="the_batman">The Batman</string>
+
 </resources>
