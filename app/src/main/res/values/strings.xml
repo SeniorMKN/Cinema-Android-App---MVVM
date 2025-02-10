@@ -24,5 +24,26 @@
     <string name="_8">8</string>
     <string name="_9">9</string>
     <string name="the_batman">The Batman</string>
+    <string name="_8_3">8.3</string>
+    <string name="imbd">IMBD</string>
+    <string name="_7_9">7.9</string>
+    <string name="kinopoisk">Kinopoisk</string>
+    <string name="movie_description">When the Riddler, a sadistic serial killer, begins murdering key political figures in Gotham, Batman is forced to investigate the city\'s hidden corruption and question his family\'s involvement.</string>
+    <string name="certificate">Certificate</string>
+    <string name="runtime">Runtime</string>
+    <string name="release">Release</string>
+    <string name="genre">Genre</string>
+    <string name="director">Director</string>
+    <string name="cast">Cast</string>
+    <string name="_16">16+</string>
+    <string name="_02_56">02:56</string>
+    <string name="_2022">2022</string>
+    <string name="action_crime_drama">Action, Crime, Drama</string>
+    <string name="matt_reeves">Matt Reeves</string>
+    <string name="cast_names">Robert Pattinson, Zoë Kravitz, Jeffrey Wright, Colin Farrell, Paul Dano, John Turturro, Andy Serkis, Peter Sarsgaard</string>
+    <string name="select_session">Select Session</string>
+    <string name="april_18">April, 18</string>
+    <string name="by_cinema">By cinema</string>
+    <string name="time">Time</string>
 
 </resources>
