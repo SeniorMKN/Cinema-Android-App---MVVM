@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
-import com.absolute.cinema.data.model.RecyclerItemModel
+import com.absolute.cinema.data.model.MovieItemModel
 import com.absolute.cinema.ui.login.LoginDialogFragment
 
 class HomeFragment : Fragment() {
@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var itemList: ArrayList<RecyclerItemModel>
+    private lateinit var itemList: ArrayList<MovieItemModel>
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
@@ -41,13 +41,15 @@ class HomeFragment : Fragment() {
 
     private fun initRecyclerView() {
         itemList = arrayListOf(
-            RecyclerItemModel(
-                R.drawable.logo, "Film Title 1", "Category 1",
-                R.drawable.logo, "Film Title 2", "Category 2"
+            MovieItemModel(
+                R.drawable.logo, "8.1", "Second Movie Title",
+                "Second Movie Category", R.drawable.logo, "7.9",
+                "Movie Title", "Movie Category"
             ),
-            RecyclerItemModel(
-                R.drawable.logo, "Film Title 3", "Category 3",
-                R.drawable.logo, "Film Title 4", "Category 4"
+            MovieItemModel(
+                R.drawable.logo, "8.1", "Third Movie Title",
+                "Third Movie Category", R.drawable.logo, "7.9",
+                "Fourth Movie Title", "Fourth Movie Category"
             )
         )
 

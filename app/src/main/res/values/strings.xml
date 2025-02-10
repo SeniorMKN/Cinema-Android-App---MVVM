@@ -14,4 +14,6 @@
     <string name="action">Action</string>
     <string name="film_title">Film Title</string>
     <string name="film_category">Film Category</string>
+    <string name="rating_right">8.1</string>
+    <string name="rating_left">7.9</string>
 </resources>
