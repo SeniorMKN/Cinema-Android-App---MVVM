@@ -18,6 +18,32 @@
         android:id="@+id/homeFragment"
         android:name="com.absolute.cinema.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_tabsMovieFragment"
+            app:destination="@id/tabsMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabsMovieFragment"
+        android:name="com.absolute.cinema.ui.tabs.TabsMovieFragment"
+        android:label="fragment_movie_tabs"
+        tools:layout="@layout/fragment_movie_tabs" >
+        <action
+            android:id="@+id/action_tabsMovieFragment_to_aboutMovieFragment"
+            app:destination="@id/aboutMovieFragment" />
+        <action
+            android:id="@+id/action_tabsMovieFragment_to_sessionsMovieFragment"
+            app:destination="@id/sessionsMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutMovieFragment"
+        android:name="com.absolute.cinema.ui.about.AboutMovieFragment"
+        android:label="fragment_about_movie"
+        tools:layout="@layout/fragment_about_movie" />
+    <fragment
+        android:id="@+id/sessionsMovieFragment"
+        android:name="com.absolute.cinema.ui.sessions.SessionsMovieFragment"
+        android:label="fragment_sessions_movie"
+        tools:layout="@layout/fragment_sessions_movie" />
 
 </navigation>

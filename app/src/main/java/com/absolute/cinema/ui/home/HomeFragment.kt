@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
@@ -31,10 +33,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecyclerView()
 
         binding.logo.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
+        }
+        binding.loginButton.setOnClickListener {
             LoginDialogFragment().show(parentFragmentManager, "LoginDialog")
         }
     }

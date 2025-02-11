@@ -11,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-        android:gravity="bottom"
         android:orientation="horizontal"
-        android:paddingTop="16dp">
+        android:paddingVertical="16dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="bottom"
             android:orientation="vertical">
 
             <TextView
@@ -26,7 +27,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/april_18"
                 android:textColor="@color/white"
@@ -36,8 +36,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -46,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/time"
                 android:textColor="@color/white"
@@ -56,8 +56,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -66,7 +67,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/by_cinema"
                 android:textColor="@color/white"
