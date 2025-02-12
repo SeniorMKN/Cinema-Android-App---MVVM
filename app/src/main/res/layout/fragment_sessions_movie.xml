@@ -29,6 +29,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/april_18"
+                android:drawablePadding="4dp"
                 android:textColor="@color/white"
                 app:drawableTopCompat="@drawable/calendar" />
 
@@ -49,6 +50,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/time"
+                android:drawablePadding="4dp"
                 android:textColor="@color/white"
                 app:drawableTopCompat="@drawable/arrows" />
 
@@ -70,6 +72,7 @@
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:text="@string/by_cinema"
                 android:textColor="@color/white"
+                android:drawablePadding="4dp"
                 app:drawableTopCompat="@drawable/resource_switch" />
 
         </LinearLayout>
