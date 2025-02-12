@@ -17,8 +17,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -37,8 +37,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -57,8 +57,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -77,28 +77,28 @@
     </LinearLayout>
 
     <LinearLayout
-        android:paddingVertical="8dp"
-        android:background="@color/deep_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/deep_blue"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
 
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp"
-            android:gravity="center">
-
-        <TextView
-            android:id="@+id/time_cinema_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/pt_root_ui_regular"
             android:gravity="center"
-            android:text="Time"
-            android:textColor="@color/light_grey"
-            android:textSize="12sp" />
+            android:orientation="horizontal"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:id="@+id/time_cinema_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:gravity="center"
+                android:text="Time"
+                android:textColor="@color/light_grey"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -107,9 +107,9 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:fontFamily="@font/pt_root_ui_regular"
-            android:layout_marginStart="16dp"
             android:text="Adult"
             android:textColor="@color/light_grey"
             android:textSize="12sp" />
@@ -154,6 +154,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="6"
-        tools:listitem="@layout/recycler_ticket_layout"/>
+        tools:listitem="@layout/recycler_ticket_layout" />
 
 </LinearLayout>
