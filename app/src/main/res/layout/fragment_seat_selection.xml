@@ -4,88 +4,159 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/main_background_color"
     tools:context=".ui.seat.SeatSelectionFragment">
 
-    <TextView
-        android:id="@+id/back_arrow_tv"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutAppBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/baseline_arrow"
-        android:backgroundTint="@color/light_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/cinema_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/pt_root_ui_regular"
-        android:text="Eurasia Cinema7"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_arrow_tv"
+        android:background="@color/main_app_bar_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back_arrow_tv" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/movie_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/pt_root_ui_regular"
-        android:text="The Batman"
-        android:textColor="@color/light_grey"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/cinema_title_tv"
-        app:layout_constraintStart_toStartOf="@+id/cinema_title_tv"
-        app:layout_constraintTop_toBottomOf="@+id/cinema_title_tv" />
+        <ImageView
+            android:id="@+id/back_arrow_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/baseline_arrow"
+            android:backgroundTint="@color/light_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/extend_arrow_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/enlarge"
-        android:backgroundTint="@color/light_grey"
+        <TextView
+            android:id="@+id/cinema_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:gravity="center"
+            android:text="Eurasia Cinema"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="@+id/back_arrow_tv"
+            app:layout_constraintEnd_toStartOf="@+id/extend_arrow_tv"
+            app:layout_constraintStart_toEndOf="@+id/back_arrow_tv"
+            app:layout_constraintTop_toTopOf="@+id/back_arrow_tv" />
+
+        <TextView
+            android:id="@+id/movie_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:paddingBottom="20dp"
+            android:text="The Batman"
+            android:textColor="@color/light_grey"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/cinema_title_tv"
+            app:layout_constraintStart_toStartOf="@+id/cinema_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cinema_title_tv" />
+
+        <ImageView
+            android:id="@+id/extend_arrow_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/enlarge"
+            android:backgroundTint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/main_app_bar_color"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/calendar_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/pin_insert_shape"
-        android:drawablePadding="4dp"
-        android:fontFamily="@font/pt_root_ui_regular"
-        android:text="April, 14"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:drawableStartCompat="@drawable/calendar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_title_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutAppBar">
 
-    <TextView
-        android:id="@+id/day_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/pin_insert_shape"
-        android:drawablePadding="4dp"
-        android:fontFamily="@font/pt_root_ui_regular"
-        android:text="15:10"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:drawableStartCompat="@drawable/clock"
-        app:layout_constraintBottom_toBottomOf="@+id/calendar_time_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/calendar_time_tv" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/pin_insert_shape"
+            android:padding="10dp">
 
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/calendar"
+                app:layout_constraintBottom_toBottomOf="@+id/calendar_time_tv"
+                app:layout_constraintEnd_toStartOf="@+id/calendar_time_tv"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/calendar_time_tv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/calendar_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:gravity="center"
+                android:text="April, 14"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/pin_insert_shape"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/day_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/clock"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/day_time_tv"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/day_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:gravity="center"
+                android:text="15:10"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/day_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

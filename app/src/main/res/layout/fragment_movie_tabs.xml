@@ -4,68 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/main_background_color"
     tools:context=".ui.tabs.TabsMovieFragment">
 
-    <TextView
-        android:id="@+id/back_arrow_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/baseline_arrow"
-        android:backgroundTint="@color/light_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/movie_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/pt_root_ui_regular"
-        android:text="@string/the_batman"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_arrow_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back_arrow_tv" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tablayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@color/background"
-        app:tabSelectedTextColor="@color/orange"
-        app:tabIndicatorColor="@color/orange"
-        app:tabIndicatorFullWidth="true"
-        app:layout_constraintBottom_toTopOf="@id/viewPager2"
+        android:background="@color/main_app_bar_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back_arrow_tv">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
+        <TextView
+            android:id="@+id/back_arrow_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/baseline_arrow"
+            android:backgroundTint="@color/light_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movie_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/the_batman"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/back_arrow_tv"
+            app:layout_constraintEnd_toStartOf="@+id/invisible_tv"
+            app:layout_constraintStart_toEndOf="@+id/back_arrow_tv"
+            app:layout_constraintTop_toTopOf="@+id/back_arrow_tv" />
+
+        <TextView
+            android:id="@+id/invisible_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            android:background="@drawable/baseline_arrow"
+            android:backgroundTint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/pt_root_ui_regular"
-            android:gravity="center"
-            android:text="About"
-            android:textColor="@color/light_grey"
-            android:textSize="16sp" />
+            android:layout_marginTop="12dp"
+            android:background="@color/main_app_bar_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_arrow_tv"
+            app:tabIndicatorColor="@color/orange"
+            app:tabIndicatorFullWidth="true"
+            app:tabSelectedTextColor="@color/orange">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/pt_root_ui_regular"
-            android:gravity="center"
-            android:text="Sessions"
-            android:textColor="@color/light_grey"
-            android:textSize="16sp" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:gravity="center"
+                android:text="About"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp" />
 
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:gravity="center"
+                android:text="Sessions"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
@@ -74,6 +96,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tablayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
