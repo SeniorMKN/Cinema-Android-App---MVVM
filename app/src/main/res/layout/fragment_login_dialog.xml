@@ -48,7 +48,7 @@
                 android:textSize="16sp"
                 tools:ignore="TextContrastCheck" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,8 +58,9 @@
                 android:hint="@string/phone_number"
                 android:inputType="phone"
                 android:paddingStart="16dp"
-                android:paddingTop="16dp"
+                android:paddingVertical="16dp"
                 android:paddingEnd="16dp"
+                android:background="@drawable/pin_insert_shape"
                 android:textColorHint="@color/light_grey"
                 android:textSize="16sp"
                 app:cornerRadius="8dp"

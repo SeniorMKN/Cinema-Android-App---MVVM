@@ -52,6 +52,15 @@
         android:id="@+id/seatSelectionFragment2"
         android:name="com.absolute.cinema.ui.seat.SeatSelectionFragment"
         android:label="fragment_seat_selection"
-        tools:layout="@layout/fragment_seat_selection" />
+        tools:layout="@layout/fragment_seat_selection" >
+        <action
+            android:id="@+id/action_seatSelectionFragment2_to_ticketFragment"
+            app:destination="@id/ticketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.absolute.cinema.ui.ticket.TicketFragment"
+        android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket" />
 
 </navigation>

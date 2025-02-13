@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentSeatSelectionBinding
 
 class SeatSelectionFragment : Fragment() {
@@ -22,6 +24,10 @@ class SeatSelectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.selectSessionBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_seatSelectionFragment2_to_ticketFragment)
+        }
     }
 
     override fun onDestroyView() {

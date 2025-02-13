@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.absolute.cinema.R
+import com.absolute.cinema.data.model.CircleItemModel
 import com.absolute.cinema.databinding.FragmentTicketBinding
+import com.absolute.cinema.ui.adapters.CircleRecyclerViewAdapter
 
 class TicketFragment : Fragment() {
 
@@ -22,6 +26,11 @@ class TicketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val items = List(14) { CircleItemModel(R.drawable.circle) }
+
+        binding.circleRecyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.circleRecyclerview.adapter = CircleRecyclerViewAdapter(items)
     }
 
     override fun onDestroyView() {
