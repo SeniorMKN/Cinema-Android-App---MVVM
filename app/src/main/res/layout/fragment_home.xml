@@ -103,7 +103,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/now_in_cinemas_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/now_in_cinemas_tv"
-            app:tint="@color/white"
+            app:tint="@color/light_grey"
             tools:ignore="ContentDescription" />
 
         <androidx.recyclerview.widget.RecyclerView

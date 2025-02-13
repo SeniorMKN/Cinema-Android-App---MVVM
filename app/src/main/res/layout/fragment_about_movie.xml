@@ -22,6 +22,80 @@
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
+        <LinearLayout
+            android:background="@color/light_blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rating_movie_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pt_root_ui_regular"
+                    android:gravity="center"
+                    android:text="8.3"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/rating_cinema_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/pt_root_ui_regular"
+                    android:gravity="center"
+                    android:text="IMBD"
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="1dp"
+                app:dividerColor="@color/light_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="0"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rating_movie_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pt_root_ui_regular"
+                    android:gravity="center"
+                    android:text="7.9"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/rating_cinema_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/pt_root_ui_regular"
+                    android:gravity="center"
+                    android:text="IMBD"
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/movie_description_tv"
             android:layout_width="match_parent"

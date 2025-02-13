@@ -50,4 +50,9 @@ class SessionsMovieFragment : Fragment() {
         binding.ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.ticketRecyclerview.adapter = recyclerViewAdapter
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

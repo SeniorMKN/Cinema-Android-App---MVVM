@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_tabsMovieFragment_to_sessionsMovieFragment"
             app:destination="@id/sessionsMovieFragment" />
+        <action
+            android:id="@+id/action_tabsMovieFragment_to_seatSelectionFragment2"
+            app:destination="@id/seatSelectionFragment2" />
     </fragment>
     <fragment
         android:id="@+id/aboutMovieFragment"
@@ -45,5 +48,10 @@
         android:name="com.absolute.cinema.ui.sessions.SessionsMovieFragment"
         android:label="fragment_sessions_movie"
         tools:layout="@layout/fragment_sessions_movie" />
+    <fragment
+        android:id="@+id/seatSelectionFragment2"
+        android:name="com.absolute.cinema.ui.seat.SeatSelectionFragment"
+        android:label="fragment_seat_selection"
+        tools:layout="@layout/fragment_seat_selection" />
 
 </navigation>
