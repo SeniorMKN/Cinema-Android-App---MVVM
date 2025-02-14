@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.GridLayout
+import android.widget.ImageView
+import androidx.core.view.setMargins
 import com.absolute.cinema.R
-import com.absolute.cinema.data.model.CircleItemModel
 import com.absolute.cinema.databinding.FragmentTicketBinding
-import com.absolute.cinema.ui.adapters.CircleRecyclerViewAdapter
 
 class TicketFragment : Fragment() {
 
@@ -19,7 +19,7 @@ class TicketFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTicketBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -27,10 +27,22 @@ class TicketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val items = List(14) { CircleItemModel(R.drawable.circle) }
+        val gridLayout = binding.gridLy
+        gridLayout.columnCount = 14
+        gridLayout.removeAllViews()
 
-        binding.circleRecyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.circleRecyclerview.adapter = CircleRecyclerViewAdapter(items)
+        for (i in 0 until 14) {
+            val circleView = ImageView(requireContext()).apply {
+                layoutParams = GridLayout.LayoutParams().apply {
+                    width = 48
+                    height = 48
+                    setMargins(8)
+                }
+                setImageResource(R.drawable.circle)
+                scaleType = ImageView.ScaleType.CENTER_INSIDE
+            }
+            gridLayout.addView(circleView)
+        }
     }
 
     override fun onDestroyView() {
