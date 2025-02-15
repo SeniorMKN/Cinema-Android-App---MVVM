@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/login_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
         android:backgroundTint="@color/main_background_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,7 +146,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="22dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
                 android:text="@string/resend_0_59"

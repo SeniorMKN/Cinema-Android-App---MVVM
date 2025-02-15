@@ -26,7 +26,7 @@ class SeatSelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.selectSessionBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_seatSelectionFragment2_to_ticketFragment)
+            it.findNavController().navigate(R.id.action_seatSelectionFragment2_to_payFragment)
         }
     }
 

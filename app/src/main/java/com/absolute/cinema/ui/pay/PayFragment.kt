@@ -1,4 +1,4 @@
-package com.absolute.cinema.ui.ticket
+package com.absolute.cinema.ui.pay
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,18 +9,18 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.core.view.setMargins
 import com.absolute.cinema.R
-import com.absolute.cinema.databinding.FragmentTicketBinding
+import com.absolute.cinema.databinding.FragmentPayBinding
 
-class TicketFragment : Fragment() {
+class PayFragment : Fragment() {
 
-    private var _binding: FragmentTicketBinding? = null
+    private var _binding: FragmentPayBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTicketBinding.inflate(inflater, container, false)
+        _binding = FragmentPayBinding.inflate(inflater, container, false)
         return binding.root
     }
 
