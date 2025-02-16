@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-    tools:context=".ui.pay.PayFragment">
+    tools:context=".ui.ticket.TicketFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,40 +17,99 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/back_arrow_tv"
+            android:id="@+id/close_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/baseline_close"
+            android:backgroundTint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/invisible_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/baseline_arrow"
             android:backgroundTint="@color/light_grey"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/pay_ticket_tv"
+            android:id="@+id/your_ticket_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pt_root_ui_regular"
-            android:text="Pay for Tickets"
+            android:text="Your Ticket"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/back_arrow_tv"
-            app:layout_constraintEnd_toStartOf="@+id/invisible_tv"
-            app:layout_constraintStart_toEndOf="@+id/back_arrow_tv"
-            app:layout_constraintTop_toTopOf="@+id/back_arrow_tv" />
+            app:layout_constraintBottom_toBottomOf="@+id/invisible_tv"
+            app:layout_constraintEnd_toStartOf="@+id/close_tv"
+            app:layout_constraintStart_toEndOf="@+id/invisible_tv"
+            app:layout_constraintTop_toTopOf="@+id/invisible_tv" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/your_ticket_tv" />
 
         <TextView
-            android:id="@+id/invisible_tv"
+            android:id="@+id/show_this_code_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/baseline_arrow"
-            android:backgroundTint="@color/light_grey"
-            android:visibility="invisible"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="Show this code to the gatekeeper at the cinema"
+            android:textColor="@color/light_grey"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/ellipse_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ellipse_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_this_code_tv" />
+
+        <GridLayout
+            android:id="@+id/grid_ly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="14"
+            app:layout_constraintBottom_toBottomOf="@id/ellipse_left"
+            app:layout_constraintEnd_toStartOf="@+id/ellipse_right"
+            app:layout_constraintStart_toEndOf="@id/ellipse_left"
+            app:layout_constraintTop_toTopOf="@id/ellipse_left">
+
+            <ImageView
+                android:id="@+id/circle_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/circle" />
+
+        </GridLayout>
+
+        <ImageView
+            android:id="@+id/ellipse_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ellipse_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_this_code_tv" />
 
         <TextView
             android:id="@+id/movie_title_tv"
@@ -63,7 +122,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back_arrow_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/ellipse_left" />
 
         <LinearLayout
             android:id="@+id/linear_ly"
@@ -294,237 +353,92 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_weight="0"
-            app:dividerColor="@color/deep_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_ly" />
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cost_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/pt_root_ui_regular"
+                        android:paddingEnd="16dp"
+                        android:text="Cost"
+                        android:textColor="@color/light_grey"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/paid_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pt_root_ui_regular"
+                        android:text="3200 ₸ (paid)"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_ly2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider">
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/linear_ly">
 
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/refund_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="16dp"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:paddingVertical="16dp"
+                android:text="Refund"
+                app:backgroundTint="@color/light_blue"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/light_blue"
+                app:strokeColor="@color/light_grey"
+                app:strokeWidth="1dp" />
 
-                <LinearLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/adult_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/pt_root_ui_regular"
-                        android:paddingEnd="16dp"
-                        android:text="1 x Adult"
-                        android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/adult_price_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/pt_root_ui_regular"
-                        android:text="2200 ₸"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/child_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/pt_root_ui_regular"
-                        android:paddingEnd="16dp"
-                        android:text="1 x Child"
-                        android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/child_price_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pt_root_ui_regular"
-                        android:text="1000 ₸"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/total_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/pt_root_ui_regular"
-                        android:paddingEnd="16dp"
-                        android:text="2 Total"
-                        android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/total_price_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pt_root_ui_regular"
-                        android:text="3200 ₸"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:layout_weight="1"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:paddingVertical="16dp"
+                android:text="Send"
+                app:backgroundTint="@color/orange"
+                app:cornerRadius="8dp"
+                app:icon="@drawable/forward_arrow"
+                app:iconGravity="textStart"
+                app:iconPadding="10dp" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/ellipse_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/ellipse_left"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear_ly2" />
-
-        <GridLayout
-            android:id="@+id/grid_ly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnCount="14"
-            app:layout_constraintBottom_toBottomOf="@id/ellipse_left"
-            app:layout_constraintEnd_toStartOf="@+id/ellipse_right"
-            app:layout_constraintStart_toEndOf="@id/ellipse_left"
-            app:layout_constraintTop_toTopOf="@id/ellipse_left">
-
-            <ImageView
-                android:id="@+id/circle_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:background="@drawable/circle" />
-
-        </GridLayout>
-
-        <ImageView
-            android:id="@+id/ellipse_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/ellipse_right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear_ly2" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="30dp"
-            android:autofillHints="false"
-            android:background="@drawable/pin_insert_shape"
-            android:fontFamily="@font/pt_root_ui_regular"
-            android:hint="@string/phone_number"
-            android:inputType="phone"
-            android:paddingVertical="16dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColorHint="@color/light_grey"
-            android:textSize="16sp"
-            app:cornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grid_ly"
-            tools:ignore="TextContrastCheck" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/select_session_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/pt_root_ui_regular"
-            android:paddingVertical="16dp"
-            android:text="Continue"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="@+id/phone_number"
-            app:layout_constraintTop_toBottomOf="@+id/phone_number" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
