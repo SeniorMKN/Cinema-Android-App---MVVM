@@ -254,7 +254,7 @@
         app:layout_constraintTop_toBottomOf="@id/screen_tv" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/select_session_btn"
+        android:id="@+id/buy_tickets_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

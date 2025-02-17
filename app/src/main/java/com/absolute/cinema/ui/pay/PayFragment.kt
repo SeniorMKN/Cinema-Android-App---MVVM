@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.core.view.setMargins
+import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentPayBinding
 
@@ -26,6 +27,10 @@ class PayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.continueBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
+        }
 
         val gridLayout = binding.gridLy
         gridLayout.columnCount = 14

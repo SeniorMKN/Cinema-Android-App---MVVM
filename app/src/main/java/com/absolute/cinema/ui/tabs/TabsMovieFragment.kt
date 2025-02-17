@@ -37,7 +37,7 @@ class TabsMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.movieTitleTv.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tabsMovieFragment_to_seatSelectionFragment2)
+            it.findNavController().navigate(R.id.action_tabsMovieFragment_to_seatSelectionFragment)
         }
 
         tabLayout = binding.tablayout

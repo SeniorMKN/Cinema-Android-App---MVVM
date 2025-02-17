@@ -25,8 +25,8 @@ class SeatSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.selectSessionBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_seatSelectionFragment2_to_payFragment)
+        binding.buyTicketsBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_seatSelectionFragment_to_payFragment)
         }
     }
 

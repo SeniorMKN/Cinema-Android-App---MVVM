@@ -35,8 +35,8 @@
             android:id="@+id/action_tabsMovieFragment_to_sessionsMovieFragment"
             app:destination="@id/sessionsMovieFragment" />
         <action
-            android:id="@+id/action_tabsMovieFragment_to_seatSelectionFragment2"
-            app:destination="@id/seatSelectionFragment2" />
+            android:id="@+id/action_tabsMovieFragment_to_seatSelectionFragment"
+            app:destination="@id/seatSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutMovieFragment"
@@ -49,19 +49,37 @@
         android:label="fragment_sessions_movie"
         tools:layout="@layout/fragment_sessions_movie" />
     <fragment
-        android:id="@+id/seatSelectionFragment2"
+        android:id="@+id/seatSelectionFragment"
         android:name="com.absolute.cinema.ui.seat.SeatSelectionFragment"
         android:label="fragment_seat_selection"
         tools:layout="@layout/fragment_seat_selection" >
         <action
-            android:id="@+id/action_seatSelectionFragment2_to_payFragment"
+            android:id="@+id/action_seatSelectionFragment_to_payFragment"
             app:destination="@id/payFragment" />
     </fragment>
     <fragment
         android:id="@+id/payFragment"
         android:name="com.absolute.cinema.ui.pay.PayFragment"
         android:label="fragment_pay"
-        tools:layout="@layout/fragment_pay" />
+        tools:layout="@layout/fragment_pay" >
+        <action
+            android:id="@+id/action_payFragment_to_ticketFragment"
+            app:destination="@id/ticketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.absolute.cinema.ui.ticket.TicketFragment"
+        android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket" >
+        <action
+            android:id="@+id/action_ticketFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.absolute.cinema.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 
 
 </navigation>

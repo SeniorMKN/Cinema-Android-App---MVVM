@@ -38,6 +38,4 @@ class TicketRecyclerViewAdapter (private val itemList: ArrayList<TicketItemModel
         return itemList.size
     }
 
-
-
 }

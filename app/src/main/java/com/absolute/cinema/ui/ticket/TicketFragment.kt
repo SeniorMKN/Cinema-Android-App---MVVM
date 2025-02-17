@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import android.widget.ImageView
+import androidx.core.view.setMargins
+import androidx.navigation.findNavController
+import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentTicketBinding
 
 class TicketFragment : Fragment() {
@@ -18,5 +23,35 @@ class TicketFragment : Fragment() {
     ): View? {
         _binding = FragmentTicketBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.sendBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
+        }
+
+        val gridLayout = binding.gridLy
+        gridLayout.columnCount = 14
+        gridLayout.removeAllViews()
+
+        for (i in 0 until 14) {
+            val circleView = ImageView(requireContext()).apply {
+                layoutParams = GridLayout.LayoutParams().apply {
+                    width = 48
+                    height = 48
+                    setMargins(8)
+                }
+                setImageResource(R.drawable.circle)
+                scaleType = ImageView.ScaleType.CENTER_INSIDE
+            }
+            gridLayout.addView(circleView)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
