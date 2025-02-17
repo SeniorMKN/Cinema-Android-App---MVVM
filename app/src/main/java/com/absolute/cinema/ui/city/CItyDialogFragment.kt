@@ -1,28 +1,21 @@
-package com.absolute.cinema.city
+package com.absolute.cinema.ui.city
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.absolute.cinema.R
-import com.absolute.cinema.data.model.CardsItemModel
 import com.absolute.cinema.data.model.CityItemModel
-import com.absolute.cinema.data.model.HistoryItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
-import com.absolute.cinema.databinding.FragmentLoginDialogBinding
-import com.absolute.cinema.ui.adapters.CardsRecyclerViewAdapter
 import com.absolute.cinema.ui.adapters.CityRecyclerViewAdapter
-import com.absolute.cinema.ui.adapters.HistoryRecyclerViewAdapter
-
 
 class CItyDialogFragment : Fragment() {
 
     private var _binding: FragmentCityDialogBinding? = null
     private val binding get() = _binding!!
     private lateinit var itemList: ArrayList<CityItemModel>
-    private lateinit var RecyclerViewAdapter: CityRecyclerViewAdapter
+    private lateinit var recyclerViewAdapter: CityRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,9 +38,9 @@ class CItyDialogFragment : Fragment() {
             ),
         )
 
-        RecyclerViewAdapter = CityRecyclerViewAdapter(itemList)
+        recyclerViewAdapter = CityRecyclerViewAdapter(itemList)
         binding.cityRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.cityRecyclerView.adapter = RecyclerViewAdapter
+        binding.cityRecyclerView.adapter = recyclerViewAdapter
 
     }
 

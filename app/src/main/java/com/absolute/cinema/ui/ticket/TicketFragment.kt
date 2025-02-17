@@ -11,6 +11,7 @@ import androidx.core.view.setMargins
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentTicketBinding
+import com.absolute.cinema.ui.utils.UiUtils
 
 class TicketFragment : Fragment() {
 
@@ -32,22 +33,7 @@ class TicketFragment : Fragment() {
             it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
         }
 
-        val gridLayout = binding.gridLy
-        gridLayout.columnCount = 14
-        gridLayout.removeAllViews()
-
-        for (i in 0 until 14) {
-            val circleView = ImageView(requireContext()).apply {
-                layoutParams = GridLayout.LayoutParams().apply {
-                    width = 48
-                    height = 48
-                    setMargins(8)
-                }
-                setImageResource(R.drawable.circle)
-                scaleType = ImageView.ScaleType.CENTER_INSIDE
-            }
-            gridLayout.addView(circleView)
-        }
+        UiUtils.initGridLayout(binding.gridLy, requireContext())
     }
 
     override fun onDestroyView() {

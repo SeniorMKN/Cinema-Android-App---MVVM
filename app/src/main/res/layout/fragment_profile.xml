@@ -119,6 +119,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payment_history_tv"
         tools:itemCount="1"
+        tools:visibility="gone"
         tools:listitem="@layout/recycler_history_layout" />
 
     <TextView
@@ -131,9 +132,10 @@
         android:gravity="center"
         android:text="You haven't bought tickets yet"
         android:textColor="@color/light_grey"
+        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/history_recycler_view" />
+        app:layout_constraintTop_toBottomOf="@+id/payment_history_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

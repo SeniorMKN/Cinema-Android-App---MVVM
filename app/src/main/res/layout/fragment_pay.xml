@@ -464,7 +464,6 @@
             android:id="@+id/grid_ly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="14"
             app:layout_constraintBottom_toBottomOf="@id/ellipse_left"
             app:layout_constraintEnd_toStartOf="@+id/ellipse_right"
             app:layout_constraintStart_toEndOf="@id/ellipse_left"
@@ -474,7 +473,6 @@
                 android:id="@+id/circle_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:background="@drawable/circle" />
 
         </GridLayout>
