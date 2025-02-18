@@ -11,6 +11,7 @@ import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
 import com.absolute.cinema.data.model.MovieItemModel
+import com.absolute.cinema.ui.city.CItyDialogFragment
 import com.absolute.cinema.ui.login.LoginDialogFragment
 
 class HomeFragment : Fragment() {
@@ -43,6 +44,9 @@ class HomeFragment : Fragment() {
         }
         binding.loginButton.setOnClickListener {
             LoginDialogFragment().show(parentFragmentManager, "LoginDialog")
+        }
+        binding.positionName.setOnClickListener {
+            CItyDialogFragment().show(parentFragmentManager, "PositionDialog")
         }
     }
 

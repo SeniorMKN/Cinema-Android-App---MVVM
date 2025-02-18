@@ -17,27 +17,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <ImageView
             android:id="@+id/logout_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/baseline_logout"
-            android:backgroundTint="@color/light_grey"
+            android:src="@drawable/baseline_logout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/light_grey" />
 
-        <TextView
+        <ImageView
             android:id="@+id/back_arrow_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/baseline_arrow"
-            android:backgroundTint="@color/light_grey"
+            android:src="@drawable/baseline_arrow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/light_grey" />
 
         <TextView
             android:id="@+id/profile_number_tv"
@@ -71,13 +71,13 @@
         android:id="@+id/cards_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saved_cards_tv"
         tools:itemCount="1"
-        android:visibility="gone"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
         tools:listitem="@layout/recycler_cards_layout" />
 
     <com.google.android.material.button.MaterialButton
@@ -120,8 +120,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payment_history_tv"
         tools:itemCount="1"
-        tools:visibility="gone"
-        tools:listitem="@layout/recycler_history_layout" />
+        tools:listitem="@layout/recycler_history_layout"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/no_tickets"
@@ -133,10 +133,10 @@
         android:gravity="center"
         android:text="You haven't bought tickets yet"
         android:textColor="@color/light_grey"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payment_history_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/payment_history_tv"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

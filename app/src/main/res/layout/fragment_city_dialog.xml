@@ -7,7 +7,6 @@
     android:background="@drawable/rounded_corners"
     tools:context=".ui.city.CItyDialogFragment">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/city_cv"
         android:layout_width="match_parent"

@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.profile
 
-class ProfileViewModel {
+import androidx.lifecycle.ViewModel
+
+class ProfileViewModel : ViewModel() {
 }

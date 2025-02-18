@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
 import com.absolute.cinema.ui.adapters.CityRecyclerViewAdapter
 
-class CItyDialogFragment : Fragment() {
+class CItyDialogFragment : DialogFragment() {
 
     private var _binding: FragmentCityDialogBinding? = null
     private val binding get() = _binding!!

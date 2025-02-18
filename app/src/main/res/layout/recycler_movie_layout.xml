@@ -26,14 +26,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="16dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    app:cardCornerRadius="8dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -43,13 +43,13 @@
                             android:id="@+id/rating_movie_right"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/rounded_corner"
-                            android:text="@string/rating_right"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/pt_root_ui_regular"
-                            android:textColor="@color/white"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
+                            android:background="@drawable/rounded_corner"
+                            android:fontFamily="@font/pt_root_ui_regular"
+                            android:text="@string/rating_right"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,11 +74,11 @@
                     android:id="@+id/title_movie_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/pt_root_ui_regular"
                     android:text="@string/spider_man_no_way_home"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:ellipsize="end"
                     app:layout_constraintEnd_toEndOf="@id/image_film"
                     app:layout_constraintStart_toStartOf="@id/image_film"
                     app:layout_constraintTop_toBottomOf="@+id/image_film" />
@@ -87,12 +87,12 @@
                     android:id="@+id/category_movie_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/pt_root_ui_regular"
                     android:text="@string/action"
                     android:textColor="@color/light_grey"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:ellipsize="end"
                     app:layout_constraintEnd_toEndOf="@+id/title_film"
                     app:layout_constraintStart_toStartOf="@id/title_film"
                     app:layout_constraintTop_toBottomOf="@+id/title_film" />
@@ -118,25 +118,25 @@
                             android:id="@+id/rating_movie_left"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/rounded_corner"
-                            android:text="@string/rating_left"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/pt_root_ui_regular"
-                            android:textColor="@color/white"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
+                            android:background="@drawable/rounded_corner"
+                            android:fontFamily="@font/pt_root_ui_regular"
+                            android:text="@string/rating_left"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/image_movie_right"
-                    android:layout_width="150dp"
-                    android:layout_height="250dp"
-                    android:src="@drawable/logo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/image_movie_right"
+                            android:layout_width="150dp"
+                            android:layout_height="250dp"
+                            android:src="@drawable/logo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="ContentDescription" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -146,11 +146,11 @@
                     android:id="@+id/title_movie_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/pt_root_ui_regular"
                     android:text="@string/film_title"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:ellipsize="end"
                     app:layout_constraintEnd_toEndOf="@id/image_film1"
                     app:layout_constraintStart_toStartOf="@+id/image_film1"
                     app:layout_constraintTop_toBottomOf="@+id/image_film1" />
@@ -159,12 +159,12 @@
                     android:id="@+id/category_movie_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="@font/pt_root_ui_regular"
                     android:text="@string/film_category"
                     android:textColor="@color/light_grey"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:ellipsize="end"
                     app:layout_constraintEnd_toEndOf="@id/image_film1"
                     app:layout_constraintStart_toStartOf="@+id/image_film1"
                     app:layout_constraintTop_toBottomOf="@+id/image_film1" />

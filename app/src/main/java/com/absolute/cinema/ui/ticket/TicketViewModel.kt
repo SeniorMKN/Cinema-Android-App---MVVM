@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.ticket
 
-class TicketViewModel {
+import androidx.lifecycle.ViewModel
+
+class TicketViewModel : ViewModel() {
 }

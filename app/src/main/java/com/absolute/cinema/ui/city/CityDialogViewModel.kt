@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.city
 
-class CityDialogViewModel {
+import androidx.lifecycle.ViewModel
+
+class CityDialogViewModel : ViewModel() {
 }

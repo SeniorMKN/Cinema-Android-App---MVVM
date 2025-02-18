@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.pay
 
-class PayViewModel {
+import androidx.lifecycle.ViewModel
+
+class PayViewModel : ViewModel() {
 }

@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.about
 
-class AboutMovieViewModel {
+import androidx.lifecycle.ViewModel
+
+class AboutMovieViewModel : ViewModel() {
 }

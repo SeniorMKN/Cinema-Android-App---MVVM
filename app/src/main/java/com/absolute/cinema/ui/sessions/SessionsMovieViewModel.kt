@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.sessions
 
-class SessionsMovieViewModel {
+import androidx.lifecycle.ViewModel
+
+class SessionsMovieViewModel : ViewModel() {
 }

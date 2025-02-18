@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.login
 
-class LoginDialogViewModel {
+import androidx.lifecycle.ViewModel
+
+class LoginDialogViewModel : ViewModel() {
 }

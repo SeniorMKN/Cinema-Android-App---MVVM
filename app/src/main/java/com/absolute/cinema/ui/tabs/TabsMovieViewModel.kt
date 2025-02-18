@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.tabs
 
-class TabsMovieViewModel {
+import androidx.lifecycle.ViewModel
+
+class TabsMovieViewModel : ViewModel() {
 }

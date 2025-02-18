@@ -1,4 +1,6 @@
 package com.absolute.cinema.ui.seat
 
-class SeatSelectionViewModel {
+import androidx.lifecycle.ViewModel
+
+class SeatSelectionViewModel : ViewModel() {
 }
