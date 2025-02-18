@@ -22,7 +22,7 @@ class CItyDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCityDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,7 +30,6 @@ class CItyDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
         super.onViewCreated(view, savedInstanceState)
-
 
     }
 
