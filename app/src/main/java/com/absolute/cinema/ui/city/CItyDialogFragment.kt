@@ -1,11 +1,12 @@
 package com.absolute.cinema.ui.city
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
@@ -29,20 +30,40 @@ class CItyDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
         super.onViewCreated(view, savedInstanceState)
+
+
     }
 
     private fun initRecyclerView() {
 
         itemList = arrayListOf(
-            CityItemModel(
-                "Almaty",
-            ),
+            CityItemModel("Almaty"),
+            CityItemModel("Shymkent"),
+            CityItemModel("Nur-Sultan"),
+            CityItemModel("Karaganda"),
+            CityItemModel("Kokshetau"),
+            CityItemModel("Pavlodar"),
+            CityItemModel("Oskemen"),
+            CityItemModel("Semey"),
+            CityItemModel("Kostanay"),
+            CityItemModel("Oral")
         )
 
         recyclerViewAdapter = CityRecyclerViewAdapter(itemList)
         binding.cityRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.cityRecyclerView.adapter = recyclerViewAdapter
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        dialog?.window?.setDimAmount(0.1F)
+        dialog?.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        dialog?.window?.decorView?.setBackgroundColor(Color.TRANSPARENT)
     }
 
     override fun onDestroyView() {
