@@ -41,9 +41,9 @@ class TabsMovieFragment : Fragment() {
 
         tabLayout = binding.tablayout
         viewPager2 = binding.viewPager2
-        viewPager2.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+        viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        myAdapter = MyPagerAdapter(parentFragmentManager,lifecycle)
+        myAdapter = MyPagerAdapter(parentFragmentManager, lifecycle)
         myAdapter.addFragmentToList(AboutMovieFragment())
         myAdapter.addFragmentToList(SessionsMovieFragment())
 
@@ -52,8 +52,8 @@ class TabsMovieFragment : Fragment() {
         TabLayoutMediator(
             tabLayout,
             viewPager2
-        ){ tab, position ->
-                tab.text = tabsArray[position]
+        ) { tab, position ->
+            tab.text = tabsArray[position]
         }.attach()
     }
 

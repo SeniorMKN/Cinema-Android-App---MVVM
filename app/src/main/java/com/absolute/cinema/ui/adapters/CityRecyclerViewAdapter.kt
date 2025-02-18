@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.RecyclerCityLayoutBinding
 
-class CityRecyclerViewAdapter (private val itemList: ArrayList<CityItemModel>) :
+class CityRecyclerViewAdapter(private val itemList: ArrayList<CityItemModel>) :
     RecyclerView.Adapter<CityRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: RecyclerCityLayoutBinding) :
@@ -18,7 +18,10 @@ class CityRecyclerViewAdapter (private val itemList: ArrayList<CityItemModel>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityRecyclerViewAdapter.MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CityRecyclerViewAdapter.MyViewHolder {
         val binding =
             RecyclerCityLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)

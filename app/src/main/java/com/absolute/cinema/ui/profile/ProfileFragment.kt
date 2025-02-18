@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
 
         secondItemList = arrayListOf(
             HistoryItemModel(
-                R.drawable.logo,"The Batman","6 April 2022, 14:40","Eurasia Cinema7"
+                R.drawable.logo, "The Batman", "6 April 2022, 14:40", "Eurasia Cinema7"
             ),
         )
 

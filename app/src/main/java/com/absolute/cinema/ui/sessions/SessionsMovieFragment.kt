@@ -36,12 +36,12 @@ class SessionsMovieFragment : Fragment() {
             TicketItemModel(
                 "14:40", "Pyc",
                 "Eurasia Cinema7", "2200",
-                "1000 ₸", "1500 ₸","3000 ₸"
+                "1000 ₸", "1500 ₸", "3000 ₸"
             ),
             TicketItemModel(
                 "14:40", "Pyc",
                 "Eurasia Cinema7", "2200",
-                "1000 ₸", "1500 ₸","3000 ₸"
+                "1000 ₸", "1500 ₸", "3000 ₸"
             )
         )
 

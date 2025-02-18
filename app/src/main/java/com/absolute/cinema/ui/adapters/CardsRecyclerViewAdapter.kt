@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.CardsItemModel
 import com.absolute.cinema.databinding.RecyclerCardsLayoutBinding
 
-class CardsRecyclerViewAdapter (private val itemList: ArrayList<CardsItemModel>) :
-RecyclerView.Adapter<CardsRecyclerViewAdapter.MyViewHolder>() {
+class CardsRecyclerViewAdapter(private val itemList: ArrayList<CardsItemModel>) :
+    RecyclerView.Adapter<CardsRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: RecyclerCardsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -20,7 +20,10 @@ RecyclerView.Adapter<CardsRecyclerViewAdapter.MyViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardsRecyclerViewAdapter.MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CardsRecyclerViewAdapter.MyViewHolder {
         val binding =
             RecyclerCardsLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.TicketItemModel
 import com.absolute.cinema.databinding.RecyclerTicketLayoutBinding
 
-class TicketRecyclerViewAdapter (private val itemList: ArrayList<TicketItemModel>) :
+class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>) :
     RecyclerView.Adapter<TicketRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: RecyclerTicketLayoutBinding) :
@@ -24,7 +24,10 @@ class TicketRecyclerViewAdapter (private val itemList: ArrayList<TicketItemModel
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketRecyclerViewAdapter.MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): TicketRecyclerViewAdapter.MyViewHolder {
         val binding =
             RecyclerTicketLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)

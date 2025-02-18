@@ -62,7 +62,7 @@ class LoginDialogFragment : DialogFragment() {
         )
         dialog?.window?.decorView?.setBackgroundColor(Color.TRANSPARENT)
     }
-    
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

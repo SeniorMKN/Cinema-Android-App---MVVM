@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.HistoryItemModel
 import com.absolute.cinema.databinding.RecyclerHistoryLayoutBinding
 
-class HistoryRecyclerViewAdapter (private val itemList: ArrayList<HistoryItemModel>) :
+class HistoryRecyclerViewAdapter(private val itemList: ArrayList<HistoryItemModel>) :
     RecyclerView.Adapter<HistoryRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: RecyclerHistoryLayoutBinding) :
@@ -21,7 +21,10 @@ class HistoryRecyclerViewAdapter (private val itemList: ArrayList<HistoryItemMod
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryRecyclerViewAdapter.MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): HistoryRecyclerViewAdapter.MyViewHolder {
         val binding =
             RecyclerHistoryLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
