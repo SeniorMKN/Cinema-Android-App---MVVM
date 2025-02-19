@@ -395,6 +395,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
             android:backgroundTint="@color/orange"
+            android:paddingVertical="16dp"
             android:text="@string/select_session"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

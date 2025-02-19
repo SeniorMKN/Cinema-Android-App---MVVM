@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.data.model.TicketItemModel
 import com.absolute.cinema.databinding.FragmentSessionsMovieBinding
 import com.absolute.cinema.ui.adapters.TicketRecyclerViewAdapter
+import com.absolute.cinema.ui.sort.SortDialogFragment
 
 class SessionsMovieFragment : Fragment() {
 
@@ -27,8 +28,15 @@ class SessionsMovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupView()
         initRecyclerView()
+    }
+
+    private fun setupView() {
+        binding.timeOrderTv.setOnClickListener {
+            SortDialogFragment().show(parentFragmentManager, "SortDialog")
+        }
+
     }
 
     private fun initRecyclerView() {
