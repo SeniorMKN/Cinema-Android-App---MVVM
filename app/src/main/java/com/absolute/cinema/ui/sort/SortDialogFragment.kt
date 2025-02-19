@@ -26,12 +26,12 @@ class SortDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.sortTimeTv.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
-        binding.sortDistanceTv.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) }
-        binding.sortPriceTv.setOnClickListener { setSelectedSortOption(binding.checkPriceIv) }
+        binding.timeLinearLy.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
+        binding.distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) }
+        binding.priceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkPriceIv) }
 
-        binding.orderAscendingTv.setOnClickListener { setSelectedOrderOption(binding.checkAscendingIv) }
-        binding.orderDescendingTv.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
+        binding.ascendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkAscendingIv) }
+        binding.descendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
 
         super.onViewCreated(view, savedInstanceState)
     }
