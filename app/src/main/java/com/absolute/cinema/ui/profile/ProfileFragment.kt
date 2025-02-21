@@ -12,11 +12,14 @@ import com.absolute.cinema.data.model.HistoryItemModel
 import com.absolute.cinema.databinding.FragmentProfileBinding
 import com.absolute.cinema.ui.adapters.CardsRecyclerViewAdapter
 import com.absolute.cinema.ui.adapters.HistoryRecyclerViewAdapter
+import com.absolute.cinema.ui.card.CardDialogFragment
+import com.absolute.cinema.ui.login.LoginDialogFragment
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var itemList: ArrayList<CardsItemModel>
     private lateinit var secondItemList: ArrayList<HistoryItemModel>
     private lateinit var cardsRecyclerViewAdapter: CardsRecyclerViewAdapter
@@ -32,6 +35,11 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.addNewCardBtn.setOnClickListener {
+            CardDialogFragment().show(parentFragmentManager, "LoginDialog")
+        }
+
         initRecyclerView()
     }
 

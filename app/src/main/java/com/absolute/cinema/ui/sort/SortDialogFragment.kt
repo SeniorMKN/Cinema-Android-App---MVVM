@@ -13,8 +13,6 @@ class SortDialogFragment : DialogFragment() {
 
     private var _binding: FragmentSortDialogBinding? = null
     private val binding get() = _binding!!
-    var selectedItemPos = -1
-    var lastItemSelectedPos = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

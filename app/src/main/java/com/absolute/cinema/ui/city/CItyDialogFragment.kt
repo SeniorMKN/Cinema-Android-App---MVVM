@@ -16,6 +16,7 @@ class CItyDialogFragment : DialogFragment() {
 
     private var _binding: FragmentCityDialogBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var itemList: ArrayList<CityItemModel>
     private lateinit var recyclerViewAdapter: CityRecyclerViewAdapter
 

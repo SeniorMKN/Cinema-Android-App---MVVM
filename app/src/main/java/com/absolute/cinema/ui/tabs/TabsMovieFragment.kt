@@ -19,6 +19,7 @@ class TabsMovieFragment : Fragment() {
 
     private var _binding: FragmentMovieTabsBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var viewPager2: ViewPager2
     private lateinit var myAdapter: MyPagerAdapter
     private lateinit var tabLayout: TabLayout
