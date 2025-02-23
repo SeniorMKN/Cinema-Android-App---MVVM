@@ -2,7 +2,9 @@ package com.absolute.cinema.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.absolute.cinema.R
 import com.absolute.cinema.databinding.RecyclerMovieLayoutBinding
 import com.absolute.cinema.data.model.MovieItemModel
 
@@ -22,6 +24,7 @@ class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
             binding.ratingMovieRight.text = item.movieRatingRight
             binding.titleMovieRight.text = item.movieTitleRight
             binding.categoryMovieRight.text = item.movieCategoryRight
+
         }
     }
 

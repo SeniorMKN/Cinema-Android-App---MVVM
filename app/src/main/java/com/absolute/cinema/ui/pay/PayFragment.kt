@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentPayBinding
@@ -28,6 +29,16 @@ class PayFragment : Fragment() {
 
         binding.continueBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack()
+            }
+        })
+
+        binding.backArrowTv.setOnClickListener {
+            parentFragmentManager.popBackStack()
         }
 
         initGridLayout(binding.gridLy, requireContext())

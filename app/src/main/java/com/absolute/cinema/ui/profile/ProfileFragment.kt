@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.data.model.CardsItemModel
@@ -13,7 +14,6 @@ import com.absolute.cinema.databinding.FragmentProfileBinding
 import com.absolute.cinema.ui.adapters.CardsRecyclerViewAdapter
 import com.absolute.cinema.ui.adapters.HistoryRecyclerViewAdapter
 import com.absolute.cinema.ui.card.CardDialogFragment
-import com.absolute.cinema.ui.login.LoginDialogFragment
 
 class ProfileFragment : Fragment() {
 
@@ -38,6 +38,16 @@ class ProfileFragment : Fragment() {
 
         binding.addNewCardBtn.setOnClickListener {
             CardDialogFragment().show(parentFragmentManager, "LoginDialog")
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack()
+            }
+        })
+
+        binding.backArrowTv.setOnClickListener {
+            parentFragmentManager.popBackStack()
         }
 
         initRecyclerView()

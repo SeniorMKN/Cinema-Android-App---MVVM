@@ -44,7 +44,7 @@ class TabsMovieFragment : Fragment() {
         viewPager2 = binding.viewPager2
         viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        myAdapter = MyPagerAdapter(parentFragmentManager, lifecycle)
+        myAdapter = MyPagerAdapter(childFragmentManager, lifecycle)
         myAdapter.addFragmentToList(AboutMovieFragment())
         myAdapter.addFragmentToList(SessionsMovieFragment())
 

@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.ImageView
-import androidx.core.view.setMargins
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentTicketBinding
@@ -31,6 +29,16 @@ class TicketFragment : Fragment() {
 
         binding.sendBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack()
+            }
+        })
+
+        binding.closeTv.setOnClickListener {
+            parentFragmentManager.popBackStack()
         }
 
         UiUtils.initGridLayout(binding.gridLy, requireContext())
