@@ -12,7 +12,7 @@ import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
 import com.absolute.cinema.ui.adapters.CityRecyclerViewAdapter
 
-class CItyDialogFragment : DialogFragment() {
+class CityDialogFragment : DialogFragment() {
 
     private var _binding: FragmentCityDialogBinding? = null
     private val binding get() = _binding!!

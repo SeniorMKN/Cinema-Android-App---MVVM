@@ -11,7 +11,7 @@ import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
 import com.absolute.cinema.data.model.MovieItemModel
-import com.absolute.cinema.ui.city.CItyDialogFragment
+import com.absolute.cinema.ui.city.CityDialogFragment
 import com.absolute.cinema.ui.language.LanguageDialogFragment
 import com.absolute.cinema.ui.login.LoginDialogFragment
 
@@ -43,12 +43,19 @@ class HomeFragment : Fragment() {
         binding.logo.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
         }
+
+        setupDialogs()
+    }
+
+    private fun setupDialogs() {
         binding.loginButton.setOnClickListener {
             LoginDialogFragment().show(parentFragmentManager, "LoginDialog")
         }
+
         binding.positionName.setOnClickListener {
-            CItyDialogFragment().show(parentFragmentManager, "PositionDialog")
+            CityDialogFragment().show(parentFragmentManager, "PositionDialog")
         }
+
         binding.languageName.setOnClickListener {
             LanguageDialogFragment().show(parentFragmentManager, "LanguageDialog")
         }

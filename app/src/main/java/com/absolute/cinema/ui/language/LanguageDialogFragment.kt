@@ -27,14 +27,16 @@ class LanguageDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupLanguages()
+    }
+
+    private fun setupLanguages() {
         binding.kazakoLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkKazakoIv) }
         binding.russianLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkRussianIv) }
         binding.englishLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkEnglishIv) }
-
     }
 
     private fun setSelectedSortOption(selectedCheck: View) {
-
         binding.checkKazakoIv.visibility = View.INVISIBLE
         binding.checkRussianIv.visibility = View.INVISIBLE
         binding.checkEnglishIv.visibility = View.INVISIBLE
