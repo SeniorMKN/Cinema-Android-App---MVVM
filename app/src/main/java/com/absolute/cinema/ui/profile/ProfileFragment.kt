@@ -41,16 +41,18 @@ class ProfileFragment : Fragment() {
         initRecyclerView()
     }
 
-    private fun setupView(){
+    private fun setupView() {
         binding.addNewCardBtn.setOnClickListener {
             CardDialogFragment().show(parentFragmentManager, "LoginDialog")
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                parentFragmentManager.popBackStack()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    parentFragmentManager.popBackStack()
+                }
+            })
 
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()

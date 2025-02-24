@@ -29,16 +29,18 @@ class SeatSelectionFragment : Fragment() {
         setupView()
     }
 
-    private fun setupView(){
+    private fun setupView() {
         binding.buyTicketsBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_seatSelectionFragment_to_payFragment)
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                parentFragmentManager.popBackStack()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    parentFragmentManager.popBackStack()
+                }
+            })
 
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()

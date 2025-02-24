@@ -32,16 +32,18 @@ class PayFragment : Fragment() {
         initGridLayout(binding.gridLy, requireContext())
     }
 
-    private fun setupView(){
+    private fun setupView() {
         binding.continueBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                parentFragmentManager.popBackStack()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    parentFragmentManager.popBackStack()
+                }
+            })
 
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()

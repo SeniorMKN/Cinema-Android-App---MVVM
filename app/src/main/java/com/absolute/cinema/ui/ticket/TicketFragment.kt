@@ -32,16 +32,18 @@ class TicketFragment : Fragment() {
         UiUtils.initGridLayout(binding.gridLy, requireContext())
     }
 
-    private fun setupView(){
+    private fun setupView() {
         binding.sendBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                parentFragmentManager.popBackStack()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    parentFragmentManager.popBackStack()
+                }
+            })
 
         binding.closeTv.setOnClickListener {
             parentFragmentManager.popBackStack()
