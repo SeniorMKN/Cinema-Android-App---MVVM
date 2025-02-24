@@ -2,7 +2,6 @@ package com.absolute.cinema.ui.card
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentCardDialogBinding
-import com.absolute.cinema.databinding.FragmentCityDialogBinding
 
 class CardDialogFragment : DialogFragment() {
 
