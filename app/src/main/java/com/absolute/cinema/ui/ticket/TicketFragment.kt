@@ -27,6 +27,12 @@ class TicketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+
+        UiUtils.initGridLayout(binding.gridLy, requireContext())
+    }
+
+    private fun setupView(){
         binding.sendBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
         }
@@ -40,8 +46,6 @@ class TicketFragment : Fragment() {
         binding.closeTv.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
-        UiUtils.initGridLayout(binding.gridLy, requireContext())
     }
 
     override fun onDestroyView() {

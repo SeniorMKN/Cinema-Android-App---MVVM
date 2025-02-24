@@ -36,6 +36,12 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+
+        initRecyclerView()
+    }
+
+    private fun setupView(){
         binding.addNewCardBtn.setOnClickListener {
             CardDialogFragment().show(parentFragmentManager, "LoginDialog")
         }
@@ -49,8 +55,6 @@ class ProfileFragment : Fragment() {
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
-        initRecyclerView()
     }
 
     private fun initRecyclerView() {

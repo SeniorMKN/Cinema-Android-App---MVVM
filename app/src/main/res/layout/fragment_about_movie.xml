@@ -397,6 +397,7 @@
             android:backgroundTint="@color/orange"
             android:paddingVertical="16dp"
             android:text="@string/select_session"
+            android:textColor="@color/white"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

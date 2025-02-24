@@ -273,6 +273,7 @@
         android:backgroundTint="@color/orange"
         android:paddingVertical="16dp"
         android:text="Buy 2 tickets • 3200 ₸"
+        android:textColor="@color/white"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

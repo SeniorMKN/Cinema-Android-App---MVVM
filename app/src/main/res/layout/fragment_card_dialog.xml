@@ -169,6 +169,7 @@
         android:backgroundTint="@color/orange"
         android:paddingVertical="16dp"
         android:text="Add card"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"

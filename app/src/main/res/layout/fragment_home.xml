@@ -66,6 +66,7 @@
             android:layout_marginEnd="32dp"
             android:backgroundTint="@color/orange"
             android:text="@string/log_in"
+            android:textColor="@color/white"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/language_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,10 +109,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:overScrollMode="never"
             app:layout_constraintTop_toBottomOf="@id/now_in_cinemas_tv"
             tools:itemCount="3"
             tools:listitem="@layout/recycler_movie_layout" />

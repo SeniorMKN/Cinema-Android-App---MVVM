@@ -437,6 +437,7 @@
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:paddingVertical="16dp"
                 android:text="Refund"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/light_blue"
                 app:cornerRadius="8dp"
                 app:rippleColor="@color/light_blue"
@@ -453,8 +454,10 @@
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:paddingVertical="16dp"
                 android:text="Send"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/orange"
                 app:cornerRadius="8dp"
+                app:iconTint="@color/white"
                 app:icon="@drawable/forward_arrow"
                 app:iconGravity="textStart"
                 app:iconPadding="10dp" />

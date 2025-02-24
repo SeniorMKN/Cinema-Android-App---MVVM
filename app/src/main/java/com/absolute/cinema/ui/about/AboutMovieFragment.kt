@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.absolute.cinema.databinding.FragmentAboutMovieBinding
+import com.absolute.cinema.ui.tabs.TabsMovieFragment
 
 class AboutMovieFragment : Fragment() {
 
@@ -22,6 +23,11 @@ class AboutMovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.selectSessionBtn.setOnClickListener {
+            (requireParentFragment() as? TabsMovieFragment)?.navigateToSeatSelection()
+        }
+
     }
 
     override fun onDestroyView() {

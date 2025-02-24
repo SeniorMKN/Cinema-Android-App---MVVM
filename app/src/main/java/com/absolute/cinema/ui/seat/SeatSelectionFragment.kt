@@ -26,6 +26,10 @@ class SeatSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+    }
+
+    private fun setupView(){
         binding.buyTicketsBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_seatSelectionFragment_to_payFragment)
         }
@@ -39,7 +43,6 @@ class SeatSelectionFragment : Fragment() {
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
     }
 
     override fun onDestroyView() {

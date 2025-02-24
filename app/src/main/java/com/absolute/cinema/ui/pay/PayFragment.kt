@@ -27,6 +27,12 @@ class PayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+
+        initGridLayout(binding.gridLy, requireContext())
+    }
+
+    private fun setupView(){
         binding.continueBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
         }
@@ -40,8 +46,6 @@ class PayFragment : Fragment() {
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
-        initGridLayout(binding.gridLy, requireContext())
     }
 
     override fun onDestroyView() {

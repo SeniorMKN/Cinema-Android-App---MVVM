@@ -190,6 +190,7 @@
         android:paddingVertical="16dp"
         android:text="Deselect this seat"
         android:textSize="18sp"
+        android:textColor="@color/white"
         app:backgroundTint="@color/light_blue"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
