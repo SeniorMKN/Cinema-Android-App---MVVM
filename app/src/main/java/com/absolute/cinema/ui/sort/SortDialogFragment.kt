@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentSortDialogBinding
 
 class SortDialogFragment : DialogFragment() {
@@ -32,6 +33,11 @@ class SortDialogFragment : DialogFragment() {
         binding.descendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
 
         super.onViewCreated(view, savedInstanceState)
+
+        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        view.layoutParams = layoutParams
     }
 
     private fun setSelectedSortOption(selectedCheck: View) {

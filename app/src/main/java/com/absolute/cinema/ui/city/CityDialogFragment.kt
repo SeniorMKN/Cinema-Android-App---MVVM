@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.absolute.cinema.R
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
 import com.absolute.cinema.ui.adapters.CityRecyclerViewAdapter
@@ -32,6 +33,10 @@ class CityDialogFragment : DialogFragment() {
         initRecyclerView()
         super.onViewCreated(view, savedInstanceState)
 
+        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        view.layoutParams = layoutParams
     }
 
     private fun initRecyclerView() {

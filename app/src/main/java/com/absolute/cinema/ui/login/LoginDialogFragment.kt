@@ -50,6 +50,10 @@ class LoginDialogFragment : DialogFragment() {
             }
         }
 
+        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        view.layoutParams = layoutParams
     }
 
     override fun onStart() {

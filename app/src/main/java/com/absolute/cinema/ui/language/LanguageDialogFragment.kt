@@ -28,6 +28,11 @@ class LanguageDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupLanguages()
+
+        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        view.layoutParams = layoutParams
     }
 
     private fun setupLanguages() {

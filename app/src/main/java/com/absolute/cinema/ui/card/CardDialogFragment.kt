@@ -27,6 +27,11 @@ class CardDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
+        view.layoutParams = layoutParams
     }
 
     override fun onStart() {

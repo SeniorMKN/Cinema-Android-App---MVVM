@@ -15,7 +15,7 @@ class AboutMovieFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAboutMovieBinding.inflate(inflater, container, false)
         return binding.root
     }
