@@ -25,6 +25,16 @@ class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
             binding.titleMovieRight.text = item.movieTitleRight
             binding.categoryMovieRight.text = item.movieCategoryRight
 
+            setupView(binding)
+        }
+    }
+
+    private fun setupView(binding: RecyclerMovieLayoutBinding){
+        binding.imageMovieLeft.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
+        }
+        binding.imageMovieRight.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
         }
     }
 

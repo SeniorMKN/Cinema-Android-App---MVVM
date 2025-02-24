@@ -34,17 +34,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupView()
-        initRecyclerView()
-    }
-
-    private fun setupView() {
-
-        binding.logo.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
-        }
-
         setupDialogs()
+        initRecyclerView()
     }
 
     private fun setupDialogs() {
