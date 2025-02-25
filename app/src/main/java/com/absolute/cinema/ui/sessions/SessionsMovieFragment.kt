@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.absolute.cinema.R
 import com.absolute.cinema.data.model.TicketItemModel
 import com.absolute.cinema.databinding.FragmentSessionsMovieBinding
 import com.absolute.cinema.ui.adapters.TicketRecyclerViewAdapter
@@ -17,6 +20,7 @@ class SessionsMovieFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerViewAdapter: TicketRecyclerViewAdapter
     private lateinit var itemList: ArrayList<TicketItemModel>
+    private var isSwitchOn = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +37,26 @@ class SessionsMovieFragment : Fragment() {
     }
 
     private fun setupView() {
+
         binding.timeOrderTv.setOnClickListener {
             SortDialogFragment().show(parentFragmentManager, "SortDialog")
         }
 
+        binding.cinemaOrderTv.setOnClickListener {
+            isSwitchOn = !isSwitchOn
+
+            val newDrawableRes = if (isSwitchOn) {
+                R.drawable.resource_switch_on
+            } else {
+                R.drawable.resource_switch
+            }
+
+            val newDrawable = ContextCompat.getDrawable(requireContext(), newDrawableRes)
+
+            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                binding.cinemaOrderTv, null, newDrawable, null, null
+            )
+        }
     }
 
     private fun initRecyclerView() {

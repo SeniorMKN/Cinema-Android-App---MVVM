@@ -45,5 +45,7 @@
     <string name="april_18">April, 18</string>
     <string name="by_cinema">By cinema</string>
     <string name="time">Time</string>
+    <string name="resend_in_seconds">Resend in %d seconds</string>
+    <string name="resend_now">Resend now</string>
 
 </resources>

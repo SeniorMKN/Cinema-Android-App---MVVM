@@ -2,6 +2,7 @@ package com.absolute.cinema.ui.login
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class LoginDialogFragment : DialogFragment() {
 
     private var _binding: FragmentLoginDialogBinding? = null
     private val binding get() = _binding!!
+    private var countDownTimer: CountDownTimer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +27,8 @@ class LoginDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        startResendTimer()
 
         binding.continueBtn.setOnClickListener {
             binding.apply {
@@ -67,8 +71,27 @@ class LoginDialogFragment : DialogFragment() {
         dialog?.window?.decorView?.setBackgroundColor(Color.TRANSPARENT)
     }
 
+    private fun startResendTimer() {
+
+        countDownTimer = object : CountDownTimer(59000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                if (_binding != null) {
+                    binding.resendTv.text = getString(R.string.resend_in_seconds, secondsRemaining)
+                }
+            }
+
+            override fun onFinish() {
+                if (_binding != null) {
+                    binding.resendTv.text = getString(R.string.resend_now)
+                }
+            }
+        }.start()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        countDownTimer?.cancel()
         _binding = null
     }
 }
