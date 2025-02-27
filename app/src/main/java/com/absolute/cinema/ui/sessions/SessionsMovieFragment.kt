@@ -1,5 +1,6 @@
 package com.absolute.cinema.ui.sessions
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
@@ -13,6 +14,9 @@ import com.absolute.cinema.data.model.TicketItemModel
 import com.absolute.cinema.databinding.FragmentSessionsMovieBinding
 import com.absolute.cinema.ui.adapters.TicketRecyclerViewAdapter
 import com.absolute.cinema.ui.sort.SortDialogFragment
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class SessionsMovieFragment : Fragment() {
 
@@ -37,6 +41,10 @@ class SessionsMovieFragment : Fragment() {
     }
 
     private fun setupView() {
+
+        binding.calendarDateTv.setOnClickListener {
+            showDatePickerDialog()
+        }
 
         binding.timeOrderTv.setOnClickListener {
             SortDialogFragment().show(parentFragmentManager, "SortDialog")
@@ -76,6 +84,32 @@ class SessionsMovieFragment : Fragment() {
         recyclerViewAdapter = TicketRecyclerViewAdapter(itemList)
         binding.ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.ticketRecyclerview.adapter = recyclerViewAdapter
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(selectedYear, selectedMonth, selectedDay)
+
+                val dateFormat = SimpleDateFormat("MMMM, dd", Locale.getDefault())
+                var formattedDate = dateFormat.format(selectedDate.time)
+
+                formattedDate = formattedDate.replaceFirstChar { it.uppercase() }
+
+                binding.calendarDateTv.text = formattedDate
+            },
+            year, month, day
+        )
+
+        datePickerDialog.show()
     }
 
     override fun onDestroyView() {

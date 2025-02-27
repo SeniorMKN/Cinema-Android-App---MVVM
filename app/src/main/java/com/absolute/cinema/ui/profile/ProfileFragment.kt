@@ -37,9 +37,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupView()
-
         initRecyclerView()
+        setupView()
     }
 
     private fun setupView() {
@@ -62,6 +61,20 @@ class ProfileFragment : Fragment() {
         binding.logoutTv.setOnClickListener {
             it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
+
+        if (itemList.isEmpty()) {
+            binding.cardsRecyclerView.visibility = View.GONE
+        } else {
+            binding.cardsRecyclerView.visibility = View.VISIBLE
+        }
+
+        if (secondItemList.isEmpty()) {
+            binding.historyRecyclerView.visibility = View.GONE
+        } else {
+            binding.historyRecyclerView.visibility = View.VISIBLE
+        }
+
+        binding.noTickets.visibility = if (secondItemList.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun initRecyclerView() {

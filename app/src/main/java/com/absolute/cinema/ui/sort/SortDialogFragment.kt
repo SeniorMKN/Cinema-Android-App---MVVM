@@ -9,11 +9,14 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentSortDialogBinding
+import com.absolute.cinema.ui.utils.UiColor
 
 class SortDialogFragment : DialogFragment() {
 
     private var _binding: FragmentSortDialogBinding? = null
     private val binding get() = _binding!!
+    private var isSortSelected = false
+    private var isOrderSelected = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +27,11 @@ class SortDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        binding.sortApplyBtn.apply {
+            isEnabled = false
+            setBackgroundColor(UiColor.brownColor)
+        }
 
         binding.timeLinearLy.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
         binding.distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) }
@@ -51,6 +59,9 @@ class SortDialogFragment : DialogFragment() {
         binding.checkPriceIv.visibility = View.INVISIBLE
 
         selectedCheck.visibility = View.VISIBLE
+
+        isSortSelected = true
+        enableApplyButton()
     }
 
     private fun setSelectedOrderOption(selectedCheck: View) {
@@ -59,6 +70,18 @@ class SortDialogFragment : DialogFragment() {
         binding.checkDescendingIv.visibility = View.INVISIBLE
 
         selectedCheck.visibility = View.VISIBLE
+
+        isOrderSelected = true
+        enableApplyButton()
+    }
+
+    private fun enableApplyButton() {
+        if (isSortSelected && isOrderSelected) {
+            binding.sortApplyBtn.apply {
+                isEnabled = true
+                setBackgroundColor(requireContext().getColor(R.color.orange))
+            }
+        }
     }
 
     override fun onStart() {
