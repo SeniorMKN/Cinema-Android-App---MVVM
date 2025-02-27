@@ -15,14 +15,15 @@ import com.absolute.cinema.databinding.FragmentProfileBinding
 import com.absolute.cinema.ui.adapters.CardsRecyclerViewAdapter
 import com.absolute.cinema.ui.adapters.HistoryRecyclerViewAdapter
 import com.absolute.cinema.ui.card.CardDialogFragment
+import com.absolute.cinema.ui.utils.onBackPressed
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var itemList: ArrayList<CardsItemModel>
-    private lateinit var secondItemList: ArrayList<HistoryItemModel>
+    private lateinit var cardItemList: ArrayList<CardsItemModel>
+    private lateinit var moviePurchasedItemList: ArrayList<HistoryItemModel>
     private lateinit var cardsRecyclerViewAdapter: CardsRecyclerViewAdapter
     private lateinit var historyRecyclerViewAdapter: HistoryRecyclerViewAdapter
 
@@ -47,14 +48,6 @@ class ProfileFragment : Fragment() {
             CardDialogFragment().show(parentFragmentManager, "LoginDialog")
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    parentFragmentManager.popBackStack()
-                }
-            })
-
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -63,40 +56,41 @@ class ProfileFragment : Fragment() {
             it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
 
-        if (itemList.isEmpty()) {
+        if (cardItemList.isEmpty()) {
             binding.cardsRecyclerView.visibility = View.GONE
         } else {
             binding.cardsRecyclerView.visibility = View.VISIBLE
         }
 
-        if (secondItemList.isEmpty()) {
+        if (moviePurchasedItemList.isEmpty()) {
             binding.historyRecyclerView.visibility = View.GONE
+            binding.noTickets.visibility = View.VISIBLE
         } else {
             binding.historyRecyclerView.visibility = View.VISIBLE
+            binding.noTickets.visibility = View.GONE
         }
 
-        binding.noTickets.visibility = if (secondItemList.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun initRecyclerView() {
 
-        itemList = arrayListOf(
+        cardItemList = arrayListOf(
             CardsItemModel(
                 R.drawable.baseline_credit_card, "4716 •••• •••• 5615", "06/24"
             ),
         )
 
-        secondItemList = arrayListOf(
+        moviePurchasedItemList = arrayListOf(
             HistoryItemModel(
                 R.drawable.logo, "The Batman", "6 April 2022, 14:40", "Eurasia Cinema7"
             ),
         )
 
-        cardsRecyclerViewAdapter = CardsRecyclerViewAdapter(itemList)
+        cardsRecyclerViewAdapter = CardsRecyclerViewAdapter(cardItemList)
         binding.cardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.cardsRecyclerView.adapter = cardsRecyclerViewAdapter
 
-        historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(secondItemList)
+        historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(moviePurchasedItemList)
         binding.historyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.historyRecyclerView.adapter = historyRecyclerViewAdapter
     }
