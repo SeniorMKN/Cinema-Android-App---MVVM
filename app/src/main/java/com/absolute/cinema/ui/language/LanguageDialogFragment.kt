@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLanguageDialogBinding
+import com.absolute.cinema.ui.utils.UiColor
 
 class LanguageDialogFragment : DialogFragment() {
 
@@ -26,8 +27,16 @@ class LanguageDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupLanguages()
+        binding.languageApplyBtn.apply {
+            isEnabled = false
+            setBackgroundColor(UiColor.brownColor)
+        }
 
+        setupLanguages()
+        setupDialogMargins(view)
+    }
+
+    private fun setupDialogMargins(view: View) {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
         layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
@@ -35,17 +44,22 @@ class LanguageDialogFragment : DialogFragment() {
     }
 
     private fun setupLanguages() {
-        binding.kazakoLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkKazakoIv) }
-        binding.russianLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkRussianIv) }
-        binding.englishLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkEnglishIv) }
+        binding.firstLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkFirstIv) }
+        binding.secondLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkSecondIv) }
+        binding.thirdLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkThirdIv) }
     }
 
     private fun setSelectedSortOption(selectedCheck: View) {
-        binding.checkKazakoIv.visibility = View.INVISIBLE
-        binding.checkRussianIv.visibility = View.INVISIBLE
-        binding.checkEnglishIv.visibility = View.INVISIBLE
+        binding.checkFirstIv.visibility = View.INVISIBLE
+        binding.checkSecondIv.visibility = View.INVISIBLE
+        binding.checkThirdIv.visibility = View.INVISIBLE
 
         selectedCheck.visibility = View.VISIBLE
+
+        binding.languageApplyBtn.apply {
+            isEnabled = true
+            setBackgroundColor(requireContext().getColor(R.color.orange))
+        }
     }
 
     override fun onStart() {

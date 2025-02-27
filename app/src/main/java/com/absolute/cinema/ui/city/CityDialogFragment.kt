@@ -2,6 +2,8 @@ package com.absolute.cinema.ui.city
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.absolute.cinema.R
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
 import com.absolute.cinema.ui.adapters.CityRecyclerViewAdapter
+import com.absolute.cinema.ui.utils.UiColor
 
 class CityDialogFragment : DialogFragment() {
 
@@ -30,9 +33,18 @@ class CityDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initRecyclerView()
         super.onViewCreated(view, savedInstanceState)
 
+        binding.cityApplyBtn.apply {
+            isEnabled = false
+            setBackgroundColor(UiColor.brownColor)
+        }
+
+        initRecyclerView()
+        setupDialogMargins(view)
+    }
+
+    private fun setupDialogMargins(view: View) {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
         layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
@@ -54,7 +66,10 @@ class CityDialogFragment : DialogFragment() {
             CityItemModel("Oral")
         )
 
-        recyclerViewAdapter = CityRecyclerViewAdapter(itemList)
+        recyclerViewAdapter = CityRecyclerViewAdapter(itemList) {
+            binding.cityApplyBtn.isEnabled = true
+            binding.cityApplyBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+        }
         binding.cityRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.cityRecyclerView.adapter = recyclerViewAdapter
 

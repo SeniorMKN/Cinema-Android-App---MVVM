@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phone_number"
+                android:id="@+id/city_search_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -52,6 +52,20 @@
                 android:layout_marginHorizontal="16dp"
                 tools:itemCount="10"
                 tools:listitem="@layout/recycler_city_layout" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/city_apply_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:backgroundTint="@color/orange"
+                android:paddingVertical="16dp"
+                android:paddingTop="10dp"
+                android:text="Apply"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="8dp"/>
 
         </LinearLayout>
 

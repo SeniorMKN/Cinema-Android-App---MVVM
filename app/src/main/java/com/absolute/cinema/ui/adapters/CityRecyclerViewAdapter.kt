@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.RecyclerCityLayoutBinding
 
-class CityRecyclerViewAdapter(private val itemList: ArrayList<CityItemModel>) :
+class CityRecyclerViewAdapter(private val itemList: ArrayList<CityItemModel>, private val onItemSelected: (CityItemModel) -> Unit) :
     RecyclerView.Adapter<CityRecyclerViewAdapter.MyViewHolder>() {
 
     var selectedItemPos = -1
@@ -40,6 +40,8 @@ class CityRecyclerViewAdapter(private val itemList: ArrayList<CityItemModel>) :
                     lastItemSelectedPos = selectedItemPos
                 }
                 notifyItemChanged(selectedItemPos)
+
+                onItemSelected(itemList[selectedItemPos])
             }
         }
 

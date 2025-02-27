@@ -526,7 +526,7 @@
         </ScrollView>
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phone_number"
+            android:id="@+id/phone_number_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -548,7 +548,7 @@
             tools:ignore="TextContrastCheck" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/continue_btn"
+            android:id="@+id/pay_continue_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -561,8 +561,8 @@
             android:text="Continue"
             android:textColor="@color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="@+id/phone_number"
-            app:layout_constraintTop_toBottomOf="@+id/phone_number" />
+            app:layout_constraintStart_toStartOf="@+id/phone_number_et"
+            app:layout_constraintTop_toBottomOf="@+id/phone_number_et" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

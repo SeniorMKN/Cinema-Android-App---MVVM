@@ -1,6 +1,8 @@
 package com.absolute.cinema.ui.pay
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentPayBinding
+import com.absolute.cinema.ui.utils.UiColor
 import com.absolute.cinema.ui.utils.UiUtils.initGridLayout
 
 class PayFragment : Fragment() {
@@ -28,12 +31,43 @@ class PayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupView()
+        setupListeners()
 
         initGridLayout(binding.gridLy, requireContext())
     }
 
+    private fun setupListeners() {
+
+        val inputTextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                val phoneNumber = binding.phoneNumberEt.text.toString().trim()
+                val isValid = phoneNumber.length in 8..11
+                val orangeColor = requireContext().getColor(R.color.orange)
+
+                binding.payContinueBtn.apply {
+                    isEnabled = isValid
+                    setBackgroundColor(if (isValid) orangeColor else UiColor.brownColor)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        }
+
+        binding.apply {
+            phoneNumberEt.addTextChangedListener(inputTextWatcher)
+        }
+    }
+
     private fun setupView() {
-        binding.continueBtn.setOnClickListener {
+
+        binding.payContinueBtn.apply {
+            isEnabled = false
+            setBackgroundColor(UiColor.brownColor)
+        }
+
+        binding.payContinueBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
         }
 

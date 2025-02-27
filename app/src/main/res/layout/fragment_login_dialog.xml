@@ -176,7 +176,7 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
-                android:text="@string/resend_0_59"
+                android:text="Resend"
                 android:textColor="@color/light_grey"
                 android:textSize="16sp"
                 android:visibility="gone"

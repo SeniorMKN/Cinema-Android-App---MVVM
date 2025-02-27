@@ -10,7 +10,7 @@
     tools:context=".ui.language.LanguageDialogFragment">
 
     <LinearLayout
-        android:id="@+id/kazako_linear_ly"
+        android:id="@+id/first_linear_ly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/check_kazako_iv"
+            android:id="@+id/check_first_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/baseline_check"
@@ -29,7 +29,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/kazako_language_tv"
+            android:id="@+id/first_language_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,17 +42,17 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/kazako_view"
+        android:id="@+id/first_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="16dp"
         android:background="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kazako_linear_ly" />
+        app:layout_constraintTop_toBottomOf="@id/first_linear_ly" />
 
     <LinearLayout
-        android:id="@+id/russian_linear_ly"
+        android:id="@+id/second_linear_ly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -60,10 +60,10 @@
         android:paddingVertical="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kazako_linear_ly">
+        app:layout_constraintTop_toBottomOf="@id/first_linear_ly">
 
         <ImageView
-            android:id="@+id/check_russian_iv"
+            android:id="@+id/check_second_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/baseline_check"
@@ -71,7 +71,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/russian_language_tv"
+            android:id="@+id/second_language_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -84,17 +84,17 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/russian_view"
+        android:id="@+id/second_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="16dp"
         android:background="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/russian_linear_ly" />
+        app:layout_constraintTop_toBottomOf="@id/second_linear_ly" />
 
     <LinearLayout
-        android:id="@+id/english_linear_ly"
+        android:id="@+id/third_linear_ly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -102,10 +102,10 @@
         android:paddingVertical="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/russian_linear_ly">
+        app:layout_constraintTop_toBottomOf="@id/second_linear_ly">
 
         <ImageView
-            android:id="@+id/check_english_iv"
+            android:id="@+id/check_third_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/baseline_check"
@@ -113,7 +113,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/english_language_tv"
+            android:id="@+id/third_language_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -125,5 +125,21 @@
 
     </LinearLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/language_apply_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:backgroundTint="@color/orange"
+        android:paddingVertical="16dp"
+        android:paddingTop="10dp"
+        android:text="Apply"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_linear_ly" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

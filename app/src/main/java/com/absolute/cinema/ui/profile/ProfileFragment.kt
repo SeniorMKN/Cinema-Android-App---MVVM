@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.data.model.CardsItemModel
@@ -56,6 +57,10 @@ class ProfileFragment : Fragment() {
 
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()
+        }
+
+        binding.logoutTv.setOnClickListener {
+            it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
     }
 

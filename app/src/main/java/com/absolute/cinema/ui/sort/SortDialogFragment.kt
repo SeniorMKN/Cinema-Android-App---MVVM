@@ -34,6 +34,10 @@ class SortDialogFragment : DialogFragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
+        setupDialogMargins(view)
+    }
+
+    private fun setupDialogMargins(view: View) {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
         layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)

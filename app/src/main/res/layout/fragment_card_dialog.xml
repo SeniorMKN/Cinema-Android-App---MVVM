@@ -126,7 +126,7 @@
             android:gravity="center"
             android:hint="YY"
             android:inputType="number"
-            android:maxLength="4"
+            android:maxLength="2"
             android:textColorHint="@color/light_grey" />
 
         <com.google.android.material.textfield.TextInputEditText
