@@ -11,7 +11,8 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentCardDialogBinding
-import com.absolute.cinema.ui.utils.UiColor
+import com.absolute.cinema.ui.utils.UiUtils
+import com.absolute.cinema.ui.utils.setupDialogMargins
 
 class CardDialogFragment : DialogFragment() {
 
@@ -31,7 +32,7 @@ class CardDialogFragment : DialogFragment() {
 
         binding.addBankCardBtn.apply {
             isEnabled = false
-            setBackgroundColor(UiColor.brownColor)
+            setBackgroundColor(UiUtils.brownColor)
         }
         setupListeners()
         setupDialogMargins(view)
@@ -51,7 +52,7 @@ class CardDialogFragment : DialogFragment() {
 
                 binding.addBankCardBtn.apply {
                     isEnabled = isValid
-                    setBackgroundColor(if (isValid) orangeColor else UiColor.brownColor)
+                    setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
                 }
             }
 
@@ -63,13 +64,6 @@ class CardDialogFragment : DialogFragment() {
             monthEt.addTextChangedListener(inputTextWatcher)
             cvcEt.addTextChangedListener(inputTextWatcher)
         }
-    }
-
-    private fun setupDialogMargins(view: View) {
-        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        view.layoutParams = layoutParams
     }
 
     override fun onStart() {

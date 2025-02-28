@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentTicketBinding
 import com.absolute.cinema.ui.utils.UiUtils
+import com.absolute.cinema.ui.utils.onBackPressed
 
 class TicketFragment : Fragment() {
 
@@ -28,6 +29,7 @@ class TicketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onBackPressed()
         setupView()
 
         UiUtils.initGridLayout(binding.gridLy, requireContext())
@@ -45,14 +47,6 @@ class TicketFragment : Fragment() {
         binding.sendBtn.setOnClickListener {
             shareTicketInfo()
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    parentFragmentManager.popBackStack()
-                }
-            })
     }
 
     private fun shareTicketInfo() {

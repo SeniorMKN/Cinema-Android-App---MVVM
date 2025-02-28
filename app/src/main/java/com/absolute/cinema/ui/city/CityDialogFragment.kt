@@ -2,8 +2,6 @@ package com.absolute.cinema.ui.city
 
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +12,8 @@ import com.absolute.cinema.R
 import com.absolute.cinema.data.model.CityItemModel
 import com.absolute.cinema.databinding.FragmentCityDialogBinding
 import com.absolute.cinema.ui.adapters.CityRecyclerViewAdapter
-import com.absolute.cinema.ui.utils.UiColor
+import com.absolute.cinema.ui.utils.UiUtils
+import com.absolute.cinema.ui.utils.setupDialogMargins
 
 class CityDialogFragment : DialogFragment() {
 
@@ -37,18 +36,11 @@ class CityDialogFragment : DialogFragment() {
 
         binding.cityApplyBtn.apply {
             isEnabled = false
-            setBackgroundColor(UiColor.brownColor)
+            setBackgroundColor(UiUtils.brownColor)
         }
 
         initRecyclerView()
         setupDialogMargins(view)
-    }
-
-    private fun setupDialogMargins(view: View) {
-        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        view.layoutParams = layoutParams
     }
 
     private fun initRecyclerView() {

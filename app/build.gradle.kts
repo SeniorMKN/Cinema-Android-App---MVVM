@@ -51,9 +51,20 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.compiler)
+    implementation (libs.retrofit.v2110)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.converter.gson.v2110)
+    implementation (libs.kotlinx.coroutines.android.v139)
+    implementation(libs.logging.interceptor)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    configurations {
+        implementation.get().exclude(mapOf("group" to "org.jetbrains", "module" to "annotations"))
+    }
 }
 java {
     toolchain {

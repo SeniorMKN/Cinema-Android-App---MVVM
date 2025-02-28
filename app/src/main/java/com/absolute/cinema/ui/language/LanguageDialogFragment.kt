@@ -9,7 +9,8 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLanguageDialogBinding
-import com.absolute.cinema.ui.utils.UiColor
+import com.absolute.cinema.ui.utils.UiUtils
+import com.absolute.cinema.ui.utils.setupDialogMargins
 
 class LanguageDialogFragment : DialogFragment() {
 
@@ -29,18 +30,11 @@ class LanguageDialogFragment : DialogFragment() {
 
         binding.languageApplyBtn.apply {
             isEnabled = false
-            setBackgroundColor(UiColor.brownColor)
+            setBackgroundColor(UiUtils.brownColor)
         }
 
         setupLanguages()
         setupDialogMargins(view)
-    }
-
-    private fun setupDialogMargins(view: View) {
-        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        view.layoutParams = layoutParams
     }
 
     private fun setupLanguages() {

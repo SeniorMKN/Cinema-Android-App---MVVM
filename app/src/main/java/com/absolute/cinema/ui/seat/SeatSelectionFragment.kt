@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentSeatSelectionBinding
+import com.absolute.cinema.ui.utils.onBackPressed
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -31,6 +32,7 @@ class SeatSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onBackPressed()
         setupView()
     }
 
@@ -42,14 +44,6 @@ class SeatSelectionFragment : Fragment() {
         binding.buyTicketsBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_seatSelectionFragment_to_payFragment)
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    parentFragmentManager.popBackStack()
-                }
-            })
 
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()

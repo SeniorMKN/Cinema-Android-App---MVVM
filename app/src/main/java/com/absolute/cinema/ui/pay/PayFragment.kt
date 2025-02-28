@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentPayBinding
-import com.absolute.cinema.ui.utils.UiColor
+import com.absolute.cinema.ui.utils.UiUtils
 import com.absolute.cinema.ui.utils.UiUtils.initGridLayout
+import com.absolute.cinema.ui.utils.onBackPressed
 
 class PayFragment : Fragment() {
 
@@ -30,6 +30,7 @@ class PayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onBackPressed()
         setupView()
         setupListeners()
 
@@ -48,7 +49,7 @@ class PayFragment : Fragment() {
 
                 binding.payContinueBtn.apply {
                     isEnabled = isValid
-                    setBackgroundColor(if (isValid) orangeColor else UiColor.brownColor)
+                    setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
                 }
             }
 
@@ -64,20 +65,12 @@ class PayFragment : Fragment() {
 
         binding.payContinueBtn.apply {
             isEnabled = false
-            setBackgroundColor(UiColor.brownColor)
+            setBackgroundColor(UiUtils.brownColor)
         }
 
         binding.payContinueBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    parentFragmentManager.popBackStack()
-                }
-            })
 
         binding.backArrowTv.setOnClickListener {
             parentFragmentManager.popBackStack()

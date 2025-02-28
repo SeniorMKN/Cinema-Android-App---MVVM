@@ -1,10 +1,13 @@
 package com.absolute.cinema.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
@@ -18,6 +21,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel : HomeViewModel by viewModels()
 
     private lateinit var itemList: ArrayList<MovieItemModel>
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
@@ -35,6 +39,14 @@ class HomeFragment : Fragment() {
 
         setupDialogs()
         initRecyclerView()
+
+        viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer { moviesList ->
+            moviesList?.forEach { movie ->
+                Log.i("TAG_MOVIE", movie.original_title)
+            }
+        })
+
+
     }
 
     private fun setupDialogs() {
@@ -69,6 +81,8 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = recyclerViewAdapter
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

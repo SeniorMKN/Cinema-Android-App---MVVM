@@ -1,12 +1,15 @@
 package com.absolute.cinema.ui.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.core.view.setMargins
 import com.absolute.cinema.R
 
 object UiUtils {
+
+    val brownColor = Color.parseColor("#6F4F37")
 
     fun initGridLayout(gridLayout: GridLayout, context: Context) {
         gridLayout.apply {

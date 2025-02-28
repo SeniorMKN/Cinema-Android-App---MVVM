@@ -12,7 +12,8 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLoginDialogBinding
-import com.absolute.cinema.ui.utils.UiColor
+import com.absolute.cinema.ui.utils.UiUtils
+import com.absolute.cinema.ui.utils.setupDialogMargins
 
 class LoginDialogFragment : DialogFragment() {
 
@@ -37,18 +38,11 @@ class LoginDialogFragment : DialogFragment() {
         setupDialogMargins(view)
     }
 
-    private fun setupDialogMargins(view: View) {
-        val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-        layoutParams.marginStart = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
-        view.layoutParams = layoutParams
-    }
-
     private fun setupView() {
 
         binding.continueBtn.apply {
             isEnabled = false
-            setBackgroundColor(UiColor.brownColor)
+            setBackgroundColor(UiUtils.brownColor)
         }
 
         binding.resendTv.setOnClickListener {
@@ -66,7 +60,7 @@ class LoginDialogFragment : DialogFragment() {
                 resendTv.visibility = View.VISIBLE
 
                 continueBtn.isEnabled = false
-                continueBtn.setBackgroundColor(UiColor.brownColor)
+                continueBtn.setBackgroundColor(UiUtils.brownColor)
             }
         }
 
@@ -95,7 +89,7 @@ class LoginDialogFragment : DialogFragment() {
 
                 binding.continueBtn.apply {
                     isEnabled = isValid
-                    setBackgroundColor(if (isValid) orangeColor else UiColor.brownColor)
+                    setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
                 }
             }
 
@@ -168,7 +162,7 @@ class LoginDialogFragment : DialogFragment() {
 
         binding.continueBtn.apply {
             isEnabled = isAllFilled
-            setBackgroundColor(if (isAllFilled) orangeColor else UiColor.brownColor)
+            setBackgroundColor(if (isAllFilled) orangeColor else UiUtils.brownColor)
         }
     }
 
