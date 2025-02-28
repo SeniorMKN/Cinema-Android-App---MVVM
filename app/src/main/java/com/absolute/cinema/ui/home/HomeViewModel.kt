@@ -18,19 +18,18 @@ class HomeViewModel : ViewModel() {
         try {
             val response: Response<Movies> = movieService.getMovies(
                 token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzJmY2UxYTBmN2U2M2U5ZGJmOTk1NWRjMTI3Zjg5OSIsIm5iZiI6MTc0MDc0MTkxNy4yMTYsInN1YiI6IjY3YzE5ZDFkYzY3YjM2OGJhNjM1OGJkZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5LgeFIL123PAbki7cBEsybyGR55kkpzYJtqJxEbkYc8",
-
             )
             if (response.isSuccessful) {
                 Log.i("TAG_MOVIE", "RESPONSE OK")
-                response.body()?.let { movies ->
-                    emit(movies)
-                    Log.i("TAG_MOVIE", movies.toString())
+                response.body()?.let { res ->
+                    emit(res.movies)
+                    Log.i("TAG_MOVIE", res.movies.toString())
                 }
             } else {
-                Log.e("HomeViewModel", "Errore: ${response.code()}")
+                Log.i("HomeViewModel", "Error: ${response.code()}")
             }
         } catch (e: Exception) {
-            Log.e("HomeViewModel", "Exception: ${e.message}")
+            Log.i("HomeViewModel", "Exception: ${e.message}")
         }
     }
 }

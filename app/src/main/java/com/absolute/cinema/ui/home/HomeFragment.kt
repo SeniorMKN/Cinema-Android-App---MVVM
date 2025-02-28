@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
 
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer { moviesList ->
             moviesList?.forEach { movie ->
-                Log.i("TAG_MOVIE", movie.original_title)
+                Log.i("TAG_MOVIE", movie.title)
             }
         })
 

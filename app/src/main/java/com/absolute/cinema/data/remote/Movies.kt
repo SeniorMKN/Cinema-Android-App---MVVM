@@ -1,5 +1,8 @@
 package com.absolute.cinema.data.remote
 
 import com.absolute.cinema.data.remote.respond.MovieDto
+import com.google.gson.annotations.SerializedName
 
-class Movies : ArrayList<MovieDto>()
+data class Movies(
+    @SerializedName("results") val movies: List<MovieDto>
+)
