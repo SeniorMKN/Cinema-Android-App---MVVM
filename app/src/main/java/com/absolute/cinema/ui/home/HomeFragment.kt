@@ -39,14 +39,17 @@ class HomeFragment : Fragment() {
 
         setupDialogs()
         initRecyclerView()
+        initObserver()
 
-        viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer { moviesList ->
+        viewModel.fetchMovies()
+    }
+
+    private fun initObserver() {
+        viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
             moviesList?.forEach { movie ->
                 Log.i("TAG_MOVIE", movie.title)
             }
-        })
-
-
+        }
     }
 
     private fun setupDialogs() {
