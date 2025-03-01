@@ -47,6 +47,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
                             android:background="@drawable/rounded_corner"
+                            android:elevation="10dp"
                             android:fontFamily="@font/pt_root_ui_regular"
                             android:text="@string/rating_right"
                             android:textColor="@color/white"
@@ -58,14 +59,14 @@
                             android:id="@+id/image_movie_left"
                             android:layout_width="150dp"
                             android:layout_height="250dp"
-                            tools:src="@drawable/logo"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0"
-                            tools:ignore="ContentDescription" />
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/logo" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -122,6 +123,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
                             android:background="@drawable/rounded_corner"
+                            android:elevation="10dp"
                             android:fontFamily="@font/pt_root_ui_regular"
                             android:text="@string/rating_left"
                             android:textColor="@color/white"
@@ -133,11 +135,11 @@
                             android:id="@+id/image_movie_right"
                             android:layout_width="150dp"
                             android:layout_height="250dp"
-                            tools:src="@drawable/logo"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/logo" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
