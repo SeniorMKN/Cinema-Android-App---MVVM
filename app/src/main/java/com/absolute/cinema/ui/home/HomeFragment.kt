@@ -1,19 +1,18 @@
 package com.absolute.cinema.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.absolute.cinema.data.remote.respond.MovieDto
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
-import com.absolute.cinema.data.model.MovieItemModel
 import com.absolute.cinema.ui.city.CityDialogFragment
 import com.absolute.cinema.ui.language.LanguageDialogFragment
 import com.absolute.cinema.ui.login.LoginDialogFragment
-import com.absolute.cinema.ui.utils.truncateToDecimalPlaces
 
 class HomeFragment : Fragment() {
 
@@ -21,7 +20,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
 
-    private val itemList = arrayListOf<MovieItemModel>()
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
@@ -36,7 +34,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupDialogs()
-        setupRecyclerView()
         initObserver()
 
         viewModel.fetchMovies()
@@ -44,27 +41,7 @@ class HomeFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
-            itemList.clear()
-
-            for (i in moviesList.indices step 2) {
-                val movieLeft = moviesList[i]
-                val movieRight = if (i + 1 < moviesList.size) moviesList[i + 1] else null
-
-                val movieItem = MovieItemModel(
-                    movieImageLeft = "https://image.tmdb.org/t/p/w500" + movieLeft.posterPath,
-                    movieRatingLeft = movieLeft.voteAverage.truncateToDecimalPlaces(1),
-                    movieTitleLeft = movieLeft.title,
-                    movieCategoryLeft = "Categoria Left",
-                    movieImageRight = "https://image.tmdb.org/t/p/w500" + (movieRight?.posterPath ?: ""),
-                    movieRatingRight = movieRight?.voteAverage?.truncateToDecimalPlaces(1) ?:"",
-                    movieTitleRight = movieRight?.title ?: "",
-                    movieCategoryRight = movieRight?.let { "Categoria Right" } ?: ""
-                )
-
-                itemList.add(movieItem)
-            }
-
-            recyclerViewAdapter.notifyDataSetChanged()
+            setupRecyclerView(moviesList)
         }
     }
 
@@ -82,8 +59,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView() {
-        recyclerViewAdapter = RecyclerViewAdapter(itemList)
+    private fun setupRecyclerView(moviesList: List<MovieDto>) {
+        recyclerViewAdapter = RecyclerViewAdapter(moviesList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = recyclerViewAdapter
     }

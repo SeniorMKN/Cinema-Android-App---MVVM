@@ -5,32 +5,45 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.R
+import com.absolute.cinema.data.remote.respond.MovieDto
 import com.absolute.cinema.databinding.RecyclerMovieLayoutBinding
-import com.absolute.cinema.data.model.MovieItemModel
+import com.absolute.cinema.ui.utils.BASE_BACKGROUND_IMAGE_PATH
+import com.absolute.cinema.ui.utils.truncateToDecimalPlaces
 import com.bumptech.glide.Glide
 
-class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
+class RecyclerViewAdapter(private val movieList: List<MovieDto>) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: RecyclerMovieLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: MovieItemModel) {
-            Glide.with(binding.root.context)
-                .load(item.movieImageLeft)
-                .into(binding.imageMovieLeft)
+        fun bind(movieLeft: MovieDto, movieRight: MovieDto?) {
 
-            binding.ratingMovieLeft.text = item.movieRatingLeft
-            binding.titleMovieLeft.text = item.movieTitleLeft
-            binding.categoryMovieLeft.text = item.movieCategoryLeft
+            // Left Column Movies
+            binding.apply {
+                Glide.with(root.context)
+                    .load(BASE_BACKGROUND_IMAGE_PATH + movieLeft.posterPath)
+                    .centerCrop()
+                    .into(imageMovieLeft)
 
-            Glide.with(binding.root.context)
-                .load(item.movieImageRight)
-                .into(binding.imageMovieRight)
+                ratingMovieLeft.text = movieLeft.voteAverage.truncateToDecimalPlaces(1)
+                titleMovieLeft.text = movieLeft.title
+                releaseDateLeft.text = movieLeft.releaseDate
+            }
 
-            binding.ratingMovieRight.text = item.movieRatingRight
-            binding.titleMovieRight.text = item.movieTitleRight
-            binding.categoryMovieRight.text = item.movieCategoryRight
+            // Right Column Movies
+            if (movieRight != null) {
+                binding.apply {
+                    Glide.with(root.context)
+                        .load(BASE_BACKGROUND_IMAGE_PATH + movieRight.posterPath)
+                        .centerCrop()
+                        .into(imageMovieRight)
+
+                    ratingMovieRight.text = movieRight.voteAverage.truncateToDecimalPlaces(1)
+                    titleMovieRight.text = movieRight.title
+                    releaseDateRight.text = movieRight.releaseDate
+                }
+            }
 
             setupView(binding)
         }
@@ -46,16 +59,24 @@ class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding =
-            RecyclerMovieLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RecyclerMovieLayoutBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(itemList[position])
+        val movieLeft = movieList[position * 2]
+        val movieRight =
+            if (position * 2 + 1 < movieList.size) movieList[position * 2 + 1] else null
+
+        holder.bind(movieLeft, movieRight)
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        // Divide the list size by 2 to group items in pairs
+        return (movieList.size + 1) / 2
     }
 }
