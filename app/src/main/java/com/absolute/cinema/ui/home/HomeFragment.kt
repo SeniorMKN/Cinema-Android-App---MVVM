@@ -1,29 +1,27 @@
 package com.absolute.cinema.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
 import com.absolute.cinema.data.model.MovieItemModel
 import com.absolute.cinema.ui.city.CityDialogFragment
 import com.absolute.cinema.ui.language.LanguageDialogFragment
 import com.absolute.cinema.ui.login.LoginDialogFragment
+import com.absolute.cinema.ui.utils.truncateToDecimalPlaces
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
-    private lateinit var itemList: ArrayList<MovieItemModel>
+    private val itemList = arrayListOf<MovieItemModel>()
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
@@ -38,7 +36,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupDialogs()
-        initRecyclerView()
+        setupRecyclerView()
         initObserver()
 
         viewModel.fetchMovies()
@@ -46,9 +44,27 @@ class HomeFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
-            moviesList?.forEach { movie ->
-                Log.i("TAG_MOVIE", movie.title)
+            itemList.clear()
+
+            for (i in moviesList.indices step 2) {
+                val movieLeft = moviesList[i]
+                val movieRight = if (i + 1 < moviesList.size) moviesList[i + 1] else null
+
+                val movieItem = MovieItemModel(
+                    movieImageLeft = "https://image.tmdb.org/t/p/w500" + movieLeft.posterPath,
+                    movieRatingLeft = movieLeft.voteAverage.truncateToDecimalPlaces(1),
+                    movieTitleLeft = movieLeft.title,
+                    movieCategoryLeft = "Categoria Left",
+                    movieImageRight = "https://image.tmdb.org/t/p/w500" + (movieRight?.posterPath ?: ""),
+                    movieRatingRight = movieRight?.voteAverage?.truncateToDecimalPlaces(1) ?:"",
+                    movieTitleRight = movieRight?.title ?: "",
+                    movieCategoryRight = movieRight?.let { "Categoria Right" } ?: ""
+                )
+
+                itemList.add(movieItem)
             }
+
+            recyclerViewAdapter.notifyDataSetChanged()
         }
     }
 
@@ -66,26 +82,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerView() {
-        itemList = arrayListOf(
-            MovieItemModel(
-                R.drawable.logo, "8.1", "Second Movie Title",
-                "Second Movie Category", R.drawable.logo, "7.9",
-                "Movie Title", "Movie Category"
-            ),
-            MovieItemModel(
-                R.drawable.logo, "8.1", "Third Movie Title",
-                "Third Movie Category", R.drawable.logo, "7.9",
-                "Fourth Movie Title", "Fourth Movie Category"
-            )
-        )
-
+    private fun setupRecyclerView() {
         recyclerViewAdapter = RecyclerViewAdapter(itemList)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = recyclerViewAdapter
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

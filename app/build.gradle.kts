@@ -58,6 +58,7 @@ dependencies {
     implementation (libs.converter.gson.v2110)
     implementation (libs.kotlinx.coroutines.android.v139)
     implementation(libs.logging.interceptor)
+    implementation (libs.glide)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

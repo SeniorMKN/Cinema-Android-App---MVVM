@@ -22,3 +22,7 @@ fun Fragment.setupDialogMargins(view: View) {
     layoutParams.marginEnd = resources.getDimensionPixelSize(R.dimen.margin_16dp)
     view.layoutParams = layoutParams
 }
+
+fun Double.truncateToDecimalPlaces(decimalPlaces: Int): String {
+    return "%.${decimalPlaces}f".format(this)
+}

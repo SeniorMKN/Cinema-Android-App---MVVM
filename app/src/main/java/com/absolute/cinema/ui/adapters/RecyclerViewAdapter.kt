@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.RecyclerMovieLayoutBinding
 import com.absolute.cinema.data.model.MovieItemModel
+import com.bumptech.glide.Glide
 
 class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
@@ -15,12 +16,18 @@ class RecyclerViewAdapter(private val itemList: ArrayList<MovieItemModel>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: MovieItemModel) {
-            binding.imageMovieLeft.setImageResource(item.movieImageLeft)
+            Glide.with(binding.root.context)
+                .load(item.movieImageLeft)
+                .into(binding.imageMovieLeft)
+
             binding.ratingMovieLeft.text = item.movieRatingLeft
             binding.titleMovieLeft.text = item.movieTitleLeft
             binding.categoryMovieLeft.text = item.movieCategoryLeft
 
-            binding.imageMovieRight.setImageResource(item.movieImageRight)
+            Glide.with(binding.root.context)
+                .load(item.movieImageRight)
+                .into(binding.imageMovieRight)
+
             binding.ratingMovieRight.text = item.movieRatingRight
             binding.titleMovieRight.text = item.movieTitleRight
             binding.categoryMovieRight.text = item.movieCategoryRight
