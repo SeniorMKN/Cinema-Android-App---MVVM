@@ -40,6 +40,10 @@ class LoginDialogFragment : DialogFragment() {
 
     private fun setupView() {
 
+        binding.closeTv.setOnClickListener {
+            dismiss()
+        }
+
         binding.continueBtn.apply {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)

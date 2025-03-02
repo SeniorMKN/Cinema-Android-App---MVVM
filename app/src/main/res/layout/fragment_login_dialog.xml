@@ -21,20 +21,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/login_tv"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/pt_root_ui_regular"
-                android:gravity="center"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/invisible_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:src="@drawable/baseline_arrow"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/login_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pt_root_ui_regular"
+                    android:gravity="center"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/close_tv"
+                    app:layout_constraintStart_toEndOf="@+id/invisible_tv"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/close_tv"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/baseline_close"
+                    app:layout_constraintBottom_toBottomOf="@+id/login_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/login_tv"
+                    app:tint="@color/light_grey" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <TextView
                 android:id="@+id/access_tv"
@@ -171,9 +204,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginVertical="22dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
                 android:text="Resend"
