@@ -18,3 +18,4 @@ local.properties
 /.idea/.name
 /.idea/deploymentTargetSelector.xml
 /.idea/compiler.xml
+/.idea/runConfigurations.xml
