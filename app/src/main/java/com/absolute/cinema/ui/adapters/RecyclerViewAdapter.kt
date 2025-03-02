@@ -1,19 +1,18 @@
 package com.absolute.cinema.ui.adapters
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.R
-import com.absolute.cinema.data.remote.respond.MovieDto
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.data.remote.response.MovieDto
 import com.absolute.cinema.databinding.RecyclerMovieLayoutBinding
 import com.absolute.cinema.ui.utils.BASE_BACKGROUND_IMAGE_PATH
 import com.absolute.cinema.ui.utils.truncateToDecimalPlaces
 import com.bumptech.glide.Glide
 
-class RecyclerViewAdapter(private val movieList: List<MovieDto>) :
+class RecyclerViewAdapter(private val movieList: List<MovieDto>, private val sharedViewModel: MoviesSharedViewModel) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(private val binding: RecyclerMovieLayoutBinding) :
@@ -53,18 +52,17 @@ class RecyclerViewAdapter(private val movieList: List<MovieDto>) :
 
     private fun setupView(binding: RecyclerMovieLayoutBinding, movieLeft: MovieDto, movieRight: MovieDto?) {
         binding.imageMovieLeft.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("movieTitle", movieLeft.title)
-            }
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment, bundle)
+            sharedViewModel.setSelectedMovieId(movieLeft.id)
+            sharedViewModel.setSelectedMovieTitle(movieLeft.title)
+
+            binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
         }
 
         binding.imageMovieRight.setOnClickListener {
             movieRight?.let {
-                val bundle = Bundle().apply {
-                    putString("movieTitle", it.title)
-                }
-                binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment, bundle)
+                sharedViewModel.setSelectedMovieId(it.id)
+                sharedViewModel.setSelectedMovieTitle(movieRight.title)
+                binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
             }
         }
     }
