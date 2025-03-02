@@ -61,8 +61,8 @@ class TabsMovieFragment : Fragment() {
         }.attach()
     }
 
-    fun argumentsPassed(){
-        val movieTitle = arguments?.getString("movieTitle")
+    private fun argumentsPassed(){
+        val movieTitle = arguments?.getString("movieTitle")?: "Unknown Title"
         binding.movieTitleTv.text = movieTitle
     }
 
