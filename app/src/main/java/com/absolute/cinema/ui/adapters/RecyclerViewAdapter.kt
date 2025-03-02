@@ -1,5 +1,6 @@
 package com.absolute.cinema.ui.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -45,18 +46,29 @@ class RecyclerViewAdapter(private val movieList: List<MovieDto>) :
                 }
             }
 
-            setupView(binding)
+            setupView(binding, movieLeft, movieRight)
         }
     }
 
-    private fun setupView(binding: RecyclerMovieLayoutBinding) {
+    private fun setupView(binding: RecyclerMovieLayoutBinding, movieLeft: MovieDto, movieRight: MovieDto?) {
         binding.imageMovieLeft.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
+            val bundle = Bundle().apply {
+                putString("movieTitle", movieLeft.title)
+            }
+            binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment, bundle)
         }
+
         binding.imageMovieRight.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
+            movieRight?.let {
+                val bundle = Bundle().apply {
+                    putString("movieTitle", it.title)
+                }
+                binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment, bundle)
+            }
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = RecyclerMovieLayoutBinding.inflate(

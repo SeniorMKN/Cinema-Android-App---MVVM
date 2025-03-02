@@ -23,7 +23,8 @@ class TabsMovieFragment : Fragment() {
     private lateinit var viewPager2: ViewPager2
     private lateinit var myAdapter: MyPagerAdapter
     private lateinit var tabLayout: TabLayout
-    var tabsArray = arrayOf("About", "Sessions")
+    private var tabsArray = arrayOf("About", "Sessions")
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,8 @@ class TabsMovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        argumentsPassed()
 
         binding.backArrowTv.setOnClickListener {
             findNavController().popBackStack()
@@ -56,6 +59,11 @@ class TabsMovieFragment : Fragment() {
         ) { tab, position ->
             tab.text = tabsArray[position]
         }.attach()
+    }
+
+    fun argumentsPassed(){
+        val movieTitle = arguments?.getString("movieTitle")
+        binding.movieTitleTv.text = movieTitle
     }
 
     // function used in about movie btn
