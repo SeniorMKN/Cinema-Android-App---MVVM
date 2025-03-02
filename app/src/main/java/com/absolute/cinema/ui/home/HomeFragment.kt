@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.absolute.cinema.data.remote.respond.MovieDto
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
+import com.absolute.cinema.data.remote.response.MovieDto
 import com.absolute.cinema.databinding.FragmentHomeBinding
 import com.absolute.cinema.ui.adapters.RecyclerViewAdapter
 import com.absolute.cinema.ui.city.CityDialogFragment
@@ -19,6 +21,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
+    private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
 
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
@@ -60,7 +63,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView(moviesList: List<MovieDto>) {
-        recyclerViewAdapter = RecyclerViewAdapter(moviesList)
+        recyclerViewAdapter = RecyclerViewAdapter(moviesList, sharedViewModel)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = recyclerViewAdapter
     }
