@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.absolute.cinema.data.remote.MovieService
 import com.absolute.cinema.data.remote.Movies
 import com.absolute.cinema.data.remote.RetrofitInstance
-import com.absolute.cinema.data.remote.respond.MovieDto
+import com.absolute.cinema.data.remote.response.MovieDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response

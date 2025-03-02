@@ -1,4 +1,4 @@
-package com.absolute.cinema.data.remote.respond
+package com.absolute.cinema.data.remote.response
 
 data class MovieListDto(    
     val page: Int,

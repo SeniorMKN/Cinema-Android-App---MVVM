@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.R
 import com.absolute.cinema.data.remote.respond.MovieDto
+import com.absolute.cinema.data.remote.response.MovieDto
 import com.absolute.cinema.databinding.RecyclerMovieLayoutBinding
 import com.absolute.cinema.ui.utils.BASE_BACKGROUND_IMAGE_PATH
 import com.absolute.cinema.ui.utils.truncateToDecimalPlaces

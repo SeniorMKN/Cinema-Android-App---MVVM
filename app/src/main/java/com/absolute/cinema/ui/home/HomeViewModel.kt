@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.absolute.cinema.data.domain.repository.MovieRepository
-import com.absolute.cinema.data.remote.respond.MovieDto
+import com.absolute.cinema.data.remote.response.MovieDto
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
