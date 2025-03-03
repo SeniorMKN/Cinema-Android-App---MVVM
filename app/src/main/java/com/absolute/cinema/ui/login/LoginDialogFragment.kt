@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLoginDialogBinding
+import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 import com.absolute.cinema.ui.utils.UiUtils
 import com.absolute.cinema.ui.utils.setupDialogMargins
 import kotlinx.coroutines.Job
@@ -23,6 +25,7 @@ class LoginDialogFragment : DialogFragment() {
     private var _binding: FragmentLoginDialogBinding? = null
     private val binding get() = _binding!!
     private var countDownTimer: Job? = null
+    private val loginDialogFragment: LoginDialogViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,13 @@ class LoginDialogFragment : DialogFragment() {
 
     private fun setupView() {
 
+        val savedPhoneNumber = ProfileSharedPreferences.getPhoneNumber(requireContext())
+        if (!savedPhoneNumber.isNullOrEmpty()) {
+            binding.phoneNumber.setText(savedPhoneNumber)
+            binding.continueBtn.isEnabled = true
+            binding.continueBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+        }
+
         binding.closeTv.setOnClickListener {
             dismiss()
         }
@@ -56,17 +66,40 @@ class LoginDialogFragment : DialogFragment() {
         }
 
         binding.continueBtn.setOnClickListener {
-            binding.apply {
-                accessTv.text = getString(R.string.enter_the_password_from_the_sms)
-                continueBtn.text = getString(R.string.login)
+            if (binding.phoneNumber.visibility == View.VISIBLE) {
 
-                phoneNumber.visibility = View.GONE
-                linearLyCodeBox.visibility = View.VISIBLE
-                changeNumberTv.visibility = View.VISIBLE
-                resendTv.visibility = View.VISIBLE
+                val userPhoneNumber = binding.phoneNumber.text.toString().trim()
+                ProfileSharedPreferences.savePhoneNumber(requireContext(), userPhoneNumber)
+                binding.apply {
+                    accessTv.text = getString(R.string.enter_the_password_from_the_sms)
+                    continueBtn.text = getString(R.string.login)
 
-                continueBtn.isEnabled = false
-                continueBtn.setBackgroundColor(UiUtils.brownColor)
+                    phoneNumber.visibility = View.GONE
+                    linearLyCodeBox.visibility = View.VISIBLE
+                    changeNumberTv.visibility = View.VISIBLE
+                    resendTv.visibility = View.VISIBLE
+
+                    continueBtn.isEnabled = false
+                    continueBtn.setBackgroundColor(UiUtils.brownColor)
+                }
+            } else {
+                val pin1 = binding.firstPinEt.text.toString()
+                val pin2 = binding.secondPinEt.text.toString()
+                val pin3 = binding.thirdPinEt.text.toString()
+                val pin4 = binding.fourthPinEt.text.toString()
+                val enteredPin = "$pin1$pin2$pin3$pin4"
+
+                if (enteredPin == "1111") {
+                    handleLoginSuccess(enteredPin)
+                    dismiss()
+
+                } else {
+                    binding.firstPinEt.text?.clear()
+                    binding.secondPinEt.text?.clear()
+                    binding.thirdPinEt.text?.clear()
+                    binding.fourthPinEt.text?.clear()
+                    binding.firstPinEt.requestFocus()
+                }
             }
         }
 
@@ -83,6 +116,13 @@ class LoginDialogFragment : DialogFragment() {
                 resendTv.visibility = View.GONE
             }
         }
+    }
+
+    private fun handleLoginSuccess(enteredPin: String) {
+
+        ProfileSharedPreferences.savePin(requireContext(), enteredPin)
+        loginDialogFragment.setLoggedIn(true)
+        dismiss()
     }
 
     private fun setupListeners() {
