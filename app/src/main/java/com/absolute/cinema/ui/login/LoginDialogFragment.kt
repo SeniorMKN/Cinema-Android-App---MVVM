@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLoginDialogBinding
@@ -25,7 +24,6 @@ class LoginDialogFragment : DialogFragment() {
     private var _binding: FragmentLoginDialogBinding? = null
     private val binding get() = _binding!!
     private var countDownTimer: Job? = null
-    private val loginDialogFragment: LoginDialogViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +43,6 @@ class LoginDialogFragment : DialogFragment() {
 
     private fun setupView() {
 
-        val savedPhoneNumber = ProfileSharedPreferences.getPhoneNumber(requireContext())
-        if (!savedPhoneNumber.isNullOrEmpty()) {
-            binding.phoneNumber.setText(savedPhoneNumber)
-            binding.continueBtn.isEnabled = true
-            binding.continueBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
-        }
-
         binding.closeTv.setOnClickListener {
             dismiss()
         }
@@ -69,7 +60,7 @@ class LoginDialogFragment : DialogFragment() {
             if (binding.phoneNumber.visibility == View.VISIBLE) {
 
                 val userPhoneNumber = binding.phoneNumber.text.toString().trim()
-                ProfileSharedPreferences.savePhoneNumber(requireContext(), userPhoneNumber)
+
                 binding.apply {
                     accessTv.text = getString(R.string.enter_the_password_from_the_sms)
                     continueBtn.text = getString(R.string.login)
@@ -90,9 +81,14 @@ class LoginDialogFragment : DialogFragment() {
                 val enteredPin = "$pin1$pin2$pin3$pin4"
 
                 if (enteredPin == "1111") {
-                    handleLoginSuccess(enteredPin)
-                    dismiss()
-
+                    val callback = object : LoginCallback {
+                        override fun onLoginSuccess(result: Boolean) {
+                            if (result) {
+                                dismiss()
+                            }
+                        }
+                    }
+                    handleLoginSuccess(callback)
                 } else {
                     binding.firstPinEt.text?.clear()
                     binding.secondPinEt.text?.clear()
@@ -118,12 +114,11 @@ class LoginDialogFragment : DialogFragment() {
         }
     }
 
-    private fun handleLoginSuccess(enteredPin: String) {
-
-        ProfileSharedPreferences.savePin(requireContext(), enteredPin)
-        loginDialogFragment.setLoggedIn(true)
-        dismiss()
+    private fun handleLoginSuccess(callback: LoginCallback) {
+        ProfileSharedPreferences.setLoggedIn(requireContext(), true)
+        callback.onLoginSuccess(true)
     }
+
 
     private fun setupListeners() {
 
@@ -258,4 +253,8 @@ class LoginDialogFragment : DialogFragment() {
         countDownTimer?.cancel()
         _binding = null
     }
+}
+
+interface LoginCallback {
+    fun onLoginSuccess(result: Boolean)
 }

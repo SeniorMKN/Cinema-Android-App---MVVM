@@ -3,28 +3,21 @@ package com.absolute.cinema.ui.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-object ProfileSharedPreferences {private const val PREF_NAME = "cinema_prefs"
-    private const val KEY_PHONE_NUMBER = "phone_number"
-    private const val KEY_PIN = "user_pin"
+object ProfileSharedPreferences {
+
+    private const val PREF_NAME = "cinema_prefs"
+    private const val KEY_IS_LOGGED_IN = "is_logged_in"
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     }
 
-    fun savePhoneNumber(context: Context, phoneNumber: String) {
-        getPreferences(context).edit().putString(KEY_PHONE_NUMBER, phoneNumber).apply()
+    fun setLoggedIn(context: Context, isLoggedIn: Boolean) {
+        getPreferences(context).edit().putBoolean(KEY_IS_LOGGED_IN, isLoggedIn).apply()
     }
 
-    fun getPhoneNumber(context: Context): String? {
-        return getPreferences(context).getString(KEY_PHONE_NUMBER, null)
-    }
-
-    fun savePin(context: Context, pin: String) {
-        getPreferences(context).edit().putString(KEY_PIN, pin).apply()
-    }
-
-    fun getPin(context: Context): String? {
-        return getPreferences(context).getString(KEY_PIN, null)
+    fun getIsLoggedIn(context: Context): Boolean {
+        return getPreferences(context).getBoolean(KEY_IS_LOGGED_IN, false)
     }
 
     fun clearData(context: Context) {
