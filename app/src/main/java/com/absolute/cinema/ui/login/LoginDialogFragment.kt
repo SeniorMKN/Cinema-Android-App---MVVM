@@ -2,7 +2,6 @@ package com.absolute.cinema.ui.login
 
 import android.graphics.Color
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -10,16 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLoginDialogBinding
 import com.absolute.cinema.ui.utils.UiUtils
 import com.absolute.cinema.ui.utils.setupDialogMargins
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class LoginDialogFragment : DialogFragment() {
 
     private var _binding: FragmentLoginDialogBinding? = null
     private val binding get() = _binding!!
-    private var countDownTimer: CountDownTimer? = null
+    private var countDownTimer: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +37,6 @@ class LoginDialogFragment : DialogFragment() {
 
         setupView()
         setupListeners()
-
         setupDialogMargins(view)
     }
 
@@ -70,6 +72,8 @@ class LoginDialogFragment : DialogFragment() {
 
         binding.changeNumberTv.setOnClickListener {
             binding.apply {
+                resetResendTimer()
+
                 accessTv.text = getString(R.string.access_to_purchased_tickets)
                 continueBtn.text = getString(R.string.continue_btn)
 
@@ -170,23 +174,32 @@ class LoginDialogFragment : DialogFragment() {
         }
     }
 
-
     private fun startResendTimer() {
+        binding.resendTv.isEnabled = false
+        countDownTimer = viewLifecycleOwner.lifecycleScope.launch {
+            val totalTime = 59000L
+            val interval = 1000L
+            var remainingTime = totalTime / 1000
 
-        countDownTimer = object : CountDownTimer(59000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val secondsRemaining = millisUntilFinished / 1000
+            while (remainingTime > 0) {
                 if (_binding != null) {
-                    binding.resendTv.text = getString(R.string.resend_in_seconds, secondsRemaining)
+                    binding.resendTv.text = getString(R.string.resend_in_seconds, remainingTime)
                 }
+                delay(interval)
+                remainingTime--
             }
 
-            override fun onFinish() {
-                if (_binding != null) {
-                    binding.resendTv.text = getString(R.string.resend_now)
-                }
+            if (_binding != null) {
+                binding.resendTv.text = getString(R.string.resend)
+                binding.resendTv.isEnabled = true
             }
-        }.start()
+        }
+    }
+
+    private fun resetResendTimer() {
+        countDownTimer?.cancel()
+        binding.resendTv.text = getString(R.string.resend)
+        binding.resendTv.isEnabled = true
     }
 
     override fun onStart() {
@@ -199,7 +212,6 @@ class LoginDialogFragment : DialogFragment() {
         )
         dialog?.window?.decorView?.setBackgroundColor(Color.TRANSPARENT)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
