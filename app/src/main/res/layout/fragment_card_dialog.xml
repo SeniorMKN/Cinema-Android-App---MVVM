@@ -18,15 +18,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/add_card_tv"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/pt_root_ui_regular"
-            android:text="Add card"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/invisible_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:src="@drawable/baseline_arrow"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/add_card_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pt_root_ui_regular"
+                android:text="Add card"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/invisible_tv"
+                app:layout_constraintEnd_toStartOf="@+id/close_tv"
+                app:layout_constraintStart_toEndOf="@+id/invisible_tv"
+                app:layout_constraintTop_toTopOf="@id/invisible_tv" />
+
+            <ImageView
+                android:id="@+id/close_tv"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="32dp"
+                android:src="@drawable/baseline_close"
+                app:layout_constraintBottom_toBottomOf="@+id/add_card_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/add_card_tv"
+                app:tint="@color/light_grey" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/card_numbers_tv"

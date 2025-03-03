@@ -28,13 +28,20 @@ class LanguageDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+        setupLanguages()
+        setupDialogMargins(view)
+    }
+
+    private fun setupView() {
+        binding.closeTv.setOnClickListener {
+            dismiss()
+        }
+
         binding.languageApplyBtn.apply {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)
         }
-
-        setupLanguages()
-        setupDialogMargins(view)
     }
 
     private fun setupLanguages() {

@@ -30,12 +30,21 @@ class CardDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+        setupListeners()
+        setupDialogMargins(view)
+    }
+
+    private fun setupView() {
+
+        binding.closeTv.setOnClickListener {
+            dismiss()
+        }
+
         binding.addBankCardBtn.apply {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)
         }
-        setupListeners()
-        setupDialogMargins(view)
     }
 
     private fun setupListeners() {
@@ -47,7 +56,8 @@ class CardDialogFragment : DialogFragment() {
                 val cardNumber = binding.cardNumberEt.text.toString().trim()
                 val cardMonth = binding.monthEt.text.toString().trim()
                 val cardCvc = binding.cvcEt.text.toString().trim()
-                val isValid = cardNumber.length == 16 && cardMonth.length == 2 && cardCvc.length == 3
+                val isValid =
+                    cardNumber.length == 16 && cardMonth.length == 2 && cardCvc.length == 3
                 val orangeColor = requireContext().getColor(R.color.orange)
 
                 binding.addBankCardBtn.apply {

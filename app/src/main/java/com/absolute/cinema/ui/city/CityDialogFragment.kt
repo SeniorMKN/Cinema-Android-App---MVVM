@@ -34,13 +34,20 @@ class CityDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+        initRecyclerView()
+        setupDialogMargins(view)
+    }
+
+    private fun setupView() {
+        binding.closeTv.setOnClickListener {
+            dismiss()
+        }
+
         binding.cityApplyBtn.apply {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)
         }
-
-        initRecyclerView()
-        setupDialogMargins(view)
     }
 
     private fun initRecyclerView() {

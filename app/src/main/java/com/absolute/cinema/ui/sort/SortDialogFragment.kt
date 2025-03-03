@@ -28,22 +28,35 @@ class SortDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupView()
+        setupSortOption()
+        setupOrderOption()
+        setupDialogMargins(view)
+
+    }
+
+    private fun setupView() {
+        binding.closeTv.setOnClickListener {
+            dismiss()
+        }
 
         binding.sortApplyBtn.apply {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)
         }
+    }
 
+    private fun setupOrderOption() {
+        binding.ascendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkAscendingIv) }
+        binding.descendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
+    }
+
+    private fun setupSortOption() {
         binding.timeLinearLy.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
         binding.distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) }
         binding.priceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkPriceIv) }
-
-        binding.ascendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkAscendingIv) }
-        binding.descendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
-
-        super.onViewCreated(view, savedInstanceState)
-
-        setupDialogMargins(view)
     }
 
     private fun setSelectedSortOption(selectedCheck: View) {
