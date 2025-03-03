@@ -15,6 +15,7 @@ import com.absolute.cinema.databinding.FragmentProfileBinding
 import com.absolute.cinema.ui.adapters.CardsRecyclerViewAdapter
 import com.absolute.cinema.ui.adapters.HistoryRecyclerViewAdapter
 import com.absolute.cinema.ui.card.CardDialogFragment
+import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 import com.absolute.cinema.ui.utils.onBackPressed
 
 class ProfileFragment : Fragment() {
@@ -53,6 +54,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.logoutTv.setOnClickListener {
+            ProfileSharedPreferences.clearData(requireContext())
             it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
 
