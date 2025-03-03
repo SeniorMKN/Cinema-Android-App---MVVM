@@ -48,5 +48,6 @@
     <string name="time">Time</string>
     <string name="resend_in_seconds">Resend in %d seconds</string>
     <string name="resend">Resend</string>
+    <string name="profile">Profile</string>
 
 </resources>
