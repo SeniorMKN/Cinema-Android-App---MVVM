@@ -24,6 +24,7 @@ class LoginDialogFragment : DialogFragment() {
     private var _binding: FragmentLoginDialogBinding? = null
     private val binding get() = _binding!!
     private var countDownTimer: Job? = null
+    private var loginCallback: LoginCallback? = null  // Variable to hold the callback
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,10 @@ class LoginDialogFragment : DialogFragment() {
         setupView()
         setupListeners()
         setupDialogMargins(view)
+    }
+
+    fun setLoginCallback(callback: LoginCallback) {
+        this.loginCallback = callback
     }
 
     private fun setupView() {
@@ -81,14 +86,9 @@ class LoginDialogFragment : DialogFragment() {
                 val enteredPin = "$pin1$pin2$pin3$pin4"
 
                 if (enteredPin == "1111") {
-                    val callback = object : LoginCallback {
-                        override fun onLoginSuccess(result: Boolean) {
-                            if (result) {
-                                dismiss()
-                            }
-                        }
-                    }
-                    handleLoginSuccess(callback)
+                    loginCallback?.onLoginSuccess(true)
+                    ProfileSharedPreferences.setLoggedIn(requireContext(), true)
+                    dismiss()
                 } else {
                     binding.firstPinEt.text?.clear()
                     binding.secondPinEt.text?.clear()

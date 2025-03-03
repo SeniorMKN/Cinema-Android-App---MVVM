@@ -1,7 +1,6 @@
 package com.absolute.cinema.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,16 +21,14 @@ import com.absolute.cinema.ui.login.LoginDialogFragment
 import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), LoginCallback {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
     private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
-    private var loginCallback: LoginCallback? = null
 
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,13 +50,24 @@ class HomeFragment : Fragment() {
         } else {
             binding.loginButton.text = "Log in"
             binding.loginButton.setOnClickListener {
-                LoginDialogFragment().show(parentFragmentManager, "LoginDialog")
+                val loginDialogFragment = LoginDialogFragment()
+                loginDialogFragment.setLoginCallback(this)
+                loginDialogFragment.show(parentFragmentManager, "LoginDialog")
             }
         }
 
         initObserver()
         setupDialogs()
         viewModel.fetchMovies()
+    }
+
+    override fun onLoginSuccess(result: Boolean) {
+        if (result) {
+            binding.loginButton.text = "Profile"
+            binding.loginButton.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
+        }
     }
 
     private fun initObserver() {
@@ -69,7 +77,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupDialogs() {
-
         binding.positionName.setOnClickListener {
             CityDialogFragment().show(parentFragmentManager, "PositionDialog")
         }
