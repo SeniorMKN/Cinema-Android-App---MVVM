@@ -60,7 +60,7 @@ class TabsMovieFragment : Fragment() {
 
 
     private fun setupView() {
-        binding.movieTitleTv.text = sharedViewModel.selectedMovieTitle.value
+        //binding.movieTitleTv.text = sharedViewModel.selectedMovieTitle.value
     }
 
     private fun setupListeners() {

@@ -1,21 +1,25 @@
 package com.absolute.cinema.data.remote
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MoviesSharedViewModel : ViewModel() {
-    private val _selectedMovieId = MutableLiveData<Int>()
-    val selectedMovieId: LiveData<Int> get() = _selectedMovieId
 
-    private val _selectedMovieTitle = MutableLiveData<String>()
-    val selectedMovieTitle: LiveData<String> get() = _selectedMovieTitle
+    private var selectedMovieId: Int? = null
+    private var selectedMovieTitle: String? = null
 
     fun setSelectedMovieId(movieId: Int) {
-        _selectedMovieId.value = movieId
+        selectedMovieId = movieId
+    }
+
+    fun getSelectedMovieId(): Int? {
+        return selectedMovieId
     }
 
     fun setSelectedMovieTitle(movieTitle: String) {
-        _selectedMovieTitle.value = movieTitle
+        selectedMovieTitle = movieTitle
+    }
+
+    fun getSelectedMovieTitle(): String? {
+        return selectedMovieTitle
     }
 }
