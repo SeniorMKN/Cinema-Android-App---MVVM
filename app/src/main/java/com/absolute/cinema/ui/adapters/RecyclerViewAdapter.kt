@@ -1,5 +1,6 @@
 package com.absolute.cinema.ui.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -52,7 +53,7 @@ class RecyclerViewAdapter(private val movieList: List<MovieDto>, private val sha
 
     private fun setupView(binding: RecyclerMovieLayoutBinding, movieLeft: MovieDto, movieRight: MovieDto?) {
         binding.imageMovieLeft.setOnClickListener {
-            sharedViewModel.setSelectedMovieId(movieLeft.id)
+            sharedViewModel.setSelectedMovieId(movieLeft.id.toString())
             sharedViewModel.setSelectedMovieTitle(movieLeft.title)
 
             binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
@@ -60,7 +61,7 @@ class RecyclerViewAdapter(private val movieList: List<MovieDto>, private val sha
 
         binding.imageMovieRight.setOnClickListener {
             movieRight?.let {
-                sharedViewModel.setSelectedMovieId(it.id)
+                sharedViewModel.setSelectedMovieId(it.id.toString())
                 sharedViewModel.setSelectedMovieTitle(movieRight.title)
                 binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
             }

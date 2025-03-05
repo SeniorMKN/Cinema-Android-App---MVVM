@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentAboutMovieBinding
 import com.absolute.cinema.ui.tabs.TabsMovieFragment
 
@@ -12,6 +14,7 @@ class AboutMovieFragment : Fragment() {
 
     private var _binding: FragmentAboutMovieBinding? = null
     private val binding get() = _binding!!
+    private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +28,11 @@ class AboutMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupListeners()
+        setupView()
+    }
+
+    private fun setupView() {
+        binding.movieRatingAgeTv.text = sharedViewModel.getSelectedMovieId()
     }
 
     private fun setupListeners() {

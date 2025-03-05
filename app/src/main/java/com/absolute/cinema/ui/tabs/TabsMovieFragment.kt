@@ -58,9 +58,8 @@ class TabsMovieFragment : Fragment() {
         }.attach()
     }
 
-
     private fun setupView() {
-        binding.movieTitleTv.text = sharedViewModel.selectedMovieTitle.value
+
     }
 
     private fun setupListeners() {
@@ -68,7 +67,6 @@ class TabsMovieFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
 
     // function used in about movie btn
     fun navigateToSeatSelection() {

@@ -1,6 +1,7 @@
 package com.absolute.cinema.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ class HomeFragment : Fragment(), LoginCallback {
         initObserver()
         setupDialogs()
         viewModel.fetchMovies()
+        viewModel.loadMovieDetails()
     }
 
     override fun onLoginSuccess(result: Boolean) {
@@ -73,6 +75,10 @@ class HomeFragment : Fragment(), LoginCallback {
     private fun initObserver() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
             setupRecyclerView(moviesList)
+        }
+
+        viewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
+            Log.i("MOVIE_DETAILS", details.title)
         }
     }
 
