@@ -1,6 +1,7 @@
 package com.absolute.cinema.ui.about
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ class AboutMovieFragment : Fragment() {
     private var _binding: FragmentAboutMovieBinding? = null
     private val binding get() = _binding!!
     private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
+    private val aboutMovieViewModel: AboutMovieViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +31,17 @@ class AboutMovieFragment : Fragment() {
 
         setupListeners()
         setupView()
+        setupObservers()
+
+        aboutMovieViewModel.loadMovieDetails(sharedViewModel.getSelectedMovieId())
+    }
+
+    private fun setupObservers() {
+        aboutMovieViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
+            binding.apply {
+                movieRatingAgeTv.text = details.releaseDate
+            }
+        }
     }
 
     private fun setupView() {

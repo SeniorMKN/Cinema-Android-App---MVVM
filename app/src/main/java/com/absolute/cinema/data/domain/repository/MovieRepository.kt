@@ -35,11 +35,12 @@ class MovieRepository {
         }
     }
 
-    suspend fun loadMovieDetails(): MovieDetailsDto? {
+    suspend fun loadMovieDetails(movieId: String): MovieDetailsDto? {
         return withContext(Dispatchers.IO) {
             try {
                 val response: Response<MovieDetailsDto> = movieService.getMovieDetails(
-                    token = AUTH_TOKEN
+                    token = AUTH_TOKEN,
+                    movieId = movieId
                 )
 
                 if (response.isSuccessful) {
