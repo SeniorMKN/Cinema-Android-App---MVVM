@@ -1,7 +1,6 @@
 package com.absolute.cinema.ui.about
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentAboutMovieBinding
 import com.absolute.cinema.ui.tabs.TabsMovieFragment
+import java.util.Locale
 
 class AboutMovieFragment : Fragment() {
 
@@ -30,7 +30,6 @@ class AboutMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupListeners()
-        setupView()
         setupObservers()
 
         aboutMovieViewModel.loadMovieDetails(sharedViewModel.getSelectedMovieId())
@@ -39,13 +38,16 @@ class AboutMovieFragment : Fragment() {
     private fun setupObservers() {
         aboutMovieViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
             binding.apply {
-                movieRatingAgeTv.text = details.releaseDate
+                movieDescriptionTv.text = details.overview
+                releaseTv.text = details.releaseDate
+                movieRatingAgeTv.text = if (details.isAdult) "18+" else "16+"
+                genreTv.text = details.genres.joinToString(", ") { it.name }
+                binding.runtimeTv.text = details.runtime.let {
+                    String.format(Locale.getDefault(), "%02d:%02d", it / 60, it % 60)
+                }
+
             }
         }
-    }
-
-    private fun setupView() {
-        binding.movieRatingAgeTv.text = sharedViewModel.getSelectedMovieId()
     }
 
     private fun setupListeners() {
