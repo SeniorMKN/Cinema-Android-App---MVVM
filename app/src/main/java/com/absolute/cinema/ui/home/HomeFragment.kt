@@ -100,12 +100,19 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
         binding.recyclerView.adapter = recyclerViewAdapter
     }
 
+    override fun onSearchMovieTitle(movieTitle: String) {
+        Log.i("SEARCH", movieTitle)
+
+        val filteredMovies = viewModel.moviesLiveData.value?.filter {
+            it.title.contains(movieTitle, ignoreCase = true)
+        } ?: emptyList()
+
+        setupRecyclerView(filteredMovies)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    override fun onSearchMovieTitle(movieTitle: String) {
-        Log.i("SEARCH", movieTitle)
-    }
 }
