@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.databinding.FragmentSearchDialogBinding
-import com.absolute.cinema.ui.utils.UiUtils
 
 class SearchDialogFragment : DialogFragment() {
 
     private var _binding: FragmentSearchDialogBinding? = null
     private val binding get() = _binding!!
+    var searchCallBack: SearchCallBack? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +30,17 @@ class SearchDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
+
         binding.closeTv.setOnClickListener {
             dismiss()
         }
 
-        binding.searchApplyBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
+        binding.searchApplyBtn.setOnClickListener {
+            val searchEt = binding.searchEt.text.toString()
+            if (searchEt.isNotEmpty()) {
+                searchCallBack?.onSearchMovieTitle(searchEt)
+                dismiss()
+            }
         }
     }
 
@@ -56,4 +60,8 @@ class SearchDialogFragment : DialogFragment() {
         _binding = null
     }
 
+}
+
+interface SearchCallBack {
+    fun onSearchMovieTitle(movieTitle: String)
 }
