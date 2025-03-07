@@ -114,12 +114,6 @@ class LoginDialogFragment : DialogFragment() {
         }
     }
 
-    private fun handleLoginSuccess(callback: LoginCallback) {
-        ProfileSharedPreferences.setLoggedIn(requireContext(), true)
-        callback.onLoginSuccess(true)
-    }
-
-
     private fun setupListeners() {
 
         val inputTextWatcher = object : TextWatcher {
