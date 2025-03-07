@@ -43,6 +43,24 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        login()
+        initObserver()
+        setupDialogs()
+        setupListener()
+        setupPopularMovies()
+    }
+
+    private fun setupPopularMovies() {
+        viewModel.fetchMovies()
+    }
+
+    private fun setupListener() {
+        binding.logo.setOnClickListener {
+            viewModel.fetchMovies()
+        }
+    }
+
+    private fun login() {
         val isLoggedIn = ProfileSharedPreferences.getIsLoggedIn(requireContext())
         if (isLoggedIn) {
             binding.loginButton.text = "Profile"
@@ -57,10 +75,6 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
                 loginDialogFragment.show(parentFragmentManager, "LoginDialog")
             }
         }
-
-        initObserver()
-        setupDialogs()
-        viewModel.fetchMovies()
     }
 
     override fun onLoginSuccess(result: Boolean) {
@@ -76,6 +90,7 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
         viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
             setupRecyclerView(moviesList)
         }
+
     }
 
     private fun setupDialogs() {
@@ -103,11 +118,7 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     override fun onSearchMovieTitle(movieTitle: String) {
         Log.i("SEARCH", movieTitle)
 
-        val filteredMovies = viewModel.moviesLiveData.value?.filter {
-            it.title.contains(movieTitle, ignoreCase = true)
-        } ?: emptyList()
-
-        setupRecyclerView(filteredMovies)
+        //setupRecyclerView(emptyList())
     }
 
     override fun onDestroyView() {
