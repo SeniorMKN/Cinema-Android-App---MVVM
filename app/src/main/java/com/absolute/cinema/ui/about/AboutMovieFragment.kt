@@ -42,10 +42,9 @@ class AboutMovieFragment : Fragment() {
                 releaseTv.text = details.releaseDate
                 movieRatingAgeTv.text = if (details.isAdult) "18+" else "16+"
                 genreTv.text = details.genres.joinToString(", ") { it.name }
-                binding.runtimeTv.text = details.runtime.let {
-                    String.format(Locale.getDefault(), "%02d:%02d", it / 60, it % 60)
+                binding.runtimeTv.text = details.runtime.let { runtime ->
+                    String.format(Locale.getDefault(), "%02d:%02d", runtime / 60, runtime % 60)
                 }
-
             }
         }
     }
