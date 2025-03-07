@@ -91,6 +91,10 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
             setupRecyclerView(moviesList)
         }
 
+        viewModel.searchMoviesLiveData.observe(viewLifecycleOwner) { searchedMoviesList ->
+            Log.i("SEARCH", searchedMoviesList.toString())
+        }
+
     }
 
     private fun setupDialogs() {
@@ -118,6 +122,7 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     override fun onSearchMovieTitle(movieTitle: String) {
         Log.i("SEARCH", movieTitle)
 
+        viewModel.searchMovies(movieTitle)
         //setupRecyclerView(emptyList())
     }
 

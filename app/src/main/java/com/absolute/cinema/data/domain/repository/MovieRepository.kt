@@ -56,5 +56,27 @@ class MovieRepository {
             }
         }
     }
+
+    suspend fun searchMovies(movieTitle: String): List<MovieDto>?  {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response: Response<Movies> = movieService.searchMovies(
+                    token = AUTH_TOKEN,
+                    movieTitle = movieTitle
+                )
+
+                if (response.isSuccessful) {
+                    Log.i("MovieRepository", "RESPONSE OK")
+                    return@withContext response.body()?.movies
+                } else {
+                    Log.i("MovieRepository", "Error: ${response.code()}")
+                    return@withContext null
+                }
+            } catch (e: Exception) {
+                Log.i("MovieRepository", "Exception: ${e.message}")
+                return@withContext null
+            }
+        }
+    }
 }
 

@@ -6,6 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieService {
 
@@ -21,4 +22,11 @@ interface MovieService {
         @Header("Authorization") token: String,
         @Path("MOVIE_ID") movieId: String
     ): Response<MovieDetailsDto>
+
+    @Headers("Accept: application/json")
+    @GET("3/search/movie")
+    suspend fun searchMovies(
+        @Header("Authorization") token: String,
+        @Query("query") movieTitle: String
+    ): Response<Movies>
 }
