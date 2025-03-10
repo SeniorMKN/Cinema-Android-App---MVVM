@@ -39,6 +39,7 @@ class TabsMovieFragment : Fragment() {
         setupView()
         setupListeners()
         initTabLayout()
+
     }
 
     private fun initTabLayout() {
@@ -59,7 +60,7 @@ class TabsMovieFragment : Fragment() {
     }
 
     private fun setupView() {
-
+        binding.movieTitleTv.text = sharedViewModel.getSelectedMovieTitle()
     }
 
     private fun setupListeners() {
