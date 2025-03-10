@@ -25,8 +25,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <VideoView
-                android:id="@+id/movie_trailer_tv"
+            <WebView
+                android:id="@+id/movie_trailer_wv"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 

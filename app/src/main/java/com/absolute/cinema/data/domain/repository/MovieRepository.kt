@@ -6,6 +6,8 @@ import com.absolute.cinema.data.remote.Movies
 import com.absolute.cinema.data.remote.RetrofitInstance
 import com.absolute.cinema.data.remote.response.MovieDetailsDto
 import com.absolute.cinema.data.remote.response.MovieDto
+import com.absolute.cinema.data.remote.response.MovieVideoListDto
+import com.absolute.cinema.data.remote.response.Result
 import com.absolute.cinema.ui.utils.AUTH_TOKEN
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -68,6 +70,28 @@ class MovieRepository {
                 if (response.isSuccessful) {
                     Log.i("MovieRepository", "RESPONSE OK")
                     return@withContext response.body()?.movies
+                } else {
+                    Log.i("MovieRepository", "Error: ${response.code()}")
+                    return@withContext null
+                }
+            } catch (e: Exception) {
+                Log.i("MovieRepository", "Exception: ${e.message}")
+                return@withContext null
+            }
+        }
+    }
+
+    suspend fun videoMovies(movieId: String): List<Result>?  {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response: Response<MovieVideoListDto> = movieService.videoMovies(
+                    token = AUTH_TOKEN,
+                    movieId = movieId
+                )
+
+                if (response.isSuccessful) {
+                    Log.i("MovieRepository", "RESPONSE OK")
+                    return@withContext response.body()?.results
                 } else {
                     Log.i("MovieRepository", "Error: ${response.code()}")
                     return@withContext null

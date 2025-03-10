@@ -1,14 +1,17 @@
 package com.absolute.cinema.ui.about
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentAboutMovieBinding
 import com.absolute.cinema.ui.tabs.TabsMovieFragment
+import com.absolute.cinema.ui.utils.VIDEO_MOVIE_PATH
 import java.util.Locale
 
 class AboutMovieFragment : Fragment() {
@@ -29,20 +32,36 @@ class AboutMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupIdMovies()
         setupListeners()
         setupObservers()
+    }
 
+    private fun setupIdMovies() {
+        aboutMovieViewModel.loadMovieVideo(movieId = sharedViewModel.getSelectedMovieId())
         aboutMovieViewModel.loadMovieDetails(sharedViewModel.getSelectedMovieId())
     }
 
     private fun setupObservers() {
+        
+        aboutMovieViewModel.moviesVideoLiveData.observe(viewLifecycleOwner) { result ->
+            binding.apply {
+
+                val video = VIDEO_MOVIE_PATH.replace("TEST","Y3Oai0lYvHI")
+                movieTrailerWv.loadData(video, "text/html", "utf-8")
+                movieTrailerWv.webChromeClient = WebChromeClient()
+                movieTrailerWv.settings.javaScriptEnabled = true
+
+            }
+        }
+
         aboutMovieViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
             binding.apply {
                 movieDescriptionTv.text = details.overview
                 releaseTv.text = details.releaseDate
                 movieRatingAgeTv.text = if (details.isAdult) "18+" else "16+"
                 genreTv.text = details.genres.joinToString(", ") { it.name }
-                binding.runtimeTv.text = details.runtime.let { runtime ->
+                runtimeTv.text = details.runtime.let { runtime ->
                     String.format(Locale.getDefault(), "%02d:%02d", runtime / 60, runtime % 60)
                 }
             }
