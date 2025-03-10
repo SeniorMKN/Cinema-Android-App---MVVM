@@ -1,7 +1,7 @@
 package com.absolute.cinema.ui.about
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,26 +42,25 @@ class AboutMovieFragment : Fragment() {
         aboutMovieViewModel.loadMovieDetails(sharedViewModel.getSelectedMovieId())
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setupObservers() {
-        
         aboutMovieViewModel.moviesVideoLiveData.observe(viewLifecycleOwner) { result ->
             binding.apply {
 
-                Log.i("VIDEO","$result")
-                val video = VIDEO_MOVIE_PATH.replace("TEST","Y3Oai0lYvHI")
+                val video = VIDEO_MOVIE_PATH.replace("TEST", result.first().key)
                 movieTrailerWv.loadData(video, "text/html", "utf-8")
                 movieTrailerWv.webChromeClient = WebChromeClient()
                 movieTrailerWv.settings.javaScriptEnabled = true
-
             }
         }
 
         aboutMovieViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
             binding.apply {
+
                 movieDescriptionTv.text = details.overview
                 releaseTv.text = details.releaseDate
                 movieRatingAgeTv.text = if (details.isAdult) "18+" else "16+"
-                genreTv.text = details.genres.joinToString(", ") { it.name }
+                genreTv.text = details.genres.joinToString { it.name }
                 runtimeTv.text = details.runtime.let { runtime ->
                     String.format(Locale.getDefault(), "%02d:%02d", runtime / 60, runtime % 60)
                 }
