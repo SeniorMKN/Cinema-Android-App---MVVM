@@ -38,7 +38,7 @@ class AboutMovieFragment : Fragment() {
     }
 
     private fun setupIdMovies() {
-        aboutMovieViewModel.loadMovieVideo(movieId = sharedViewModel.getSelectedMovieId())
+        aboutMovieViewModel.loadMovieVideo(sharedViewModel.getSelectedMovieId())
         aboutMovieViewModel.loadMovieDetails(sharedViewModel.getSelectedMovieId())
     }
 
@@ -47,6 +47,7 @@ class AboutMovieFragment : Fragment() {
         aboutMovieViewModel.moviesVideoLiveData.observe(viewLifecycleOwner) { result ->
             binding.apply {
 
+                Log.i("VIDEO","$result")
                 val video = VIDEO_MOVIE_PATH.replace("TEST","Y3Oai0lYvHI")
                 movieTrailerWv.loadData(video, "text/html", "utf-8")
                 movieTrailerWv.webChromeClient = WebChromeClient()
