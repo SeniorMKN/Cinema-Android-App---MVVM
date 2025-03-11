@@ -16,11 +16,12 @@ import retrofit2.Response
 class MovieRepository {
     private val movieService: MovieService = RetrofitInstance.api
 
-    suspend fun fetchMovies(): List<MovieDto>? {
+    suspend fun fetchMovies(page: Int): List<MovieDto>? {
         return withContext(Dispatchers.IO) {
             try {
                 val response: Response<Movies> = movieService.getMovies(
-                    token = AUTH_TOKEN
+                    token = AUTH_TOKEN,
+                    page = page
                 )
 
                 if (response.isSuccessful) {

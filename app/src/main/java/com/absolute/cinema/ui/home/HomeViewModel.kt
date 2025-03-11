@@ -19,7 +19,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchMovies() {
         viewModelScope.launch {
-            val movies = movieRepository.fetchMovies()
+            val movies = movieRepository.fetchMovies(
+                page = 1
+            )
             movies?.let {
                 _moviesLiveData.postValue(it)
             }

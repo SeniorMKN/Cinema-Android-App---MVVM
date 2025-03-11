@@ -2,7 +2,6 @@ package com.absolute.cinema.data.remote
 
 import com.absolute.cinema.data.remote.response.MovieDetailsDto
 import com.absolute.cinema.data.remote.response.MovieVideoListDto
-import com.absolute.cinema.data.remote.response.Result
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -16,6 +15,7 @@ interface MovieService {
     @GET("3/movie/popular")
     suspend fun getMovies(
         @Header("Authorization") token: String,
+        @Query("page") page: Int
     ): Response<Movies>
 
     @Headers("Accept: application/json")
