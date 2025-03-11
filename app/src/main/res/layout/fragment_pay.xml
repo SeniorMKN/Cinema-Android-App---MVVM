@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_root_ui_regular"
-                android:text="Pay for Tickets"
+                android:text="@string/pay_for_tickets"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/back_arrow_tv"
@@ -128,7 +128,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
                                 android:paddingEnd="16dp"
-                                android:text="Cinema"
+                                android:text="@string/cinema"
                                 android:textColor="@color/light_grey"
                                 android:textSize="14sp" />
 
@@ -145,7 +145,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="Eurasia Cinema 7"
+                                android:text="@string/eurasia_cinema_7"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
 
@@ -189,7 +189,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="ул. Петрова, д.24, ТЦ Евразия"
+                                android:text="@string/petrova_st_24_eurasia_shopping_center"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
 
@@ -216,7 +216,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
                                 android:paddingEnd="16dp"
-                                android:text="Date"
+                                android:text="@string/date"
                                 android:textColor="@color/light_grey"
                                 android:textSize="14sp" />
 
@@ -233,7 +233,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="6 April 2022, 14:40"
+                                android:text="@string/_6_april_2022_14_40"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
 
@@ -260,7 +260,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
                                 android:paddingEnd="16dp"
-                                android:text="Hall"
+                                android:text="@string/hall"
                                 android:textColor="@color/light_grey"
                                 android:textSize="14sp" />
 
@@ -277,7 +277,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="6th"
+                                android:text="@string/_6th"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
 
@@ -304,7 +304,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
                                 android:paddingEnd="16dp"
-                                android:text="Seats"
+                                android:text="@string/seats"
                                 android:textColor="@color/light_grey"
                                 android:textSize="14sp" />
 
@@ -321,7 +321,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="7 row (7, 8)"
+                                android:text="@string/_7_row_7_8"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
 
@@ -388,7 +388,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="2200 ₸"
+                                android:text="@string/_2200"
                                 android:textColor="@color/white"
                                 android:textSize="16sp" />
 
@@ -432,7 +432,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="1000 ₸"
+                                android:text="@string/_1000"
                                 android:textColor="@color/white"
                                 android:textSize="16sp" />
 
@@ -476,7 +476,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/pt_root_ui_regular"
-                                android:text="3200 ₸"
+                                android:text="@string/_3200"
                                 android:textColor="@color/white"
                                 android:textSize="16sp" />
 
@@ -558,7 +558,7 @@
             android:backgroundTint="@color/orange"
             android:fontFamily="@font/pt_root_ui_regular"
             android:paddingVertical="16dp"
-            android:text="Continue"
+            android:text="@string/continue_btn"
             android:textColor="@color/white"
             app:cornerRadius="8dp"
             app:layout_constraintStart_toStartOf="@+id/phone_number_et"

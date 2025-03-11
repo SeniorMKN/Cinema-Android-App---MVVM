@@ -17,13 +17,19 @@ class HomeViewModel : ViewModel() {
     private val _searchMoviesLiveData = MutableLiveData<List<MovieDto>>()
     val searchMoviesLiveData: LiveData<List<MovieDto>> get() = _searchMoviesLiveData
 
-    fun fetchMovies() {
+    private var currentPage = 1
+
+    fun fetchMovies(isPageScrolled: Boolean = false) {
         viewModelScope.launch {
-            val movies = movieRepository.fetchMovies(
-                page = 1
-            )
+            val movies = movieRepository.fetchMovies(page = if (isPageScrolled) currentPage else 1)
             movies?.let {
-                _moviesLiveData.postValue(it)
+                if (isPageScrolled) {
+                    val currentMoviesList = _moviesLiveData.value ?: emptyList()
+                    _moviesLiveData.postValue(currentMoviesList + it)
+                } else {
+                    _moviesLiveData.postValue(it)
+                }
+                currentPage++
             }
         }
     }

@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.R
 import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.data.remote.response.MovieDto
@@ -25,6 +26,7 @@ import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 
 class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
 
+    private var lastVisibleItemPosition = 0
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
@@ -43,11 +45,33 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.progressBar.visibility = View.GONE
+
         login()
         initObserver()
         setupDialogs()
         setupListener()
         setupPopularMovies()
+        onScrollView()
+    }
+
+    private fun onScrollView() {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
+
+                lastVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + pastVisibleItems >= totalItemCount && dy > 0) {
+                    binding.progressBar.visibility = View.VISIBLE
+                    viewModel.fetchMovies(isPageScrolled = true)
+                }
+            }
+        })
     }
 
     private fun setupPopularMovies() {
@@ -89,10 +113,12 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     private fun initObserver() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
             setupRecyclerView(moviesList)
+            binding.progressBar.visibility = View.GONE
         }
 
         viewModel.searchMoviesLiveData.observe(viewLifecycleOwner) { searchedMoviesList ->
             setupRecyclerView(searchedMoviesList)
+            binding.progressBar.visibility = View.GONE
         }
 
     }
@@ -117,6 +143,9 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
         recyclerViewAdapter = RecyclerViewAdapter(moviesList, sharedViewModel)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = recyclerViewAdapter
+
+        val layoutManager = binding.recyclerView.layoutManager as LinearLayoutManager
+        layoutManager.scrollToPositionWithOffset(lastVisibleItemPosition, 0)
     }
 
     override fun onSearchMovieTitle(movieTitle: String) {

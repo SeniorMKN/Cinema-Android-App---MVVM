@@ -45,7 +45,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/pt_root_ui_regular"
-            android:text="Қазақ"
+            android:text="@string/italian"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -144,7 +144,7 @@
         android:backgroundTint="@color/orange"
         android:paddingVertical="16dp"
         android:paddingTop="10dp"
-        android:text="Apply"
+        android:text="@string/apply"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:cornerRadius="8dp"

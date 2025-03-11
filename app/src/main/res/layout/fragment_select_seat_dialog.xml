@@ -94,7 +94,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:fontFamily="@font/pt_root_ui_regular"
-            android:text="Adult"
+            android:text="@string/adult"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -107,7 +107,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/pt_root_ui_regular"
             android:gravity="end"
-            android:text="2200 ₸"
+            android:text="@string/_2200"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -155,7 +155,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/pt_root_ui_regular"
             android:gravity="end"
-            android:text="1000 ₸"
+            android:text="@string/_1000"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -203,7 +203,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/pt_root_ui_regular"
             android:gravity="end"
-            android:text="1500 ₸"
+            android:text="@string/_1500"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -219,7 +219,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/pt_root_ui_regular"
         android:paddingVertical="16dp"
-        android:text="Deselect this seat"
+        android:text="@string/deselect_this_seat"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:backgroundTint="@color/light_blue"

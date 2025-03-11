@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/pt_root_ui_regular"
-                        android:text="@string/film_title"
+                        android:text="@string/movie_title"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="@id/image_film1"

@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/pt_root_ui_regular"
-            android:text="Almaty"
+            android:text="@string/almaty"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
