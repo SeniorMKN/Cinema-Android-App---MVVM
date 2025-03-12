@@ -9,13 +9,16 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentLanguageDialogBinding
+import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 import com.absolute.cinema.ui.utils.UiUtils
 import com.absolute.cinema.ui.utils.setupDialogMargins
+import java.util.Locale
 
 class LanguageDialogFragment : DialogFragment() {
 
     private var _binding: FragmentLanguageDialogBinding? = null
     private val binding get() = _binding!!
+    private var selectedCheck: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,18 @@ class LanguageDialogFragment : DialogFragment() {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)
         }
+
+        binding.languageApplyBtn.setOnClickListener {
+            val newLocale = when (selectedCheck) {
+                binding.checkFirstIv -> Locale("it")
+                binding.checkThirdIv -> Locale("en")
+                else -> Locale.getDefault()
+            }
+
+            ProfileSharedPreferences.saveLanguage(requireContext(), newLocale)
+            requireActivity().recreate()
+            dismiss()
+        }
     }
 
     private fun setupLanguages() {
@@ -50,12 +65,14 @@ class LanguageDialogFragment : DialogFragment() {
         binding.thirdLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkThirdIv) }
     }
 
-    private fun setSelectedSortOption(selectedCheck: View) {
+    private fun setSelectedSortOption(check: View) {
         binding.checkFirstIv.visibility = View.INVISIBLE
         binding.checkSecondIv.visibility = View.INVISIBLE
         binding.checkThirdIv.visibility = View.INVISIBLE
 
-        selectedCheck.visibility = View.VISIBLE
+        check.visibility = View.VISIBLE
+
+        selectedCheck = check
 
         binding.languageApplyBtn.apply {
             isEnabled = true

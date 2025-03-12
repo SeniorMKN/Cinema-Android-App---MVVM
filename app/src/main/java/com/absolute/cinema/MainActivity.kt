@@ -1,11 +1,13 @@
 package com.absolute.cinema
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
 import com.absolute.cinema.databinding.ActivityMainBinding
+import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,5 +23,10 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         enableEdgeToEdge()
         setContentView(view)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val newContext = ProfileSharedPreferences.applySavedLanguage(newBase)
+        super.attachBaseContext(newContext)
     }
 }
