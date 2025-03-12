@@ -55,15 +55,12 @@ class SortDialogFragment : DialogFragment() {
 
     private fun setupSortOption() {
         binding.timeLinearLy.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
-        binding.distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) }
-        binding.priceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkPriceIv) }
-    }
+        binding.distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) } }
 
     private fun setSelectedSortOption(selectedCheck: View) {
 
         binding.checkTimeIv.visibility = View.INVISIBLE
         binding.checkDistanceIv.visibility = View.INVISIBLE
-        binding.checkPriceIv.visibility = View.INVISIBLE
 
         selectedCheck.visibility = View.VISIBLE
 
