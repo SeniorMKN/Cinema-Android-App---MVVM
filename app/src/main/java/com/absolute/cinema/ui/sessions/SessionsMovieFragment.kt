@@ -70,14 +70,26 @@ class SessionsMovieFragment : Fragment() {
     private fun initRecyclerView() {
         itemList = arrayListOf(
             TicketItemModel(
-                "14:40", "IMAX",
-                "Eurasia Cinema7", "2200 ₸",
-                "1000 ₸", "1500 ₸", "3000 ₸", "23/01/2025", "Petrova St., 24, Eurasia Shopping Center"
+                "14:40",
+                "IMAX",
+                "Eurasia Cinema7",
+                "2200 ₸",
+                "1000 ₸",
+                "1500 ₸",
+                "3000 ₸",
+                "23/01/2025",
+                "Petrova St., 24, Eurasia Shopping Center"
             ),
             TicketItemModel(
-                "17:20", "Laser",
-                "Arman Asia Park", "2000 $",
-                "1100 $", "1700 $", "2800 $", "05/06/2025", "Ave. Kabanbai Batyra 21, centro commerciale Asia Park"
+                "17:20",
+                "Laser",
+                "Arman Asia Park",
+                "2000 $",
+                "1100 $",
+                "1700 $",
+                "2800 $",
+                "05/06/2025",
+                "Ave. Kabanbai Batyra 21, centro commerciale Asia Park"
             ),
             TicketItemModel(
                 "19:00", "4DX",
@@ -110,7 +122,6 @@ class SessionsMovieFragment : Fragment() {
         binding.ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.ticketRecyclerview.adapter = recyclerViewAdapter
     }
-
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
