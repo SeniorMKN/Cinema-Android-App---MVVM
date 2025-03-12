@@ -26,6 +26,7 @@ import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 
 class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
 
+    private var isSearchActive = false
     private var lastVisibleItemPosition = 0
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -59,6 +60,9 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+
+                if (isSearchActive) return
+
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val visibleItemCount = layoutManager.childCount
                 val totalItemCount = layoutManager.itemCount
@@ -114,6 +118,7 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
         viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
             setupRecyclerView(moviesList)
             binding.progressBar.visibility = View.GONE
+            isSearchActive = false
         }
 
         viewModel.searchMoviesLiveData.observe(viewLifecycleOwner) { searchedMoviesList ->
@@ -151,6 +156,7 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     override fun onSearchMovieTitle(movieTitle: String) {
         Log.i("SEARCH", movieTitle)
 
+        isSearchActive = true
         viewModel.searchMovies(movieTitle)
         setupRecyclerView(emptyList())
     }
