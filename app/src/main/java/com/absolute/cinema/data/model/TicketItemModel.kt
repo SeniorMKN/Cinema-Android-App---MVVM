@@ -10,5 +10,6 @@ data class TicketItemModel(
     val childPrice : String,
     val studentPrice : String,
     val vipPrice : String,
-    val date : String
+    val date : String,
+    val address : String
 )

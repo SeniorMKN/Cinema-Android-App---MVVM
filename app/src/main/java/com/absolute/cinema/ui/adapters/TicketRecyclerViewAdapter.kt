@@ -20,6 +20,8 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
             binding.childPriceTv.text = item.childPrice
             binding.studentPriceTv.text = item.studentPrice
             binding.vipPriceTv.text = item.vipPrice
+            binding.byCinemaNameTv.text = item.cinemaName
+            binding.cinemaAddressTv.text = item.address
 
         }
     }

@@ -70,14 +70,39 @@ class SessionsMovieFragment : Fragment() {
     private fun initRecyclerView() {
         itemList = arrayListOf(
             TicketItemModel(
-                "14:40", "Pyc",
-                "Eurasia Cinema7", "2200",
-                "1000 ₸", "1500 ₸", "3000 ₸", "23/01/2025"
+                "14:40", "IMAX",
+                "Eurasia Cinema7", "2200 ₸",
+                "1000 ₸", "1500 ₸", "3000 ₸", "23/01/2025", "Petrova St., 24, Eurasia Shopping Center"
             ),
             TicketItemModel(
-                "14:40", "Pyc",
-                "Eurasia Cinema7", "2200",
-                "1000 ₸", "1500 ₸", "3000 ₸", "05/06/2025"
+                "17:20", "Laser",
+                "Arman Asia Park", "2000 $",
+                "1100 $", "1700 $", "2800 $", "05/06/2025", "Ave. Kabanbai Batyra 21, centro commerciale Asia Park"
+            ),
+            TicketItemModel(
+                "19:00", "4DX",
+                "Cinema Europa", "15 €",
+                "7 €", "10 €", "20 €", "12/04/2025", "Via Roma 10, Milano"
+            ),
+            TicketItemModel(
+                "21:30", "Dolby Atmos",
+                "Cineplex Firenze", "18 €",
+                "9 €", "12 €", "22 €", "28/07/2025", "Piazza Duomo 5, Firenze"
+            ),
+            TicketItemModel(
+                "16:15", "Standard",
+                "Multisala Torino", "12 €",
+                "6 €", "8 €", "15 €", "15/09/2025", "Corso Vittorio Emanuele 45, Torino"
+            ),
+            TicketItemModel(
+                "20:00", "IMAX 3D",
+                "Cinema Roma Center", "20 €",
+                "10 €", "14 €", "25 €", "01/11/2025", "Via del Corso 90, Roma"
+            ),
+            TicketItemModel(
+                "22:45", "VIP Lounge",
+                "The Space Napoli", "25 €",
+                "12 €", "16 €", "30 €", "22/12/2025", "Via Toledo 33, Napoli"
             )
         )
 
@@ -85,6 +110,7 @@ class SessionsMovieFragment : Fragment() {
         binding.ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.ticketRecyclerview.adapter = recyclerViewAdapter
     }
+
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()

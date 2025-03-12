@@ -6,13 +6,68 @@
     android:background="@color/main_background_color">
 
     <LinearLayout
-        android:id="@+id/linear_ly_rv"
+        android:id="@+id/linear_ly"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/by_cinema_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/eurasia_cinema_7"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/cinema_address_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/pt_root_ui_regular"
+            android:text="@string/petrova_st_24_eurasia_shopping_center"
+            android:textColor="@color/light_grey"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="16dp"
+            android:background="@color/light_grey" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/linear_ly" />
+
+    <LinearLayout
+        android:id="@+id/linear_ly_rv"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_ly">
 
         <LinearLayout
             android:layout_width="100dp"
