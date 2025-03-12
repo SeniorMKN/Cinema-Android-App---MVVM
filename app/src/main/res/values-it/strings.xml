@@ -16,7 +16,7 @@
     <string name="movie_release_date">Data di uscita del film</string>
     <string name="rating_right">8.1</string>
     <string name="rating_left">7.9</string>
-    <string name="enter_the_password_from_the_sms" tools:ignore="StringEscaping">Inserisci la password dall'SMS</string>
+    <string name="enter_the_password_from_the_sms">Inserisci la password dall SMS</string>
     <string name="change_number">Cambia Numero</string>
     <string name="resend_0_59">Reinvia (0:59)</string>
     <string name="_6">6</string>

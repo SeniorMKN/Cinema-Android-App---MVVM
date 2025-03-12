@@ -87,12 +87,12 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     private fun login() {
         val isLoggedIn = ProfileSharedPreferences.getIsLoggedIn(requireContext())
         if (isLoggedIn) {
-            binding.loginButton.text = "Profile"
+            binding.loginButton.text = getString(R.string.profile)
             binding.loginButton.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }
         } else {
-            binding.loginButton.text = "Log in"
+            binding.loginButton.text = getString(R.string.login)
             binding.loginButton.setOnClickListener {
                 val loginDialogFragment = LoginDialogFragment()
                 loginDialogFragment.setLoginCallback(this)
@@ -103,7 +103,7 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
 
     override fun onLoginSuccess(result: Boolean) {
         if (result) {
-            binding.loginButton.text = "Profile"
+            binding.loginButton.text = getString(R.string.profile)
             binding.loginButton.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }

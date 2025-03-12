@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.absolute.cinema.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class SplashFragment : Fragment() {
 
@@ -22,6 +23,8 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Locale.getDefault().displayLanguage;
 
         viewLifecycleOwner.lifecycleScope.launch {
             val navController = findNavController()
