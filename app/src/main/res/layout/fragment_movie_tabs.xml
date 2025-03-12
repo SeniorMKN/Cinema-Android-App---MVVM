@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
-                android:text="About"
+                android:text="@string/about"
                 android:textColor="@color/light_grey"
                 android:textSize="16sp" />
 
@@ -81,7 +81,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
-                android:text="Sessions"
+                android:text="@string/sessions"
                 android:textColor="@color/light_grey"
                 android:textSize="16sp" />
 
