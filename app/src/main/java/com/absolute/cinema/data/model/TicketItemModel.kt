@@ -1,5 +1,7 @@
 package com.absolute.cinema.data.model
 
+import java.util.Date
+
 data class TicketItemModel(
     val timeMovieStart : String,
     val qualityCinema : String,
@@ -7,5 +9,6 @@ data class TicketItemModel(
     val adultPrice : String,
     val childPrice : String,
     val studentPrice : String,
-    val vipPrice : String
+    val vipPrice : String,
+    val date : String
 )
