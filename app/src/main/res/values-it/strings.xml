@@ -8,7 +8,7 @@
     <string name="nur_sultan">Nur-Sultan</string>
     <string name="eng">Eng</string>
     <string name="log_in">Log in</string>
-    <string name="now_in_cinemas">Now in Cinemas</string>
+    <string name="now_in_cinemas">Adesso nei Cinema</string>
     <string name="spider_man_no_way_home">Spider-Man: No Way Home</string>
     <string name="action">Azione</string>
     <string name="movie_title">Titolo Film</string>
@@ -42,7 +42,7 @@
     <string name="matt_reeves">Matt Reeves</string>
     <string name="cast_names">Robert Pattinson, Zoë Kravitz, Jeffrey Wright, Colin Farrell, Paul Dano, John Turturro, Andy Serkis, Peter Sarsgaard</string>
     <string name="select_session">Seleziona la sessione</string>
-    <string name="april_18">April, 18</string>
+    <string name="april_18">Aprile, 18</string>
     <string name="by_cinema">Per Cinema</string>
     <string name="time">Time</string>
     <string name="resend_in_seconds">Reinvia in %d seconds</string>
@@ -60,7 +60,7 @@
     <string name="_6_april_2022_14_40">6 April 2022, 14:40</string>
     <string name="eurasia_cinema_7">Eurasia Cinema 7</string>
     <string name="_6th">6th</string>
-    <string name="_7_row_7_8">7 row (7, 8)</string>
+    <string name="_7_row_7_8">7 fila (7, 8)</string>
     <string name="_2200">2200 ₸</string>
     <string name="_1000">1000 ₸</string>
     <string name="_3200">3200 ₸</string>
