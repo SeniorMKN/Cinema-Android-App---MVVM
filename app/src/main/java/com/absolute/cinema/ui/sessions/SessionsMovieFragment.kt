@@ -25,6 +25,7 @@ class SessionsMovieFragment : Fragment() {
     private lateinit var recyclerViewAdapter: TicketRecyclerViewAdapter
     private lateinit var itemList: ArrayList<TicketItemModel>
     private var isSwitchOn = false
+    private var isDescending = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,13 +70,51 @@ class SessionsMovieFragment : Fragment() {
         }
 
         binding.vipCinemaTv.setOnClickListener {
+            sortByPrice { it.vipPrice }
+        }
+
+        binding.adultCinemaTv.setOnClickListener {
+            sortByPrice { it.adultPrice }
+        }
+
+        binding.studentCinemaTv.setOnClickListener {
+            sortByPrice { it.studentPrice }
+        }
+
+        binding.childCinemaTv.setOnClickListener {
+            sortByPrice { it.childPrice }
+        }
+
+        binding.timeCinemaTv.setOnClickListener {
             val previousList = ArrayList(itemList)
 
-            itemList.sortByDescending { it.vipPrice.extractPrice() }
+            if (isDescending) {
+                itemList.sortBy { it.timeMovieStart }
+            } else {
+                itemList.sortByDescending { it.timeMovieStart }
+            }
+
+            isDescending = !isDescending
 
             if (previousList != itemList) {
                 recyclerViewAdapter.notifyItemRangeChanged(0, itemList.size)
             }
+        }
+    }
+
+    private fun sortByPrice(priceType: (TicketItemModel) -> String) {
+        val previousList = ArrayList(itemList)
+
+        if (isDescending) {
+            itemList.sortBy { priceType(it).extractPrice() }
+        } else {
+            itemList.sortByDescending { priceType(it).extractPrice() }
+        }
+
+        isDescending = !isDescending
+
+        if (previousList != itemList) {
+            recyclerViewAdapter.notifyItemRangeChanged(0, itemList.size)
         }
     }
 
@@ -87,8 +126,8 @@ class SessionsMovieFragment : Fragment() {
         itemList = arrayListOf(
             TicketItemModel(
                 "18:30", "Dolby Atmos",
-                "Cinema Europa", "17 €",
-                "8 €", "11 €", "21 €", "05/06/2025", "Via Roma 10, Milano"
+                "Cinema Europa", "18 €",
+                "10 €", "13 €", "21 €", "05/06/2025", "Via Roma 10, Milano"
             ),
             TicketItemModel(
                 "20:15", "IMAX",
@@ -112,8 +151,8 @@ class SessionsMovieFragment : Fragment() {
             ),
             TicketItemModel(
                 "19:00", "4DX",
-                "Cinema Europa", "15 €",
-                "7 €", "10 €", "20 €", "12/04/2025", "Via Roma 10, Milano"
+                "Cinema Europa", "17 €",
+                "9 €", "13 €", "22 €", "12/04/2025", "Via Roma 10, Milano"
             ),
             TicketItemModel(
                 "21:30", "Dolby Atmos",
@@ -132,8 +171,8 @@ class SessionsMovieFragment : Fragment() {
             ),
             TicketItemModel(
                 "22:45", "VIP Lounge",
-                "The Space Napoli", "25 €",
-                "12 €", "16 €", "30 €", "22/12/2025", "Via Toledo 33, Napoli"
+                "The Space Napoli", "24 €",
+                "10 €", "14 €", "30 €", "22/12/2025", "Via Toledo 33, Napoli"
             )
         )
 
