@@ -67,19 +67,48 @@ class SessionsMovieFragment : Fragment() {
 
             recyclerViewAdapter.toggleLinearVisibility(isSwitchOn)
         }
+
+        binding.vipCinemaTv.setOnClickListener {
+            val previousList = ArrayList(itemList)
+
+            itemList.sortByDescending { it.vipPrice.extractPrice() }
+
+            if (previousList != itemList) {
+                recyclerViewAdapter.notifyItemRangeChanged(0, itemList.size)
+            }
+        }
+    }
+
+    fun String.extractPrice(): Int {
+        return this.replace("€", "").trim().toInt()
     }
 
     private fun initRecyclerView() {
         itemList = arrayListOf(
             TicketItemModel(
-                "14:40", "IMAX",
-                "Eurasia Cinema7", "2200 ₸",
-                "1000 ₸", "1500 ₸", "3000 ₸", "23/01/2025", "Petrova St., 24, Eurasia Shopping Center"
+                "18:30", "Dolby Atmos",
+                "Cinema Europa", "17 €",
+                "8 €", "11 €", "21 €", "05/06/2025", "Via Roma 10, Milano"
             ),
             TicketItemModel(
-                "17:20", "Laser",
-                "Arman Asia Park", "2000 $",
-                "1100 $", "1700 $", "2800 $", "05/06/2025", "Ave. Kabanbai Batyra 21, centro commerciale Asia Park"
+                "20:15", "IMAX",
+                "Cineplex Firenze", "19 €",
+                "9 €", "13 €", "23 €", "12/08/2025", "Piazza Duomo 5, Firenze"
+            ),
+            TicketItemModel(
+                "14:00", "Standard",
+                "Multisala Torino", "11 €",
+                "5 €", "7 €", "14 €", "20/10/2025", "Corso Vittorio Emanuele 45, Torino"
+            ),
+            TicketItemModel(
+                "19:45", "4DX",
+                "Cinema Roma Center", "22 €",
+                "11 €", "15 €", "26 €", "08/11/2025", "Via del Corso 90, Roma"
+            ),
+            TicketItemModel(
+                "23:00", "VIP Lounge",
+                "The Space Napoli", "28 €",
+                "14 €", "18 €", "32 €", "31/12/2025", "Via Toledo 33, Napoli"
             ),
             TicketItemModel(
                 "19:00", "4DX",
