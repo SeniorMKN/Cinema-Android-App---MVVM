@@ -1,6 +1,7 @@
 package com.absolute.cinema.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.TicketItemModel
@@ -8,6 +9,8 @@ import com.absolute.cinema.databinding.RecyclerTicketLayoutBinding
 
 class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>) :
     RecyclerView.Adapter<TicketRecyclerViewAdapter.MyViewHolder>() {
+
+    private var isLinearVisible = false
 
     inner class MyViewHolder(private val binding: RecyclerTicketLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -22,7 +25,9 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
             binding.vipPriceTv.text = item.vipPrice
             binding.byCinemaNameTv.text = item.cinemaName
             binding.cinemaAddressTv.text = item.address
+            binding.byCinemaNameTv.text = item.cinemaName
 
+            binding.linearLy.visibility = if (isLinearVisible) View.VISIBLE else View.GONE
         }
     }
 
@@ -41,6 +46,11 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
 
     override fun getItemCount(): Int {
         return itemList.size
+    }
+
+    fun toggleLinearVisibility(isVisible: Boolean) {
+        isLinearVisible = isVisible
+        notifyItemRangeChanged(0, itemCount)
     }
 
 }

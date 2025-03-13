@@ -64,6 +64,8 @@ class SessionsMovieFragment : Fragment() {
             TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(
                 binding.cinemaOrderTv, null, newDrawable, null, null
             )
+
+            recyclerViewAdapter.toggleLinearVisibility(isSwitchOn)
         }
     }
 
