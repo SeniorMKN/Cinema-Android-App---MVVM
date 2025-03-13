@@ -118,7 +118,7 @@ class SessionsMovieFragment : Fragment() {
         }
     }
 
-    fun String.extractPrice(): Int {
+    private fun String.extractPrice(): Int {
         return this.replace("€", "").trim().toInt()
     }
 
