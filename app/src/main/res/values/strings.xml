@@ -105,5 +105,7 @@
     <string name="search">Search</string>
     <string name="about">About</string>
     <string name="sessions">Sessions</string>
+    <string name="ticket_date_time">%1$s, %2$s</string>
+
 
 </resources>

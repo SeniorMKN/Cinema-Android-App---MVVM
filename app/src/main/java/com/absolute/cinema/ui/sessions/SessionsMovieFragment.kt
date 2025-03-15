@@ -2,30 +2,37 @@ package com.absolute.cinema.ui.sessions
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
 import com.absolute.cinema.data.model.TicketItemModel
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentSessionsMovieBinding
 import com.absolute.cinema.ui.adapters.TicketRecyclerViewAdapter
 import com.absolute.cinema.ui.sort.SortDialogFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class SessionsMovieFragment : Fragment() {
 
     private var _binding: FragmentSessionsMovieBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerViewAdapter: TicketRecyclerViewAdapter
-    private lateinit var itemList: ArrayList<TicketItemModel>
+    private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
     private var isSwitchOn = false
     private var isDescending = true
+
+    private lateinit var recyclerViewAdapter: TicketRecyclerViewAdapter
+    private lateinit var itemList: ArrayList<TicketItemModel>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +49,15 @@ class SessionsMovieFragment : Fragment() {
     }
 
     private fun setupView() {
+
+        val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+            .format(Date())
+            .split(" ")
+            .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
+
+        binding.calendarDateTv.text = date
+
+        sharedViewModel.setSelectedDate(binding.calendarDateTv.text.toString())
 
         binding.calendarDateTv.setOnClickListener {
             showDatePickerDialog()
@@ -176,7 +192,7 @@ class SessionsMovieFragment : Fragment() {
             )
         )
 
-        recyclerViewAdapter = TicketRecyclerViewAdapter(itemList)
+        recyclerViewAdapter = TicketRecyclerViewAdapter(itemList, sharedViewModel)
         binding.ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.ticketRecyclerview.adapter = recyclerViewAdapter
     }
@@ -200,6 +216,7 @@ class SessionsMovieFragment : Fragment() {
                 formattedDate = formattedDate.replaceFirstChar { it.uppercase() }
 
                 binding.calendarDateTv.text = formattedDate
+                sharedViewModel.setSelectedTime(formattedDate)
             },
             year, month, day
         )

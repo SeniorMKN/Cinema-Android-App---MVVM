@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.absolute.cinema.data.model.TicketItemModel
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.RecyclerTicketLayoutBinding
 
-class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>) :
+class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>,private val sharedViewModel: MoviesSharedViewModel) :
     RecyclerView.Adapter<TicketRecyclerViewAdapter.MyViewHolder>() {
 
     private var isLinearVisible = false
@@ -28,6 +29,14 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
             binding.byCinemaNameTv.text = item.cinemaName
 
             binding.linearLy.visibility = if (isLinearVisible) View.VISIBLE else View.GONE
+
+            setupView(binding, item)
+        }
+    }
+
+    private fun setupView(binding: RecyclerTicketLayoutBinding, item: TicketItemModel) {
+        binding.linearLyRv.setOnClickListener {
+            sharedViewModel.setSelectedTime(item.timeMovieStart)
         }
     }
 

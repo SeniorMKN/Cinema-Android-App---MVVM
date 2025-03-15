@@ -106,5 +106,6 @@
     <string name="search">Cerca</string>
     <string name="about">Dettagli</string>
     <string name="sessions">Disponibili</string>
+    <string name="ticket_date_time">%1$s %2$s</string>
 
 </resources>

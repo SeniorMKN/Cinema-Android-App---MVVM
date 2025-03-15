@@ -3,12 +3,15 @@ package com.absolute.cinema.ui.pay
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentPayBinding
 import com.absolute.cinema.ui.utils.UiUtils
 import com.absolute.cinema.ui.utils.UiUtils.initGridLayout
@@ -18,6 +21,7 @@ class PayFragment : Fragment() {
 
     private var _binding: FragmentPayBinding? = null
     private val binding get() = _binding!!
+    private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +66,12 @@ class PayFragment : Fragment() {
     }
 
     private fun setupView() {
+
+        binding.ticketDateTv.text = getString(
+            R.string.ticket_date_time,
+            sharedViewModel.getSelectedDate(),
+            sharedViewModel.getSelectedTime()
+        )
 
         binding.payContinueBtn.apply {
             isEnabled = false
