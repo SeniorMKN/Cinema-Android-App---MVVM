@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentSeatSelectionBinding
 import com.absolute.cinema.ui.utils.onBackPressed
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class SeatSelectionFragment : Fragment() {
@@ -34,10 +34,22 @@ class SeatSelectionFragment : Fragment() {
 
         onBackPressed()
         setupView()
+        setupListeners()
     }
 
     private fun setupView() {
-        binding.calendarTimeTv.setOnClickListener {
+
+        val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+            .format(Date())
+            .split(" ")
+            .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
+
+        binding.calendarTimeTv.text = date
+
+    }
+
+    private fun setupListeners() {
+        binding.constraintLayoutDate.setOnClickListener {
             showDatePickerDialog()
         }
 
@@ -83,7 +95,7 @@ class SeatSelectionFragment : Fragment() {
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(selectedYear, selectedMonth, selectedDay)
 
-                val dateFormat = SimpleDateFormat("MMMM, dd", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
                 var formattedDate = dateFormat.format(selectedDate.time)
 
                 formattedDate = formattedDate.replaceFirstChar { it.uppercase() }
