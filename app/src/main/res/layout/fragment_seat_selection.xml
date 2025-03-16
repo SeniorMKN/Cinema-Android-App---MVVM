@@ -121,7 +121,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
-                android:text="April, 14"
+                android:text="@string/april_18"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -159,7 +159,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
-                android:text="15:10"
+                android:text="@string/_14_40"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -230,13 +230,13 @@
                 android:id="@+id/chosen_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/orange"
                 android:fontFamily="@font/pt_root_ui_regular"
                 android:gravity="center"
                 android:text="@string/chosen"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                app:drawableStartCompat="@drawable/circle" />
+                app:drawableStartCompat="@drawable/circle"
+                app:drawableTint="@color/orange" />
 
         </LinearLayout>
 
@@ -247,6 +247,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:fontFamily="@font/pt_root_ui_regular"
         android:text="@string/screen"
         android:textColor="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
@@ -264,6 +265,50 @@
         app:layout_constraintTop_toBottomOf="@id/screen_tv" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/seat_number_six"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="50dp"
+        android:backgroundTint="@color/main_app_bar_color"
+        android:fontFamily="@font/pt_root_ui_regular"
+        android:gravity="center"
+        android:text="@string/_6"
+        android:textSize="12sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_iv" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/seat_number_seven"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/main_app_bar_color"
+        android:fontFamily="@font/pt_root_ui_regular"
+        android:gravity="center"
+        android:text="@string/_7"
+        android:textSize="12sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/seat_number_six"
+        app:layout_constraintStart_toEndOf="@id/seat_number_six"
+        app:layout_constraintTop_toTopOf="@id/seat_number_six" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/seat_number_eight"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/main_app_bar_color"
+        android:fontFamily="@font/pt_root_ui_regular"
+        android:gravity="center"
+        android:text="@string/_8"
+        android:textSize="12sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/seat_number_seven"
+        app:layout_constraintStart_toEndOf="@id/seat_number_seven"
+        app:layout_constraintTop_toTopOf="@id/seat_number_seven" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buy_tickets_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -274,9 +319,11 @@
         android:paddingVertical="16dp"
         android:text="@string/buy_2_tickets_3200"
         android:textColor="@color/white"
+        android:visibility="gone"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
