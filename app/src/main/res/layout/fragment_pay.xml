@@ -468,7 +468,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
                                 android:paddingEnd="16dp"
-                                android:text="1 x Student"
+                                android:text="@string/_1_x_student"
                                 android:textColor="@color/light_grey"
                                 android:textSize="16sp" />
 
