@@ -107,5 +107,9 @@
     <string name="about">Dettagli</string>
     <string name="sessions">Disponibili</string>
     <string name="ticket_date_time">%1$s %2$s</string>
+    <string name="_1_x_adult">1 x Adulto</string>
+    <string name="_1_x_child">1 x Bambino</string>
+    <string name="_1_x_vip">1 x Vip</string>
+    <string name="_2_total">2 Totale</string>
 
 </resources>

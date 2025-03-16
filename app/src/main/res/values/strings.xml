@@ -106,6 +106,10 @@
     <string name="about">About</string>
     <string name="sessions">Sessions</string>
     <string name="ticket_date_time">%1$s, %2$s</string>
+    <string name="_1_x_adult">1 x Adult</string>
+    <string name="_1_x_child">1 x Child</string>
+    <string name="_1_x_vip">1 x Vip</string>
+    <string name="_2_total">2 Total</string>
 
 
 </resources>
