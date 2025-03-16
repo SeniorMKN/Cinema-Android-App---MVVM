@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
+import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentSeatSelectionBinding
 import com.absolute.cinema.ui.utils.onBackPressed
 import java.text.SimpleDateFormat
@@ -20,6 +22,8 @@ class SeatSelectionFragment : Fragment() {
 
     private var _binding: FragmentSeatSelectionBinding? = null
     private val binding get() = _binding!!
+    private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
+    private val selectedSeats = mutableSetOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +67,32 @@ class SeatSelectionFragment : Fragment() {
 
         binding.constraintLayoutTime.setOnClickListener {
             openTimePicker()
+        }
+
+        toggleSeatSelection()
+    }
+
+    private fun toggleSeatSelection() {
+        val seatButtons = listOf(
+            binding.seatNumberSix to "6",
+            binding.seatNumberSeven to "7",
+            binding.seatNumberEight to "8"
+        )
+
+        seatButtons.forEach { (button, seatNumber) ->
+            button.setOnClickListener {
+                if (selectedSeats.contains(seatNumber)) {
+                    selectedSeats.remove(seatNumber)
+                    button.setBackgroundColor(resources.getColor(R.color.main_app_bar_color, null))
+                } else {
+                    selectedSeats.add(seatNumber)
+                    button.setBackgroundColor(resources.getColor(R.color.orange, null))
+                }
+
+                sharedViewModel.addOrRemoveSeat(seatNumber)
+
+                binding.buyTicketsBtn.visibility = if (selectedSeats.isNotEmpty()) View.VISIBLE else View.GONE
+            }
         }
     }
 
