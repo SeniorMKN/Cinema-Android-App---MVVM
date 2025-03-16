@@ -2,7 +2,6 @@ package com.absolute.cinema.ui.sessions
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -45,6 +44,7 @@ class SessionsMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
+        setupListeners()
         initRecyclerView()
     }
 
@@ -58,7 +58,9 @@ class SessionsMovieFragment : Fragment() {
         binding.calendarDateTv.text = date
 
         sharedViewModel.setSelectedDate(binding.calendarDateTv.text.toString())
+    }
 
+    private fun setupListeners() {
         binding.calendarDateTv.setOnClickListener {
             showDatePickerDialog()
         }
