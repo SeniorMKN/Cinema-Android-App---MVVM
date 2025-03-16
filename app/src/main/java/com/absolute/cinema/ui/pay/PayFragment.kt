@@ -42,6 +42,14 @@ class PayFragment : Fragment() {
 
     private fun setupListeners() {
 
+        binding.payContinueBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
+        }
+
+        binding.backArrowTv.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         val inputTextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -73,18 +81,11 @@ class PayFragment : Fragment() {
         )
 
         binding.movieTitleTv.text = sharedViewModel.getSelectedMovieTitle()
+        binding.seatsNumberTv.text = sharedViewModel.getSelectedSeats().toString()
 
         binding.payContinueBtn.apply {
             isEnabled = false
             setBackgroundColor(UiUtils.brownColor)
-        }
-
-        binding.payContinueBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
-        }
-
-        binding.backArrowTv.setOnClickListener {
-            parentFragmentManager.popBackStack()
         }
     }
 
