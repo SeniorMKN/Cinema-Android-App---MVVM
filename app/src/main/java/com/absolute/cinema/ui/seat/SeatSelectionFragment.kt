@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentSeatSelectionBinding
+import com.absolute.cinema.ui.select.SelectSeatDialogFragment
 import com.absolute.cinema.ui.utils.onBackPressed
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -84,8 +85,10 @@ class SeatSelectionFragment : Fragment() {
                 if (selectedSeats.contains(seatNumber)) {
                     selectedSeats.remove(seatNumber)
                     button.setBackgroundColor(resources.getColor(R.color.main_app_bar_color, null))
+                    SelectSeatDialogFragment().show(parentFragmentManager, "SelectSeatDialog")
                 } else {
                     selectedSeats.add(seatNumber)
+                    SelectSeatDialogFragment().show(parentFragmentManager, "SelectSeatDialog")
                     button.setBackgroundColor(resources.getColor(R.color.orange, null))
                 }
 
