@@ -33,6 +33,7 @@ class SelectSeatDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
         binding.deselectSeatBtn.visibility = View.GONE
 
         val seatNumber = arguments?.getString("seatNumber") ?: return
@@ -45,6 +46,13 @@ class SelectSeatDialogFragment : DialogFragment() {
             STUDENT -> onSelectedTicket(binding.studentTicketTv)
             VIP -> onSelectedTicket(binding.vipTicketTv)
         }
+    }
+
+    private fun setupView(){
+        binding.adultTicketPriceTv.text = sharedViewModel.getAdultPrice()
+        binding.childTicketPriceTv.text = sharedViewModel.getChildPrice()
+        binding.studentTicketPriceTv.text = sharedViewModel.getStudentPrice()
+        binding.vipTicketPriceTv.text = sharedViewModel.getVipPrice()
     }
 
     private fun setupListeners(seatNumber: String) {
