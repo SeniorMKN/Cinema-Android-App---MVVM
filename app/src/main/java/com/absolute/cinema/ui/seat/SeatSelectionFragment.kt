@@ -50,6 +50,7 @@ class SeatSelectionFragment : Fragment() {
             .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
 
         binding.calendarTimeTv.text = date
+        binding.cinemaTitleTv.text = sharedViewModel.getSelectedCinema()
 
     }
 
