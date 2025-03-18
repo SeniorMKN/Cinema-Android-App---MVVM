@@ -7,8 +7,13 @@ class MoviesSharedViewModel : ViewModel() {
     private var selectedMovieTitle: String = ""
     private var selectedMovieDate: String = ""
     private var selectedMovieTime: String = ""
-    private val selectedMovieSeats: MutableList<String> = mutableListOf()
     private var selectedTicketType: String = ""
+    private var selectedCinemaName: String = ""
+    private var adultPrice: String = ""
+    private var childPrice: String = ""
+    private var studentPrice: String = ""
+    private var vipPrice: String = ""
+    private val selectedMovieSeats: MutableList<String> = mutableListOf()
     private val selectedSeatsMap = mutableMapOf<String, String>()
 
     fun setSelectedMovieId(movieId: String) {
@@ -43,6 +48,14 @@ class MoviesSharedViewModel : ViewModel() {
         return selectedMovieTime
     }
 
+    fun setSelectedCinema(selectedCinema: String) {
+        selectedCinemaName = selectedCinema
+    }
+
+    fun getSelectedCinema(): String {
+        return selectedCinemaName
+    }
+
     fun getSelectedSeats(): List<String> {
         return selectedMovieSeats
     }
@@ -50,6 +63,18 @@ class MoviesSharedViewModel : ViewModel() {
     fun setSelectedTicketType(ticketType: String) {
         selectedTicketType = ticketType
     }
+
+    fun setTicketPrices(adult: String, child: String, student: String, vip: String) {
+        adultPrice = adult
+        childPrice = child
+        studentPrice = student
+        vipPrice = vip
+    }
+
+    fun getAdultPrice(): String = adultPrice
+    fun getChildPrice(): String = childPrice
+    fun getStudentPrice(): String = studentPrice
+    fun getVipPrice(): String = vipPrice
 
     fun setSelectedSeatType(seatNumber: String, ticketType: String?) {
         if (ticketType == null) {
