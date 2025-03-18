@@ -73,7 +73,6 @@ class PayFragment : Fragment() {
     }
 
     private fun setupView() {
-
         binding.ticketDateTv.text = getString(
             R.string.ticket_date_time,
             sharedViewModel.getSelectedDate(),
@@ -83,6 +82,7 @@ class PayFragment : Fragment() {
         binding.movieTitleTv.text = sharedViewModel.getSelectedMovieTitle()
         binding.seatsNumberTv.text = sharedViewModel.getSelectedSeats().toString()
         binding.cinemaNameTv.text = sharedViewModel.getSelectedCinema()
+        binding.seatsNumberTv.text = sharedViewModel.getSelectedSeatType().keys.joinToString(", ")
 
         binding.payContinueBtn.apply {
             isEnabled = false
