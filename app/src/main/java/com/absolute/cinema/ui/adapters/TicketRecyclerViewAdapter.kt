@@ -37,6 +37,8 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
     private fun setupView(binding: RecyclerTicketLayoutBinding, item: TicketItemModel) {
         binding.linearLyRv.setOnClickListener {
             sharedViewModel.setSelectedTime(item.timeMovieStart)
+            sharedViewModel.setSelectedCinema(item.cinemaName)
+            sharedViewModel.setTicketPrices(item.adultPrice,item.childPrice,item.studentPrice,item.vipPrice)
         }
     }
 
