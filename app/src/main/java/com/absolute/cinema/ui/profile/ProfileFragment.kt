@@ -1,13 +1,17 @@
 package com.absolute.cinema.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.absolute.cinema.R
+import com.absolute.cinema.data.local.movie.MovieDatabase
+import com.absolute.cinema.data.local.movie.MovieTicketDao
 import com.absolute.cinema.data.model.CardsItemModel
 import com.absolute.cinema.data.model.HistoryItemModel
 import com.absolute.cinema.databinding.FragmentProfileBinding
@@ -16,6 +20,7 @@ import com.absolute.cinema.ui.adapters.HistoryRecyclerViewAdapter
 import com.absolute.cinema.ui.card.CardDialogFragment
 import com.absolute.cinema.ui.utils.ProfileSharedPreferences
 import com.absolute.cinema.ui.utils.onBackPressed
+import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
 
@@ -26,6 +31,8 @@ class ProfileFragment : Fragment() {
     private lateinit var moviePurchasedItemList: ArrayList<HistoryItemModel>
     private lateinit var cardsRecyclerViewAdapter: CardsRecyclerViewAdapter
     private lateinit var historyRecyclerViewAdapter: HistoryRecyclerViewAdapter
+    private lateinit var db: MovieDatabase
+    private lateinit var ticketDao: MovieTicketDao
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +45,12 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        db = MovieDatabase.getDatabase(requireContext())
+        ticketDao = db.movieDao
+
         onBackPressed()
         initRecyclerView()
+        fetchTicketHistory()
         setupView()
     }
 
@@ -57,20 +68,23 @@ class ProfileFragment : Fragment() {
             it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
 
+        binding.paymentHistoryTv.setOnClickListener {
+            lifecycleScope.launch {
+                ticketDao.deleteAllTickets()
+                moviePurchasedItemList.clear()
+                historyRecyclerViewAdapter.notifyDataSetChanged()
+
+                binding.historyRecyclerView.visibility = View.GONE
+                binding.noTickets.visibility = View.VISIBLE
+
+            }
+        }
+
         if (cardItemList.isEmpty()) {
             binding.cardsRecyclerView.visibility = View.GONE
         } else {
             binding.cardsRecyclerView.visibility = View.VISIBLE
         }
-
-        if (moviePurchasedItemList.isEmpty()) {
-            binding.historyRecyclerView.visibility = View.GONE
-            binding.noTickets.visibility = View.VISIBLE
-        } else {
-            binding.historyRecyclerView.visibility = View.VISIBLE
-            binding.noTickets.visibility = View.GONE
-        }
-
     }
 
     private fun initRecyclerView() {
@@ -81,11 +95,7 @@ class ProfileFragment : Fragment() {
             ),
         )
 
-        moviePurchasedItemList = arrayListOf(
-            HistoryItemModel(
-                R.drawable.logo, "The Batman", "6 April 2022, 14:40", "Eurasia Cinema7"
-            ),
-        )
+        moviePurchasedItemList = arrayListOf()
 
         cardsRecyclerViewAdapter = CardsRecyclerViewAdapter(cardItemList)
         binding.cardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -94,6 +104,34 @@ class ProfileFragment : Fragment() {
         historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(moviePurchasedItemList)
         binding.historyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.historyRecyclerView.adapter = historyRecyclerViewAdapter
+    }
+
+    private fun fetchTicketHistory() {
+        lifecycleScope.launch {
+            val tickets = ticketDao.getAllTickets()
+
+            moviePurchasedItemList.clear()
+            tickets.forEach {
+                val historyItem = HistoryItemModel(
+                    movieImage = it.movieId,
+                    movieName = it.movieTitle,
+                    movieDate = it.ticketDate,
+                    cinemaName = it.cinemaName
+                )
+                moviePurchasedItemList.add(historyItem)
+            }
+            Log.i("TICKET","$historyRecyclerViewAdapter")
+            Log.i("TICKET","$tickets ")
+            historyRecyclerViewAdapter.notifyDataSetChanged()
+
+            if (moviePurchasedItemList.isEmpty()) {
+                binding.historyRecyclerView.visibility = View.GONE
+                binding.noTickets.visibility = View.VISIBLE
+            } else {
+                binding.historyRecyclerView.visibility = View.VISIBLE
+                binding.noTickets.visibility = View.GONE
+            }
+        }
     }
 
 }
