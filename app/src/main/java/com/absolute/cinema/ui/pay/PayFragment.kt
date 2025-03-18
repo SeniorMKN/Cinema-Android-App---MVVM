@@ -82,6 +82,7 @@ class PayFragment : Fragment() {
 
         binding.movieTitleTv.text = sharedViewModel.getSelectedMovieTitle()
         binding.seatsNumberTv.text = sharedViewModel.getSelectedSeats().toString()
+        binding.cinemaNameTv.text = sharedViewModel.getSelectedCinema()
 
         binding.payContinueBtn.apply {
             isEnabled = false
