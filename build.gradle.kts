@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
-    kotlin("kapt") version "2.1.10"
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20" apply false
 }
 
 buildscript {
@@ -11,5 +11,6 @@ buildscript {
     }
     dependencies {
         classpath(libs.androidx.navigation.safe.args.gradle.plugin)
+        classpath(libs.symbol.processing.api)
     }
 }
