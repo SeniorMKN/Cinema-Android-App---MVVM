@@ -120,7 +120,6 @@ class ProfileFragment : Fragment() {
                 )
                 moviePurchasedItemList.add(historyItem)
             }
-            Log.i("TICKET","$historyRecyclerViewAdapter")
             Log.i("TICKET","$tickets ")
             historyRecyclerViewAdapter.notifyDataSetChanged()
 
