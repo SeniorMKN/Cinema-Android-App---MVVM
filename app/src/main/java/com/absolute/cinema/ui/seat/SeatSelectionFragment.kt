@@ -108,8 +108,24 @@ class SeatSelectionFragment : Fragment() {
         }
 
         sharedViewModel.setSelectedSeatType(seatNumber, ticketType)
-
         binding.buyTicketsBtn.visibility = if (selectedSeatsMap.isNotEmpty()) View.VISIBLE else View.GONE
+        updateSeatColors()
+    }
+
+    private fun updateSeatColors() {
+        val seatButtons = mapOf(
+            "6" to binding.seatNumberSix,
+            "7" to binding.seatNumberSeven,
+            "8" to binding.seatNumberEight
+        )
+
+        seatButtons.forEach { (seatNumber, button) ->
+            if (selectedSeatsMap.containsKey(seatNumber) && selectedSeatsMap[seatNumber] != null) {
+                button.setBackgroundColor(resources.getColor(R.color.orange, null))
+            } else {
+                button.setBackgroundColor(resources.getColor(R.color.main_app_bar_color, null))
+            }
+        }
     }
 
     private fun openTimePicker() {
