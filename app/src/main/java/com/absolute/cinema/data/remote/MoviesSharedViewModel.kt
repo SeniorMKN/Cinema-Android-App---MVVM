@@ -83,4 +83,8 @@ class MoviesSharedViewModel : ViewModel() {
             selectedSeatsMap[seatNumber] = ticketType
         }
     }
+
+    fun getSelectedSeatType(): MutableMap<String, String> {
+        return selectedSeatsMap
+    }
 }
