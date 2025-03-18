@@ -40,10 +40,10 @@ class SeatSelectionFragment : Fragment() {
         onBackPressed()
         setupView()
         setupListeners()
+        setupFragmentResultListener()
     }
 
     private fun setupView() {
-
         val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
             .format(Date())
             .split(" ")
@@ -51,6 +51,18 @@ class SeatSelectionFragment : Fragment() {
 
         binding.calendarTimeTv.text = date
 
+    }
+
+    private fun setupFragmentResultListener(){
+        parentFragmentManager.setFragmentResultListener(
+            "seatSelection",
+            this
+        ) { _, bundle ->
+            val seatNumber = bundle.getString("seatNumber") ?: return@setFragmentResultListener
+            val ticketType = bundle.getString("ticketType")
+
+            updateSeatSelection(seatNumber, ticketType)
+        }
     }
 
     private fun setupListeners() {
@@ -83,13 +95,12 @@ class SeatSelectionFragment : Fragment() {
         seatButtons.forEach { (button, seatNumber) ->
             button.setOnClickListener {
                 val dialog = SelectSeatDialogFragment.newInstance(seatNumber, selectedSeatsMap[seatNumber])
-                dialog.setTargetFragment(this, 0)
                 dialog.show(parentFragmentManager, "SelectSeatDialog")
             }
         }
     }
 
-    fun updateSeatSelection(seatNumber: String, ticketType: String?) {
+    private fun updateSeatSelection(seatNumber: String, ticketType: String?) {
         if (ticketType == null) {
             selectedSeatsMap.remove(seatNumber)
         } else {

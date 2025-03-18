@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.FragmentSelectSeatDialogBinding
-import com.absolute.cinema.ui.seat.SeatSelectionFragment
 import com.absolute.cinema.ui.utils.ADULT
 import com.absolute.cinema.ui.utils.CHILD
 import com.absolute.cinema.ui.utils.STUDENT
@@ -76,8 +75,11 @@ class SelectSeatDialogFragment : DialogFragment() {
     }
 
     private fun sendResult(seatNumber: String, ticketType: String?) {
-        val targetFragment = targetFragment as? SeatSelectionFragment
-        targetFragment?.updateSeatSelection(seatNumber, ticketType)
+        val result = Bundle().apply {
+            putString("seatNumber", seatNumber)
+            putString("ticketType", ticketType)
+        }
+        parentFragmentManager.setFragmentResult("seatSelection", result)
         dismiss()
     }
 
