@@ -43,14 +43,6 @@ class MoviesSharedViewModel : ViewModel() {
         return selectedMovieTime
     }
 
-    fun addOrRemoveSeat(selectedSeat: String) {
-        if (selectedMovieSeats.contains(selectedSeat)) {
-            selectedMovieSeats.remove(selectedSeat)
-        } else {
-            selectedMovieSeats.add(selectedSeat)
-        }
-    }
-
     fun getSelectedSeats(): List<String> {
         return selectedMovieSeats
     }
@@ -65,9 +57,5 @@ class MoviesSharedViewModel : ViewModel() {
         } else {
             selectedSeatsMap[seatNumber] = ticketType
         }
-    }
-
-    fun getSelectedSeatType(seatNumber: String): String? {
-        return selectedSeatsMap[seatNumber]
     }
 }
