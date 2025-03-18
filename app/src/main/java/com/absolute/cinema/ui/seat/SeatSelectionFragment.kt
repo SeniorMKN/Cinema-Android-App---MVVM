@@ -24,7 +24,7 @@ class SeatSelectionFragment : Fragment() {
     private var _binding: FragmentSeatSelectionBinding? = null
     private val binding get() = _binding!!
     private val sharedViewModel: MoviesSharedViewModel by activityViewModels()
-    private val selectedSeats = mutableSetOf<String>()
+    private val selectedSeatsMap = mutableMapOf<String, String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,7 +74,7 @@ class SeatSelectionFragment : Fragment() {
     }
 
     private fun toggleSeatSelection() {
-        val seatButtons = listOf(
+        val seatButtons = mapOf(
             binding.seatNumberSix to "6",
             binding.seatNumberSeven to "7",
             binding.seatNumberEight to "8"
@@ -82,21 +82,23 @@ class SeatSelectionFragment : Fragment() {
 
         seatButtons.forEach { (button, seatNumber) ->
             button.setOnClickListener {
-                if (selectedSeats.contains(seatNumber)) {
-                    selectedSeats.remove(seatNumber)
-                    button.setBackgroundColor(resources.getColor(R.color.main_app_bar_color, null))
-                    SelectSeatDialogFragment().show(parentFragmentManager, "SelectSeatDialog")
-                } else {
-                    selectedSeats.add(seatNumber)
-                    SelectSeatDialogFragment().show(parentFragmentManager, "SelectSeatDialog")
-                    button.setBackgroundColor(resources.getColor(R.color.orange, null))
-                }
-
-                sharedViewModel.addOrRemoveSeat(seatNumber)
-
-                binding.buyTicketsBtn.visibility = if (selectedSeats.isNotEmpty()) View.VISIBLE else View.GONE
+                val dialog = SelectSeatDialogFragment.newInstance(seatNumber, selectedSeatsMap[seatNumber])
+                dialog.setTargetFragment(this, 0)
+                dialog.show(parentFragmentManager, "SelectSeatDialog")
             }
         }
+    }
+
+    fun updateSeatSelection(seatNumber: String, ticketType: String?) {
+        if (ticketType == null) {
+            selectedSeatsMap.remove(seatNumber)
+        } else {
+            selectedSeatsMap[seatNumber] = ticketType
+        }
+
+        sharedViewModel.setSelectedSeatType(seatNumber, ticketType)
+
+        binding.buyTicketsBtn.visibility = if (selectedSeatsMap.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun openTimePicker() {

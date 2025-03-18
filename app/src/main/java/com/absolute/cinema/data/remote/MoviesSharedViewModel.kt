@@ -9,6 +9,7 @@ class MoviesSharedViewModel : ViewModel() {
     private var selectedMovieTime: String = ""
     private val selectedMovieSeats: MutableList<String> = mutableListOf()
     private var selectedTicketType: String = ""
+    private val selectedSeatsMap = mutableMapOf<String, String>()
 
     fun setSelectedMovieId(movieId: String) {
         selectedMovieId = movieId
@@ -58,7 +59,15 @@ class MoviesSharedViewModel : ViewModel() {
         selectedTicketType = ticketType
     }
 
-    fun getSelectedTicketType(): String {
-        return selectedTicketType
+    fun setSelectedSeatType(seatNumber: String, ticketType: String?) {
+        if (ticketType == null) {
+            selectedSeatsMap.remove(seatNumber)
+        } else {
+            selectedSeatsMap[seatNumber] = ticketType
+        }
+    }
+
+    fun getSelectedSeatType(seatNumber: String): String? {
+        return selectedSeatsMap[seatNumber]
     }
 }
