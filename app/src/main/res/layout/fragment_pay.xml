@@ -141,7 +141,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/movie_rating_age_tv"
+                                android:id="@+id/cinema_name_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/pt_root_ui_regular"
