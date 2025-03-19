@@ -55,7 +55,7 @@ class PayFragment : Fragment() {
 
         binding.payContinueBtn.setOnClickListener {
             val ticket = MovieTicket(
-                movieId = sharedViewModel.getSelectedMovieId(),
+                movieId = sharedViewModel.getSelectedPosterPath(),
                 ticketDate = sharedViewModel.getSelectedDate(),
                 movieTitle = sharedViewModel.getSelectedMovieTitle(),
                 cinemaName = sharedViewModel.getSelectedCinema()
