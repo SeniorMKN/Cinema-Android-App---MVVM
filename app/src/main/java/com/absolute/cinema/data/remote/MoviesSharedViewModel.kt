@@ -13,6 +13,7 @@ class MoviesSharedViewModel : ViewModel() {
     private var childPrice: String = ""
     private var studentPrice: String = ""
     private var vipPrice: String = ""
+    private var selectedPoster: String = ""
     private val selectedMovieSeats: MutableList<String> = mutableListOf()
     private val selectedSeatsMap = mutableMapOf<String, String>()
 
@@ -58,6 +59,14 @@ class MoviesSharedViewModel : ViewModel() {
 
     fun getSelectedSeats(): List<String> {
         return selectedMovieSeats
+    }
+
+    fun setSelectedPosterPath(selectedPosterPath: String) {
+        selectedPoster = selectedPosterPath
+    }
+
+    fun getSelectedPosterPath(): String {
+        return selectedPoster
     }
 
     fun setSelectedTicketType(ticketType: String) {
