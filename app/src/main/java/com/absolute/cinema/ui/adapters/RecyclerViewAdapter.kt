@@ -54,7 +54,7 @@ class RecyclerViewAdapter(private val movieList: List<MovieDto>, private val sha
         binding.imageMovieLeft.setOnClickListener {
             sharedViewModel.setSelectedMovieId(movieLeft.id.toString())
             sharedViewModel.setSelectedMovieTitle(movieLeft.title)
-
+            sharedViewModel.setSelectedPosterPath(movieLeft.posterPath)
             binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
         }
 
@@ -62,12 +62,11 @@ class RecyclerViewAdapter(private val movieList: List<MovieDto>, private val sha
             movieRight?.let {
                 sharedViewModel.setSelectedMovieId(it.id.toString())
                 sharedViewModel.setSelectedMovieTitle(movieRight.title)
+                sharedViewModel.setSelectedPosterPath(movieRight.posterPath)
                 binding.root.findNavController().navigate(R.id.action_homeFragment_to_tabsMovieFragment)
             }
         }
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = RecyclerMovieLayoutBinding.inflate(
