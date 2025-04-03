@@ -8,5 +8,6 @@
     <color name="light_blue">#1F293D</color>
     <color name="deep_blue">#253554</color>
     <color name="main_app_bar_color">#1F293D</color>
+    <color name="shimmer">#C2C2C2</color>
 
 </resources>
