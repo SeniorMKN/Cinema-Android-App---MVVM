@@ -61,6 +61,7 @@ dependencies {
     implementation (libs.kotlinx.coroutines.android.v139)
     implementation(libs.logging.interceptor)
     implementation (libs.glide)
+    implementation (libs.shimmer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

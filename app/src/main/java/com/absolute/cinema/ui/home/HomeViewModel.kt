@@ -17,6 +17,9 @@ class HomeViewModel : ViewModel() {
     private val _searchMoviesLiveData = MutableLiveData<List<MovieDto>>()
     val searchMoviesLiveData: LiveData<List<MovieDto>> get() = _searchMoviesLiveData
 
+    private val _loadingState = MutableLiveData<Boolean>()
+    val loadingState: LiveData<Boolean> get() = _loadingState
+
     private var currentPage = 1
 
     fun fetchMovies(isPageScrolled: Boolean = false) {
@@ -31,6 +34,7 @@ class HomeViewModel : ViewModel() {
                 }
                 currentPage++
             }
+            _loadingState.value = false
         }
     }
 
@@ -40,6 +44,7 @@ class HomeViewModel : ViewModel() {
             searchedMovies?.let {
                 _searchMoviesLiveData.postValue(it)
             }
+            _loadingState.value = false
         }
     }
 }

@@ -106,27 +106,49 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     }
 
     override fun onLoginSuccess(result: Boolean) {
-        if (result) {
-            binding.loginButton.text = getString(R.string.profile)
-            binding.loginButton.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        binding.apply {
+            if (result) {
+                loginButton.text = getString(R.string.profile)
+                loginButton.setOnClickListener {
+                    findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+                }
             }
         }
     }
 
     private fun initObserver() {
-        viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
-            setupRecyclerView(moviesList)
-            binding.progressBar.visibility = View.GONE
-            isSearchActive = false
-        }
+        binding.apply {
+            viewModel.moviesLiveData.observe(viewLifecycleOwner) { moviesList ->
 
-        viewModel.searchMoviesLiveData.observe(viewLifecycleOwner) { searchedMoviesList ->
-            setupRecyclerView(searchedMoviesList)
-            binding.progressBar.visibility = View.GONE
-        }
+                shimmerViewContainer.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+                setupRecyclerView(moviesList)
+                progressBar.visibility = View.GONE
+                isSearchActive = false
+            }
 
+            viewModel.searchMoviesLiveData.observe(viewLifecycleOwner) { searchedMoviesList ->
+                shimmerViewContainer.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+                setupRecyclerView(searchedMoviesList)
+                progressBar.visibility = View.GONE
+            }
+
+            viewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
+
+                if (isLoading) {
+                    shimmerViewContainer.visibility = View.VISIBLE
+                    shimmerViewContainer.startShimmer()
+                    recyclerView.visibility = View.GONE
+                } else {
+                    shimmerViewContainer.visibility = View.GONE
+                    shimmerViewContainer.stopShimmer()
+                    recyclerView.visibility = View.VISIBLE
+                }
+            }
+        }
     }
+
 
     private fun setupDialogs() {
         binding.positionName.setOnClickListener {
@@ -145,12 +167,14 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     }
 
     private fun setupRecyclerView(moviesList: List<MovieDto>) {
-        recyclerViewAdapter = RecyclerViewAdapter(moviesList, sharedViewModel)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = recyclerViewAdapter
+        binding.apply {
+            recyclerViewAdapter = RecyclerViewAdapter(moviesList, sharedViewModel)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = recyclerViewAdapter
 
-        val layoutManager = binding.recyclerView.layoutManager as LinearLayoutManager
-        layoutManager.scrollToPositionWithOffset(lastVisibleItemPosition, 0)
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            layoutManager.scrollToPositionWithOffset(lastVisibleItemPosition, 0)
+        }
     }
 
     override fun onSearchMovieTitle(movieTitle: String) {
