@@ -43,20 +43,22 @@ class TabsMovieFragment : Fragment() {
     }
 
     private fun initTabLayout() {
-        binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.apply {
+            viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        myAdapter = MyPagerAdapter(childFragmentManager, lifecycle)
-        myAdapter.addFragmentToList(AboutMovieFragment())
-        myAdapter.addFragmentToList(SessionsMovieFragment())
+            myAdapter = MyPagerAdapter(childFragmentManager, lifecycle)
+            myAdapter.addFragmentToList(AboutMovieFragment())
+            myAdapter.addFragmentToList(SessionsMovieFragment())
 
-        binding.viewPager.adapter = myAdapter
+            viewPager.adapter = myAdapter
 
-        TabLayoutMediator(
-            binding.tablayout,
-            binding.viewPager
-        ) { tab, position ->
-            tab.text = tabsArray[position]
-        }.attach()
+            TabLayoutMediator(
+                tablayout,
+                viewPager
+            ) { tab, position ->
+                tab.text = tabsArray[position]
+            }.attach()
+        }
     }
 
     private fun setupView() {

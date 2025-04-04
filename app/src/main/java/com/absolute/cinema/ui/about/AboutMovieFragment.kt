@@ -44,18 +44,17 @@ class AboutMovieFragment : Fragment() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupObservers() {
-        aboutMovieViewModel.moviesVideoLiveData.observe(viewLifecycleOwner) { result ->
-            binding.apply {
+        binding.apply {
+            aboutMovieViewModel.moviesVideoLiveData.observe(viewLifecycleOwner) { result ->
 
                 val video = VIDEO_MOVIE_PATH.replace("TEST", result.first().key)
                 movieTrailerWv.loadData(video, "text/html", "utf-8")
                 movieTrailerWv.webChromeClient = WebChromeClient()
                 movieTrailerWv.settings.javaScriptEnabled = true
-            }
-        }
 
-        aboutMovieViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
-            binding.apply {
+            }
+
+            aboutMovieViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) { details ->
 
                 movieDescriptionTv.text = details.overview
                 releaseTv.text = details.releaseDate

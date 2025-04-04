@@ -49,73 +49,77 @@ class SessionsMovieFragment : Fragment() {
     }
 
     private fun setupView() {
+        binding.apply {
 
-        val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-            .format(Date())
-            .split(" ")
-            .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
+            val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+                .format(Date())
+                .split(" ")
+                .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
 
-        binding.calendarDateTv.text = date
+            calendarDateTv.text = date
 
-        sharedViewModel.setSelectedDate(binding.calendarDateTv.text.toString())
+            sharedViewModel.setSelectedDate(calendarDateTv.text.toString())
+        }
     }
 
     private fun setupListeners() {
-        binding.calendarDateTv.setOnClickListener {
-            showDatePickerDialog()
-        }
-
-        binding.timeOrderTv.setOnClickListener {
-            SortDialogFragment().show(parentFragmentManager, "SortDialog")
-        }
-
-        binding.cinemaOrderTv.setOnClickListener {
-            isSwitchOn = !isSwitchOn
-
-            val newDrawableRes = if (isSwitchOn) {
-                R.drawable.resource_switch_on
-            } else {
-                R.drawable.resource_switch
+        binding.apply {
+            calendarDateTv.setOnClickListener {
+                showDatePickerDialog()
             }
 
-            val newDrawable = ContextCompat.getDrawable(requireContext(), newDrawableRes)
-
-            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                binding.cinemaOrderTv, null, newDrawable, null, null
-            )
-
-            recyclerViewAdapter.toggleLinearVisibility(isSwitchOn)
-        }
-
-        binding.vipCinemaTv.setOnClickListener {
-            sortByPrice { it.vipPrice }
-        }
-
-        binding.adultCinemaTv.setOnClickListener {
-            sortByPrice { it.adultPrice }
-        }
-
-        binding.studentCinemaTv.setOnClickListener {
-            sortByPrice { it.studentPrice }
-        }
-
-        binding.childCinemaTv.setOnClickListener {
-            sortByPrice { it.childPrice }
-        }
-
-        binding.timeCinemaTv.setOnClickListener {
-            val previousList = ArrayList(itemList)
-
-            if (isDescending) {
-                itemList.sortBy { it.timeMovieStart }
-            } else {
-                itemList.sortByDescending { it.timeMovieStart }
+            timeOrderTv.setOnClickListener {
+                SortDialogFragment().show(parentFragmentManager, "SortDialog")
             }
 
-            isDescending = !isDescending
+            cinemaOrderTv.setOnClickListener {
+                isSwitchOn = !isSwitchOn
 
-            if (previousList != itemList) {
-                recyclerViewAdapter.notifyItemRangeChanged(0, itemList.size)
+                val newDrawableRes = if (isSwitchOn) {
+                    R.drawable.resource_switch_on
+                } else {
+                    R.drawable.resource_switch
+                }
+
+                val newDrawable = ContextCompat.getDrawable(requireContext(), newDrawableRes)
+
+                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    cinemaOrderTv, null, newDrawable, null, null
+                )
+
+                recyclerViewAdapter.toggleLinearVisibility(isSwitchOn)
+            }
+
+            vipCinemaTv.setOnClickListener {
+                sortByPrice { it.vipPrice }
+            }
+
+            adultCinemaTv.setOnClickListener {
+                sortByPrice { it.adultPrice }
+            }
+
+            studentCinemaTv.setOnClickListener {
+                sortByPrice { it.studentPrice }
+            }
+
+            childCinemaTv.setOnClickListener {
+                sortByPrice { it.childPrice }
+            }
+
+            timeCinemaTv.setOnClickListener {
+                val previousList = ArrayList(itemList)
+
+                if (isDescending) {
+                    itemList.sortBy { it.timeMovieStart }
+                } else {
+                    itemList.sortByDescending { it.timeMovieStart }
+                }
+
+                isDescending = !isDescending
+
+                if (previousList != itemList) {
+                    recyclerViewAdapter.notifyItemRangeChanged(0, itemList.size)
+                }
             }
         }
     }
@@ -141,62 +145,64 @@ class SessionsMovieFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        itemList = arrayListOf(
-            TicketItemModel(
-                "18:30", "Dolby Atmos",
-                "Cinema Europa", "18 €",
-                "10 €", "13 €", "21 €", "05/06/2025", "Via Roma 10, Milano"
-            ),
-            TicketItemModel(
-                "20:15", "IMAX",
-                "Cineplex Firenze", "19 €",
-                "9 €", "13 €", "23 €", "12/08/2025", "Piazza Duomo 5, Firenze"
-            ),
-            TicketItemModel(
-                "14:00", "Standard",
-                "Multisala Torino", "11 €",
-                "5 €", "7 €", "14 €", "20/10/2025", "Corso Vittorio Emanuele 45, Torino"
-            ),
-            TicketItemModel(
-                "19:45", "4DX",
-                "Cinema Roma Center", "22 €",
-                "11 €", "15 €", "26 €", "08/11/2025", "Via del Corso 90, Roma"
-            ),
-            TicketItemModel(
-                "23:00", "VIP Lounge",
-                "The Space Napoli", "28 €",
-                "14 €", "18 €", "32 €", "31/12/2025", "Via Toledo 33, Napoli"
-            ),
-            TicketItemModel(
-                "19:00", "4DX",
-                "Cinema Europa", "17 €",
-                "9 €", "13 €", "22 €", "12/04/2025", "Via Roma 10, Milano"
-            ),
-            TicketItemModel(
-                "21:30", "Dolby Atmos",
-                "Cineplex Firenze", "18 €",
-                "9 €", "12 €", "22 €", "28/07/2025", "Piazza Duomo 5, Firenze"
-            ),
-            TicketItemModel(
-                "16:15", "Standard",
-                "Multisala Torino", "12 €",
-                "6 €", "8 €", "15 €", "15/09/2025", "Corso Vittorio Emanuele 45, Torino"
-            ),
-            TicketItemModel(
-                "20:00", "IMAX 3D",
-                "Cinema Roma Center", "20 €",
-                "10 €", "14 €", "25 €", "01/11/2025", "Via del Corso 90, Roma"
-            ),
-            TicketItemModel(
-                "22:45", "VIP Lounge",
-                "The Space Napoli", "24 €",
-                "10 €", "14 €", "30 €", "22/12/2025", "Via Toledo 33, Napoli"
+        binding.apply {
+            itemList = arrayListOf(
+                TicketItemModel(
+                    "18:30", "Dolby Atmos",
+                    "Cinema Europa", "18 €",
+                    "10 €", "13 €", "21 €", "05/06/2025", "Via Roma 10, Milano"
+                ),
+                TicketItemModel(
+                    "20:15", "IMAX",
+                    "Cineplex Firenze", "19 €",
+                    "9 €", "13 €", "23 €", "12/08/2025", "Piazza Duomo 5, Firenze"
+                ),
+                TicketItemModel(
+                    "14:00", "Standard",
+                    "Multisala Torino", "11 €",
+                    "5 €", "7 €", "14 €", "20/10/2025", "Corso Vittorio Emanuele 45, Torino"
+                ),
+                TicketItemModel(
+                    "19:45", "4DX",
+                    "Cinema Roma Center", "22 €",
+                    "11 €", "15 €", "26 €", "08/11/2025", "Via del Corso 90, Roma"
+                ),
+                TicketItemModel(
+                    "23:00", "VIP Lounge",
+                    "The Space Napoli", "28 €",
+                    "14 €", "18 €", "32 €", "31/12/2025", "Via Toledo 33, Napoli"
+                ),
+                TicketItemModel(
+                    "19:00", "4DX",
+                    "Cinema Europa", "17 €",
+                    "9 €", "13 €", "22 €", "12/04/2025", "Via Roma 10, Milano"
+                ),
+                TicketItemModel(
+                    "21:30", "Dolby Atmos",
+                    "Cineplex Firenze", "18 €",
+                    "9 €", "12 €", "22 €", "28/07/2025", "Piazza Duomo 5, Firenze"
+                ),
+                TicketItemModel(
+                    "16:15", "Standard",
+                    "Multisala Torino", "12 €",
+                    "6 €", "8 €", "15 €", "15/09/2025", "Corso Vittorio Emanuele 45, Torino"
+                ),
+                TicketItemModel(
+                    "20:00", "IMAX 3D",
+                    "Cinema Roma Center", "20 €",
+                    "10 €", "14 €", "25 €", "01/11/2025", "Via del Corso 90, Roma"
+                ),
+                TicketItemModel(
+                    "22:45", "VIP Lounge",
+                    "The Space Napoli", "24 €",
+                    "10 €", "14 €", "30 €", "22/12/2025", "Via Toledo 33, Napoli"
+                )
             )
-        )
 
-        recyclerViewAdapter = TicketRecyclerViewAdapter(itemList, sharedViewModel)
-        binding.ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-        binding.ticketRecyclerview.adapter = recyclerViewAdapter
+            recyclerViewAdapter = TicketRecyclerViewAdapter(itemList, sharedViewModel)
+            ticketRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+            ticketRecyclerview.adapter = recyclerViewAdapter
+        }
     }
 
     private fun showDatePickerDialog() {

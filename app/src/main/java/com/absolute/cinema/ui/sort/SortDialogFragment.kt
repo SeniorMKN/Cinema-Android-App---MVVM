@@ -38,45 +38,54 @@ class SortDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
+        binding.apply {
+            closeTv.setOnClickListener {
+                dismiss()
+            }
 
-        binding.sortApplyBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
+            sortApplyBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
         }
     }
 
     private fun setupOrderOption() {
-        binding.ascendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkAscendingIv) }
-        binding.descendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
+        binding.apply {
+            ascendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkAscendingIv) }
+            descendingLinearLy.setOnClickListener { setSelectedOrderOption(binding.checkDescendingIv) }
+        }
     }
 
     private fun setupSortOption() {
-        binding.timeLinearLy.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
-        binding.distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) } }
+        binding.apply {
+            timeLinearLy.setOnClickListener { setSelectedSortOption(binding.checkTimeIv) }
+            distanceLinearLy.setOnClickListener { setSelectedSortOption(binding.checkDistanceIv) }
+        }
+    }
 
     private fun setSelectedSortOption(selectedCheck: View) {
+        binding.apply {
+            checkTimeIv.visibility = View.INVISIBLE
+            checkDistanceIv.visibility = View.INVISIBLE
 
-        binding.checkTimeIv.visibility = View.INVISIBLE
-        binding.checkDistanceIv.visibility = View.INVISIBLE
+            selectedCheck.visibility = View.VISIBLE
 
-        selectedCheck.visibility = View.VISIBLE
-
-        isSortSelected = true
-        enableApplyButton()
+            isSortSelected = true
+            enableApplyButton()
+        }
     }
 
     private fun setSelectedOrderOption(selectedCheck: View) {
+        binding.apply {
+            checkAscendingIv.visibility = View.INVISIBLE
+            checkDescendingIv.visibility = View.INVISIBLE
 
-        binding.checkAscendingIv.visibility = View.INVISIBLE
-        binding.checkDescendingIv.visibility = View.INVISIBLE
+            selectedCheck.visibility = View.VISIBLE
 
-        selectedCheck.visibility = View.VISIBLE
-
-        isOrderSelected = true
-        enableApplyButton()
+            isOrderSelected = true
+            enableApplyButton()
+        }
     }
 
     private fun enableApplyButton() {

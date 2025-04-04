@@ -33,52 +33,58 @@ class SelectSeatDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupView()
-        binding.deselectSeatBtn.visibility = View.GONE
+        binding.apply {
+            setupView()
+            deselectSeatBtn.visibility = View.GONE
 
-        val seatNumber = arguments?.getString("seatNumber") ?: return
-        val selectedTicketType = arguments?.getString("ticketType")
-        setupListeners(seatNumber)
+            val seatNumber = arguments?.getString("seatNumber") ?: return
+            val selectedTicketType = arguments?.getString("ticketType")
+            setupListeners(seatNumber)
 
-        when (selectedTicketType) {
-            ADULT -> onSelectedTicket(binding.adultTicketTv)
-            CHILD -> onSelectedTicket(binding.childTicketTv)
-            STUDENT -> onSelectedTicket(binding.studentTicketTv)
-            VIP -> onSelectedTicket(binding.vipTicketTv)
+            when (selectedTicketType) {
+                ADULT -> onSelectedTicket(adultTicketTv)
+                CHILD -> onSelectedTicket(childTicketTv)
+                STUDENT -> onSelectedTicket(studentTicketTv)
+                VIP -> onSelectedTicket(vipTicketTv)
+            }
         }
     }
 
-    private fun setupView(){
-        binding.adultTicketPriceTv.text = sharedViewModel.getAdultPrice()
-        binding.childTicketPriceTv.text = sharedViewModel.getChildPrice()
-        binding.studentTicketPriceTv.text = sharedViewModel.getStudentPrice()
-        binding.vipTicketPriceTv.text = sharedViewModel.getVipPrice()
+    private fun setupView() {
+        binding.apply {
+            adultTicketPriceTv.text = sharedViewModel.getAdultPrice()
+            childTicketPriceTv.text = sharedViewModel.getChildPrice()
+            studentTicketPriceTv.text = sharedViewModel.getStudentPrice()
+            vipTicketPriceTv.text = sharedViewModel.getVipPrice()
+        }
     }
 
     private fun setupListeners(seatNumber: String) {
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
+        binding.apply {
+            closeTv.setOnClickListener {
+                dismiss()
+            }
 
-        binding.deselectSeatBtn.setOnClickListener {
-            resetTicketSelection()
-        }
+            deselectSeatBtn.setOnClickListener {
+                resetTicketSelection()
+            }
 
-        binding.adultLinearLy.setOnClickListener {
-            onSelectedTicket(binding.adultTicketTv)
-            sendResult(seatNumber, ADULT)
-        }
-        binding.childTicketTv.setOnClickListener {
-            onSelectedTicket(binding.childTicketTv)
-            sendResult(seatNumber, CHILD)
-        }
-        binding.studentTicketTv.setOnClickListener {
-            onSelectedTicket(binding.studentTicketTv)
-            sendResult(seatNumber, STUDENT)
-        }
-        binding.vipTicketTv.setOnClickListener {
-            onSelectedTicket(binding.vipTicketTv)
-            sendResult(seatNumber, VIP)
+            adultLinearLy.setOnClickListener {
+                onSelectedTicket(adultTicketTv)
+                sendResult(seatNumber, ADULT)
+            }
+            childTicketTv.setOnClickListener {
+                onSelectedTicket(childTicketTv)
+                sendResult(seatNumber, CHILD)
+            }
+            studentTicketTv.setOnClickListener {
+                onSelectedTicket(studentTicketTv)
+                sendResult(seatNumber, STUDENT)
+            }
+            vipTicketTv.setOnClickListener {
+                onSelectedTicket(vipTicketTv)
+                sendResult(seatNumber, VIP)
+            }
         }
     }
 
@@ -92,47 +98,52 @@ class SelectSeatDialogFragment : DialogFragment() {
     }
 
     private fun onSelectedTicket(selectedTextView: TextView) {
-        binding.adultLinearLy.visibility = View.GONE
-        binding.childLinearLy.visibility = View.GONE
-        binding.studentLinearLy.visibility = View.GONE
-        binding.vipLinearLy.visibility = View.GONE
+        binding.apply {
+            adultLinearLy.visibility = View.GONE
+            childLinearLy.visibility = View.GONE
+            studentLinearLy.visibility = View.GONE
+            vipLinearLy.visibility = View.GONE
 
-        when (selectedTextView.id) {
-            binding.adultTicketTv.id -> {
-                binding.adultLinearLy.visibility = View.VISIBLE
-                sharedViewModel.setSelectedTicketType(ADULT)
+            when (selectedTextView.id) {
+                adultTicketTv.id -> {
+                    adultLinearLy.visibility = View.VISIBLE
+                    sharedViewModel.setSelectedTicketType(ADULT)
+                }
+
+                childTicketTv.id -> {
+                    childLinearLy.visibility = View.VISIBLE
+                    sharedViewModel.setSelectedTicketType(CHILD)
+                }
+
+                studentTicketTv.id -> studentLinearLy.visibility = View.VISIBLE
+                vipTicketTv.id -> vipLinearLy.visibility = View.VISIBLE
             }
-            binding.childTicketTv.id -> {
-                binding.childLinearLy.visibility = View.VISIBLE
-                sharedViewModel.setSelectedTicketType(CHILD)
+
+            when (selectedTextView.id) {
+                adultTicketTv.id -> sharedViewModel.setSelectedTicketType(ADULT)
+                childTicketTv.id -> sharedViewModel.setSelectedTicketType(CHILD)
+                studentTicketTv.id -> sharedViewModel.setSelectedTicketType(STUDENT)
+                vipTicketTv.id -> sharedViewModel.setSelectedTicketType(VIP)
             }
 
-            binding.studentTicketTv.id -> binding.studentLinearLy.visibility = View.VISIBLE
-            binding.vipTicketTv.id -> binding.vipLinearLy.visibility = View.VISIBLE
+            deselectSeatBtn.visibility = View.VISIBLE
         }
-
-        when (selectedTextView.id) {
-            binding.adultTicketTv.id -> sharedViewModel.setSelectedTicketType(ADULT)
-            binding.childTicketTv.id -> sharedViewModel.setSelectedTicketType(CHILD)
-            binding.studentTicketTv.id -> sharedViewModel.setSelectedTicketType(STUDENT)
-            binding.vipTicketTv.id -> sharedViewModel.setSelectedTicketType(VIP)
-        }
-
-        binding.deselectSeatBtn.visibility = View.VISIBLE
     }
 
     private fun resetTicketSelection() {
-        val seatNumber = arguments?.getString("seatNumber") ?: return
-        sharedViewModel.setSelectedTicketType("")
+        binding.apply {
+            val seatNumber = arguments?.getString("seatNumber") ?: return
+            sharedViewModel.setSelectedTicketType("")
 
-        binding.adultLinearLy.visibility = View.VISIBLE
-        binding.childLinearLy.visibility = View.VISIBLE
-        binding.studentLinearLy.visibility = View.VISIBLE
-        binding.vipLinearLy.visibility = View.VISIBLE
-        binding.deselectSeatBtn.visibility = View.GONE
+            adultLinearLy.visibility = View.VISIBLE
+            childLinearLy.visibility = View.VISIBLE
+            studentLinearLy.visibility = View.VISIBLE
+            vipLinearLy.visibility = View.VISIBLE
+            deselectSeatBtn.visibility = View.GONE
 
-        sendResult(seatNumber, null)
-        dismiss()
+            sendResult(seatNumber, null)
+            dismiss()
+        }
     }
 
     override fun onStart() {

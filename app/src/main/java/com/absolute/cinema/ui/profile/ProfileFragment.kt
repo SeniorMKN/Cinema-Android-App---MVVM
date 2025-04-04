@@ -55,80 +55,85 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupView() {
-        binding.addNewCardBtn.setOnClickListener {
-            CardDialogFragment().show(parentFragmentManager, "LoginDialog")
-        }
-
-        binding.backArrowTv.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
-
-        binding.logoutTv.setOnClickListener {
-            ProfileSharedPreferences.clearData(requireContext())
-            it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
-        }
-
-        binding.paymentHistoryTv.setOnClickListener {
-            lifecycleScope.launch {
-                ticketDao.deleteAllTickets()
-                moviePurchasedItemList.clear()
-                historyRecyclerViewAdapter.notifyDataSetChanged()
-
-                binding.historyRecyclerView.visibility = View.GONE
-                binding.noTickets.visibility = View.VISIBLE
-
+        binding.apply {
+            addNewCardBtn.setOnClickListener {
+                CardDialogFragment().show(parentFragmentManager, "LoginDialog")
             }
-        }
 
-        if (cardItemList.isEmpty()) {
-            binding.cardsRecyclerView.visibility = View.GONE
-        } else {
-            binding.cardsRecyclerView.visibility = View.VISIBLE
+            backArrowTv.setOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
+
+            logoutTv.setOnClickListener {
+                ProfileSharedPreferences.clearData(requireContext())
+                it.findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+            }
+
+            paymentHistoryTv.setOnClickListener {
+                lifecycleScope.launch {
+                    ticketDao.deleteAllTickets()
+                    moviePurchasedItemList.clear()
+                    historyRecyclerViewAdapter.notifyDataSetChanged()
+
+                    historyRecyclerView.visibility = View.GONE
+                    noTickets.visibility = View.VISIBLE
+
+                }
+            }
+
+            if (cardItemList.isEmpty()) {
+                cardsRecyclerView.visibility = View.GONE
+            } else {
+                cardsRecyclerView.visibility = View.VISIBLE
+            }
         }
     }
 
     private fun initRecyclerView() {
+        binding.apply {
+            cardItemList = arrayListOf(
+                CardsItemModel(
+                    R.drawable.baseline_credit_card, "4716 •••• •••• 5615", "06/24"
+                ),
+            )
 
-        cardItemList = arrayListOf(
-            CardsItemModel(
-                R.drawable.baseline_credit_card, "4716 •••• •••• 5615", "06/24"
-            ),
-        )
+            moviePurchasedItemList = arrayListOf()
 
-        moviePurchasedItemList = arrayListOf()
+            cardsRecyclerViewAdapter = CardsRecyclerViewAdapter(cardItemList)
+            cardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            cardsRecyclerView.adapter = cardsRecyclerViewAdapter
 
-        cardsRecyclerViewAdapter = CardsRecyclerViewAdapter(cardItemList)
-        binding.cardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.cardsRecyclerView.adapter = cardsRecyclerViewAdapter
-
-        historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(moviePurchasedItemList)
-        binding.historyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.historyRecyclerView.adapter = historyRecyclerViewAdapter
+            historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(moviePurchasedItemList)
+            historyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            historyRecyclerView.adapter = historyRecyclerViewAdapter
+        }
     }
 
     private fun fetchTicketHistory() {
-        lifecycleScope.launch {
-            val tickets = ticketDao.getAllTickets()
+        binding.apply {
+            lifecycleScope.launch {
+                val tickets = ticketDao.getAllTickets()
 
-            moviePurchasedItemList.clear()
-            tickets.forEach {
-                val historyItem = HistoryItemModel(
-                    movieImage = it.movieId,
-                    movieName = it.movieTitle,
-                    movieDate = it.ticketDate,
-                    cinemaName = it.cinemaName
-                )
-                moviePurchasedItemList.add(historyItem)
-            }
-            Log.i("TICKET","$tickets ")
-            historyRecyclerViewAdapter.notifyDataSetChanged()
+                moviePurchasedItemList.clear()
+                tickets.forEach {
+                    val historyItem = HistoryItemModel(
+                        movieImage = it.movieId,
+                        movieName = it.movieTitle,
+                        movieDate = it.ticketDate,
+                        cinemaName = it.cinemaName
+                    )
+                    moviePurchasedItemList.add(historyItem)
+                }
+                Log.i("TICKET", "$tickets ")
+                historyRecyclerViewAdapter.notifyDataSetChanged()
 
-            if (moviePurchasedItemList.isEmpty()) {
-                binding.historyRecyclerView.visibility = View.GONE
-                binding.noTickets.visibility = View.VISIBLE
-            } else {
-                binding.historyRecyclerView.visibility = View.VISIBLE
-                binding.noTickets.visibility = View.GONE
+                if (moviePurchasedItemList.isEmpty()) {
+                    historyRecyclerView.visibility = View.GONE
+                    noTickets.visibility = View.VISIBLE
+                } else {
+                    historyRecyclerView.visibility = View.VISIBLE
+                    noTickets.visibility = View.GONE
+                }
             }
         }
     }

@@ -36,43 +36,53 @@ class CardDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
+        binding.apply {
 
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
+            closeTv.setOnClickListener {
+                dismiss()
+            }
 
-        binding.addBankCardBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
+            addBankCardBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
         }
     }
 
     private fun setupListeners() {
+        binding.apply {
 
-        val inputTextWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                val cardNumber = binding.cardNumberEt.text.toString().trim()
-                val cardMonth = binding.monthEt.text.toString().trim()
-                val cardCvc = binding.cvcEt.text.toString().trim()
-                val isValid =
-                    cardNumber.length == 16 && cardMonth.length == 2 && cardCvc.length == 3
-                val orangeColor = requireContext().getColor(R.color.orange)
-
-                binding.addBankCardBtn.apply {
-                    isEnabled = isValid
-                    setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
+            val inputTextWatcher = object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
                 }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    val cardNumber = cardNumberEt.text.toString().trim()
+                    val cardMonth = monthEt.text.toString().trim()
+                    val cardCvc = cvcEt.text.toString().trim()
+                    val isValid =
+                        cardNumber.length == 16 && cardMonth.length == 2 && cardCvc.length == 3
+                    val orangeColor = requireContext().getColor(R.color.orange)
+
+                    addBankCardBtn.apply {
+                        isEnabled = isValid
+                        setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
             }
 
-            override fun afterTextChanged(s: Editable?) {}
-        }
-
-        binding.apply {
             cardNumberEt.addTextChangedListener(inputTextWatcher)
             monthEt.addTextChangedListener(inputTextWatcher)
             cvcEt.addTextChangedListener(inputTextWatcher)
+
         }
     }
 

@@ -44,17 +44,18 @@ class SeatSelectionFragment : Fragment() {
     }
 
     private fun setupView() {
-        val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-            .format(Date())
-            .split(" ")
-            .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
+        binding.apply {
+            val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+                .format(Date())
+                .split(" ")
+                .joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercaseChar() } }
 
-        binding.calendarTimeTv.text = date
-        binding.cinemaTitleTv.text = sharedViewModel.getSelectedCinema()
-
+            calendarTimeTv.text = date
+            cinemaTitleTv.text = sharedViewModel.getSelectedCinema()
+        }
     }
 
-    private fun setupFragmentResultListener(){
+    private fun setupFragmentResultListener() {
         parentFragmentManager.setFragmentResultListener(
             "seatSelection",
             this
@@ -67,36 +68,44 @@ class SeatSelectionFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        binding.constraintLayoutDate.setOnClickListener {
-            showDatePickerDialog()
-        }
+        binding.apply {
+            constraintLayoutDate.setOnClickListener {
+                showDatePickerDialog()
+            }
 
-        binding.buyTicketsBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_seatSelectionFragment_to_payFragment)
-        }
+            buyTicketsBtn.setOnClickListener {
+                it.findNavController().navigate(R.id.action_seatSelectionFragment_to_payFragment)
+            }
 
-        binding.backArrowTv.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
+            backArrowTv.setOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
 
-        binding.constraintLayoutTime.setOnClickListener {
-            openTimePicker()
-        }
+            constraintLayoutTime.setOnClickListener {
+                openTimePicker()
+            }
 
-        toggleSeatSelection()
+            toggleSeatSelection()
+        }
     }
 
     private fun toggleSeatSelection() {
-        val seatButtons = mapOf(
-            binding.seatNumberSix to "6",
-            binding.seatNumberSeven to "7",
-            binding.seatNumberEight to "8"
-        )
+        binding.apply {
+            val seatButtons = mapOf(
+                seatNumberSix to "6",
+                seatNumberSeven to "7",
+                seatNumberEight to "8"
+            )
 
-        seatButtons.forEach { (button, seatNumber) ->
-            button.setOnClickListener {
-                val dialog = SelectSeatDialogFragment.newInstance(seatNumber, selectedSeatsMap[seatNumber])
-                dialog.show(parentFragmentManager, "SelectSeatDialog")
+            seatButtons.forEach { (button, seatNumber) ->
+                button.setOnClickListener {
+                    val dialog =
+                        SelectSeatDialogFragment.newInstance(
+                            seatNumber,
+                            selectedSeatsMap[seatNumber]
+                        )
+                    dialog.show(parentFragmentManager, "SelectSeatDialog")
+                }
             }
         }
     }
@@ -109,22 +118,25 @@ class SeatSelectionFragment : Fragment() {
         }
 
         sharedViewModel.setSelectedSeatType(seatNumber, ticketType)
-        binding.buyTicketsBtn.visibility = if (selectedSeatsMap.isNotEmpty()) View.VISIBLE else View.GONE
+        binding.buyTicketsBtn.visibility =
+            if (selectedSeatsMap.isNotEmpty()) View.VISIBLE else View.GONE
         updateSeatColors()
     }
 
     private fun updateSeatColors() {
-        val seatButtons = mapOf(
-            "6" to binding.seatNumberSix,
-            "7" to binding.seatNumberSeven,
-            "8" to binding.seatNumberEight
-        )
+        binding.apply {
+            val seatButtons = mapOf(
+                "6" to seatNumberSix,
+                "7" to seatNumberSeven,
+                "8" to seatNumberEight
+            )
 
-        seatButtons.forEach { (seatNumber, button) ->
-            if (selectedSeatsMap.containsKey(seatNumber) && selectedSeatsMap[seatNumber] != null) {
-                button.setBackgroundColor(resources.getColor(R.color.orange, null))
-            } else {
-                button.setBackgroundColor(resources.getColor(R.color.main_app_bar_color, null))
+            seatButtons.forEach { (seatNumber, button) ->
+                if (selectedSeatsMap.containsKey(seatNumber) && selectedSeatsMap[seatNumber] != null) {
+                    button.setBackgroundColor(resources.getColor(R.color.orange, null))
+                } else {
+                    button.setBackgroundColor(resources.getColor(R.color.main_app_bar_color, null))
+                }
             }
         }
     }
@@ -137,7 +149,8 @@ class SeatSelectionFragment : Fragment() {
         val timePickerDialog = TimePickerDialog(
             requireContext(),
             { _, selectedHour, selectedMinute ->
-                binding.dayTimeTv.text = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute)
+                binding.dayTimeTv.text =
+                    String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute)
             },
             hour, minute, true
         )

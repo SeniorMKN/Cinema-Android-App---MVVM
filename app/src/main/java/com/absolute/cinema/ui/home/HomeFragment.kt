@@ -57,7 +57,8 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     }
 
     private fun onScrollView() {
-        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.apply {
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -71,11 +72,12 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
                 lastVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                 if (visibleItemCount + pastVisibleItems >= totalItemCount && dy > 0) {
-                    binding.progressBar.visibility = View.VISIBLE
+                    progressBar.visibility = View.VISIBLE
                     viewModel.fetchMovies(isPageScrolled = true)
                 }
             }
         })
+        }
     }
 
     private fun setupPopularMovies() {

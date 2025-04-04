@@ -8,7 +8,10 @@ import com.absolute.cinema.data.model.TicketItemModel
 import com.absolute.cinema.data.remote.MoviesSharedViewModel
 import com.absolute.cinema.databinding.RecyclerTicketLayoutBinding
 
-class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>,private val sharedViewModel: MoviesSharedViewModel) :
+class TicketRecyclerViewAdapter(
+    private val itemList: ArrayList<TicketItemModel>,
+    private val sharedViewModel: MoviesSharedViewModel
+) :
     RecyclerView.Adapter<TicketRecyclerViewAdapter.MyViewHolder>() {
 
     private var isLinearVisible = false
@@ -17,20 +20,22 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TicketItemModel) {
-            binding.timeMovieStartTv.text = item.timeMovieStart
-            binding.qualityCinemaTv.text = item.qualityCinema
-            binding.cinemaNameTv.text = item.cinemaName
-            binding.adultPriceTv.text = item.adultPrice
-            binding.childPriceTv.text = item.childPrice
-            binding.studentPriceTv.text = item.studentPrice
-            binding.vipPriceTv.text = item.vipPrice
-            binding.byCinemaNameTv.text = item.cinemaName
-            binding.cinemaAddressTv.text = item.address
-            binding.byCinemaNameTv.text = item.cinemaName
+            binding.apply {
+                timeMovieStartTv.text = item.timeMovieStart
+                qualityCinemaTv.text = item.qualityCinema
+                cinemaNameTv.text = item.cinemaName
+                adultPriceTv.text = item.adultPrice
+                childPriceTv.text = item.childPrice
+                studentPriceTv.text = item.studentPrice
+                vipPriceTv.text = item.vipPrice
+                byCinemaNameTv.text = item.cinemaName
+                cinemaAddressTv.text = item.address
+                byCinemaNameTv.text = item.cinemaName
 
-            binding.linearLy.visibility = if (isLinearVisible) View.VISIBLE else View.GONE
+                linearLy.visibility = if (isLinearVisible) View.VISIBLE else View.GONE
 
-            setupView(binding, item)
+                setupView(binding, item)
+            }
         }
     }
 
@@ -38,7 +43,12 @@ class TicketRecyclerViewAdapter(private val itemList: ArrayList<TicketItemModel>
         binding.linearLyRv.setOnClickListener {
             sharedViewModel.setSelectedTime(item.timeMovieStart)
             sharedViewModel.setSelectedCinema(item.cinemaName)
-            sharedViewModel.setTicketPrices(item.adultPrice,item.childPrice,item.studentPrice,item.vipPrice)
+            sharedViewModel.setTicketPrices(
+                item.adultPrice,
+                item.childPrice,
+                item.studentPrice,
+                item.vipPrice
+            )
         }
     }
 

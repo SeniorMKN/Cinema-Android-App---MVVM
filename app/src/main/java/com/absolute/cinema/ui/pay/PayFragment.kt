@@ -3,7 +3,6 @@ package com.absolute.cinema.ui.pay
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,66 +48,76 @@ class PayFragment : Fragment() {
     }
 
     private fun setupListeners() {
-
-        db = MovieDatabase.getDatabase(requireContext())
-        ticketDao = db.movieDao
-
-        binding.payContinueBtn.setOnClickListener {
-            val ticket = MovieTicket(
-                movieId = sharedViewModel.getSelectedPosterPath(),
-                ticketDate = sharedViewModel.getSelectedDate(),
-                movieTitle = sharedViewModel.getSelectedMovieTitle(),
-                cinemaName = sharedViewModel.getSelectedCinema()
-            )
-
-            lifecycleScope.launch {
-                ticketDao.insert(ticket)
-            }
-
-            it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
-        }
-
-        binding.backArrowTv.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
-
-        val inputTextWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                val phoneNumber = binding.phoneNumberEt.text.toString().trim()
-                val isValid = phoneNumber.length in 8..11
-                val orangeColor = requireContext().getColor(R.color.orange)
-
-                binding.payContinueBtn.apply {
-                    isEnabled = isValid
-                    setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        }
-
         binding.apply {
+
+            db = MovieDatabase.getDatabase(requireContext())
+            ticketDao = db.movieDao
+
+            payContinueBtn.setOnClickListener {
+                val ticket = MovieTicket(
+                    movieId = sharedViewModel.getSelectedPosterPath(),
+                    ticketDate = sharedViewModel.getSelectedDate(),
+                    movieTitle = sharedViewModel.getSelectedMovieTitle(),
+                    cinemaName = sharedViewModel.getSelectedCinema()
+                )
+
+                lifecycleScope.launch {
+                    ticketDao.insert(ticket)
+                }
+
+                it.findNavController().navigate(R.id.action_payFragment_to_ticketFragment)
+            }
+
+            backArrowTv.setOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
+
+            val inputTextWatcher = object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    val phoneNumber = phoneNumberEt.text.toString().trim()
+                    val isValid = phoneNumber.length in 8..11
+                    val orangeColor = requireContext().getColor(R.color.orange)
+
+                    payContinueBtn.apply {
+                        isEnabled = isValid
+                        setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            }
+
+
             phoneNumberEt.addTextChangedListener(inputTextWatcher)
         }
     }
 
     private fun setupView() {
-        binding.ticketDateTv.text = getString(
-            R.string.ticket_date_time,
-            sharedViewModel.getSelectedDate(),
-            sharedViewModel.getSelectedTime()
-        )
+        binding.apply {
+            ticketDateTv.text = getString(
+                R.string.ticket_date_time,
+                sharedViewModel.getSelectedDate(),
+                sharedViewModel.getSelectedTime()
+            )
 
-        binding.movieTitleTv.text = sharedViewModel.getSelectedMovieTitle()
-        binding.seatsNumberTv.text = sharedViewModel.getSelectedSeats().toString()
-        binding.cinemaNameTv.text = sharedViewModel.getSelectedCinema()
-        binding.seatsNumberTv.text = sharedViewModel.getSelectedSeatType().keys.joinToString(", ")
+            movieTitleTv.text = sharedViewModel.getSelectedMovieTitle()
+            seatsNumberTv.text = sharedViewModel.getSelectedSeats().toString()
+            cinemaNameTv.text = sharedViewModel.getSelectedCinema()
+            seatsNumberTv.text = sharedViewModel.getSelectedSeatType().keys.joinToString(", ")
 
-        binding.payContinueBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
+            payContinueBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
         }
     }
 

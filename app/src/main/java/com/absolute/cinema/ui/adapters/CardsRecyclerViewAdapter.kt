@@ -13,10 +13,11 @@ class CardsRecyclerViewAdapter(private val itemList: ArrayList<CardsItemModel>) 
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: CardsItemModel) {
-            binding.cardIv.setImageResource(item.cardImage)
-            binding.cardNumberTv.text = item.cardNumber
-            binding.dateCardTv.text = item.cardDate
-
+            binding.apply {
+                cardIv.setImageResource(item.cardImage)
+                cardNumberTv.text = item.cardNumber
+                dateCardTv.text = item.cardDate
+            }
         }
     }
 

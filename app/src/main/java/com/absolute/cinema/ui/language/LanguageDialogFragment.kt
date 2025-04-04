@@ -37,46 +37,52 @@ class LanguageDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
-
-        binding.languageApplyBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
-        }
-
-        binding.languageApplyBtn.setOnClickListener {
-            val newLocale = when (selectedCheck) {
-                binding.checkFirstIv -> Locale("it")
-                binding.checkThirdIv -> Locale("en")
-                else -> Locale.getDefault()
+        binding.apply {
+            closeTv.setOnClickListener {
+                dismiss()
             }
 
-            ProfileSharedPreferences.saveLanguage(requireContext(), newLocale)
-            requireActivity().recreate()
-            dismiss()
+            languageApplyBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
+
+            languageApplyBtn.setOnClickListener {
+                val newLocale = when (selectedCheck) {
+                    checkFirstIv -> Locale("it")
+                    checkThirdIv -> Locale("en")
+                    else -> Locale.getDefault()
+                }
+
+                ProfileSharedPreferences.saveLanguage(requireContext(), newLocale)
+                requireActivity().recreate()
+                dismiss()
+            }
         }
     }
 
     private fun setupLanguages() {
-        binding.firstLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkFirstIv) }
-        binding.secondLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkSecondIv) }
-        binding.thirdLanguageTv.setOnClickListener { setSelectedSortOption(binding.checkThirdIv) }
+        binding.apply {
+            firstLanguageTv.setOnClickListener { setSelectedSortOption(checkFirstIv) }
+            secondLanguageTv.setOnClickListener { setSelectedSortOption(checkSecondIv) }
+            thirdLanguageTv.setOnClickListener { setSelectedSortOption(checkThirdIv) }
+        }
     }
 
     private fun setSelectedSortOption(check: View) {
-        binding.checkFirstIv.visibility = View.INVISIBLE
-        binding.checkSecondIv.visibility = View.INVISIBLE
-        binding.checkThirdIv.visibility = View.INVISIBLE
+        binding.apply {
+            checkFirstIv.visibility = View.INVISIBLE
+            checkSecondIv.visibility = View.INVISIBLE
+            checkThirdIv.visibility = View.INVISIBLE
 
-        check.visibility = View.VISIBLE
+            check.visibility = View.VISIBLE
 
-        selectedCheck = check
+            selectedCheck = check
 
-        binding.languageApplyBtn.apply {
-            isEnabled = true
-            setBackgroundColor(requireContext().getColor(R.color.orange))
+            languageApplyBtn.apply {
+                isEnabled = true
+                setBackgroundColor(requireContext().getColor(R.color.orange))
+            }
         }
     }
 

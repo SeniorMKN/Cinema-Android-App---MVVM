@@ -40,38 +40,40 @@ class CityDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
+        binding.apply {
+            closeTv.setOnClickListener {
+                dismiss()
+            }
 
-        binding.cityApplyBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
+            cityApplyBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
         }
     }
 
     private fun initRecyclerView() {
+        binding.apply {
+            itemList = arrayListOf(
+                CityItemModel("Almaty"),
+                CityItemModel("Shymkent"),
+                CityItemModel("Nur-Sultan"),
+                CityItemModel("Karaganda"),
+                CityItemModel("Kokshetau"),
+                CityItemModel("Pavlodar"),
+                CityItemModel("Oskemen"),
+                CityItemModel("Semey"),
+                CityItemModel("Kostanay"),
+                CityItemModel("Oral")
+            )
 
-        itemList = arrayListOf(
-            CityItemModel("Almaty"),
-            CityItemModel("Shymkent"),
-            CityItemModel("Nur-Sultan"),
-            CityItemModel("Karaganda"),
-            CityItemModel("Kokshetau"),
-            CityItemModel("Pavlodar"),
-            CityItemModel("Oskemen"),
-            CityItemModel("Semey"),
-            CityItemModel("Kostanay"),
-            CityItemModel("Oral")
-        )
-
-        recyclerViewAdapter = CityRecyclerViewAdapter(itemList) {
-            binding.cityApplyBtn.isEnabled = true
-            binding.cityApplyBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+            recyclerViewAdapter = CityRecyclerViewAdapter(itemList) {
+                cityApplyBtn.isEnabled = true
+                cityApplyBtn.setBackgroundColor(requireContext().getColor(R.color.orange))
+            }
+            cityRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            cityRecyclerView.adapter = recyclerViewAdapter
         }
-        binding.cityRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.cityRecyclerView.adapter = recyclerViewAdapter
-
     }
 
     override fun onStart() {

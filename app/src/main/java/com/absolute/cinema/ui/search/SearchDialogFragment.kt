@@ -30,16 +30,17 @@ class SearchDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
-
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
-
-        binding.searchApplyBtn.setOnClickListener {
-            val searchEt = binding.searchEt.text.toString()
-            if (searchEt.isNotEmpty()) {
-                searchCallBack?.onSearchMovieTitle(searchEt)
+        binding.apply {
+            closeTv.setOnClickListener {
                 dismiss()
+            }
+
+            searchApplyBtn.setOnClickListener {
+                val searchEt = searchEt.text.toString()
+                if (searchEt.isNotEmpty()) {
+                    searchCallBack?.onSearchMovieTitle(searchEt)
+                    dismiss()
+                }
             }
         }
     }

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.absolute.cinema.R
 import com.absolute.cinema.databinding.FragmentTicketBinding
@@ -36,16 +35,18 @@ class TicketFragment : Fragment() {
     }
 
     private fun setupView() {
-        binding.yourTicketTv.setOnClickListener {
-            it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
-        }
+        binding.apply {
+            yourTicketTv.setOnClickListener {
+                it.findNavController().navigate(R.id.action_ticketFragment_to_profileFragment)
+            }
 
-        binding.closeTv.setOnClickListener {
-            it.findNavController().navigate(R.id.action_ticketFragment_to_homeFragment)
-        }
+            closeTv.setOnClickListener {
+                it.findNavController().navigate(R.id.action_ticketFragment_to_homeFragment)
+            }
 
-        binding.sendBtn.setOnClickListener {
-            shareTicketInfo()
+            sendBtn.setOnClickListener {
+                shareTicketInfo()
+            }
         }
     }
 

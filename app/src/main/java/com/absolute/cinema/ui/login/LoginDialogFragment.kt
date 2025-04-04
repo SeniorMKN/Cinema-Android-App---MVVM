@@ -47,26 +47,23 @@ class LoginDialogFragment : DialogFragment() {
     }
 
     private fun setupView() {
+        binding.apply {
+            closeTv.setOnClickListener {
+                dismiss()
+            }
 
-        binding.closeTv.setOnClickListener {
-            dismiss()
-        }
+            continueBtn.apply {
+                isEnabled = false
+                setBackgroundColor(UiUtils.brownColor)
+            }
 
-        binding.continueBtn.apply {
-            isEnabled = false
-            setBackgroundColor(UiUtils.brownColor)
-        }
+            resendTv.setOnClickListener {
+                startResendTimer()
+            }
 
-        binding.resendTv.setOnClickListener {
-            startResendTimer()
-        }
+            continueBtn.setOnClickListener {
+                if (phoneNumber.visibility == View.VISIBLE) {
 
-        binding.continueBtn.setOnClickListener {
-            if (binding.phoneNumber.visibility == View.VISIBLE) {
-
-                val userPhoneNumber = binding.phoneNumber.text.toString().trim()
-
-                binding.apply {
                     accessTv.text = getString(R.string.enter_the_password_from_the_sms)
                     continueBtn.text = getString(R.string.login)
 
@@ -77,30 +74,29 @@ class LoginDialogFragment : DialogFragment() {
 
                     continueBtn.isEnabled = false
                     continueBtn.setBackgroundColor(UiUtils.brownColor)
-                }
-            } else {
-                val pin1 = binding.firstPinEt.text.toString()
-                val pin2 = binding.secondPinEt.text.toString()
-                val pin3 = binding.thirdPinEt.text.toString()
-                val pin4 = binding.fourthPinEt.text.toString()
-                val enteredPin = "$pin1$pin2$pin3$pin4"
 
-                if (enteredPin == "1111") {
-                    loginCallback?.onLoginSuccess(true)
-                    ProfileSharedPreferences.setLoggedIn(requireContext(), true)
-                    dismiss()
                 } else {
-                    binding.firstPinEt.text?.clear()
-                    binding.secondPinEt.text?.clear()
-                    binding.thirdPinEt.text?.clear()
-                    binding.fourthPinEt.text?.clear()
-                    binding.firstPinEt.requestFocus()
+                    val pin1 = firstPinEt.text.toString()
+                    val pin2 = secondPinEt.text.toString()
+                    val pin3 = thirdPinEt.text.toString()
+                    val pin4 = fourthPinEt.text.toString()
+                    val enteredPin = "$pin1$pin2$pin3$pin4"
+
+                    if (enteredPin == "1111") {
+                        loginCallback?.onLoginSuccess(true)
+                        ProfileSharedPreferences.setLoggedIn(requireContext(), true)
+                        dismiss()
+                    } else {
+                        firstPinEt.text?.clear()
+                        secondPinEt.text?.clear()
+                        thirdPinEt.text?.clear()
+                        fourthPinEt.text?.clear()
+                        firstPinEt.requestFocus()
+                    }
                 }
             }
-        }
 
-        binding.changeNumberTv.setOnClickListener {
-            binding.apply {
+            changeNumberTv.setOnClickListener {
                 resetResendTimer()
 
                 accessTv.text = getString(R.string.access_to_purchased_tickets)
@@ -115,27 +111,34 @@ class LoginDialogFragment : DialogFragment() {
     }
 
     private fun setupListeners() {
+        binding.apply {
 
-        val inputTextWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                val phoneNumber = binding.phoneNumber.text.toString().trim()
-                val isValid = phoneNumber.length in 8..11
-                val orangeColor = requireContext().getColor(R.color.orange)
-
-                binding.continueBtn.apply {
-                    isEnabled = isValid
-                    setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
+            val inputTextWatcher = object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
                 }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    val phoneNumber = phoneNumber.text.toString().trim()
+                    val isValid = phoneNumber.length in 8..11
+                    val orangeColor = requireContext().getColor(R.color.orange)
+
+                    continueBtn.apply {
+                        isEnabled = isValid
+                        setBackgroundColor(if (isValid) orangeColor else UiUtils.brownColor)
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
             }
 
-            override fun afterTextChanged(s: Editable?) {}
-        }
-
-        binding.apply {
             phoneNumber.addTextChangedListener(inputTextWatcher)
-            binding.firstPinEt.requestFocus()
+            firstPinEt.requestFocus()
 
             val pinTextWatcher = object : TextWatcher {
                 override fun beforeTextChanged(
@@ -149,15 +152,15 @@ class LoginDialogFragment : DialogFragment() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     if (s?.length == 1) {
                         when {
-                            binding.firstPinEt.hasFocus() -> binding.secondPinEt.requestFocus()
-                            binding.secondPinEt.hasFocus() -> binding.thirdPinEt.requestFocus()
-                            binding.thirdPinEt.hasFocus() -> binding.fourthPinEt.requestFocus()
+                            firstPinEt.hasFocus() -> secondPinEt.requestFocus()
+                            secondPinEt.hasFocus() -> thirdPinEt.requestFocus()
+                            thirdPinEt.hasFocus() -> fourthPinEt.requestFocus()
                         }
                     } else if (s?.isEmpty() == true) {
                         when {
-                            binding.fourthPinEt.hasFocus() -> binding.thirdPinEt.requestFocus()
-                            binding.thirdPinEt.hasFocus() -> binding.secondPinEt.requestFocus()
-                            binding.secondPinEt.hasFocus() -> binding.firstPinEt.requestFocus()
+                            fourthPinEt.hasFocus() -> thirdPinEt.requestFocus()
+                            thirdPinEt.hasFocus() -> secondPinEt.requestFocus()
+                            secondPinEt.hasFocus() -> firstPinEt.requestFocus()
                         }
                     }
                     toggleContinueButton()
@@ -166,26 +169,27 @@ class LoginDialogFragment : DialogFragment() {
                 override fun afterTextChanged(s: Editable?) {}
             }
 
-            binding.firstPinEt.addTextChangedListener(pinTextWatcher)
-            binding.secondPinEt.addTextChangedListener(pinTextWatcher)
-            binding.thirdPinEt.addTextChangedListener(pinTextWatcher)
-            binding.fourthPinEt.addTextChangedListener(pinTextWatcher)
+            firstPinEt.addTextChangedListener(pinTextWatcher)
+            secondPinEt.addTextChangedListener(pinTextWatcher)
+            thirdPinEt.addTextChangedListener(pinTextWatcher)
+            fourthPinEt.addTextChangedListener(pinTextWatcher)
 
-            binding.secondPinEt.setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus && binding.firstPinEt.text.isNullOrEmpty()) {
-                    binding.firstPinEt.requestFocus()
+            secondPinEt.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus && firstPinEt.text.isNullOrEmpty()) {
+                    firstPinEt.requestFocus()
                 }
             }
-            binding.thirdPinEt.setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus && binding.secondPinEt.text.isNullOrEmpty()) {
-                    binding.secondPinEt.requestFocus()
+            thirdPinEt.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus && secondPinEt.text.isNullOrEmpty()) {
+                    secondPinEt.requestFocus()
                 }
             }
-            binding.fourthPinEt.setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus && binding.thirdPinEt.text.isNullOrEmpty()) {
-                    binding.thirdPinEt.requestFocus()
+            fourthPinEt.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus && thirdPinEt.text.isNullOrEmpty()) {
+                    thirdPinEt.requestFocus()
                 }
             }
+
         }
     }
 
