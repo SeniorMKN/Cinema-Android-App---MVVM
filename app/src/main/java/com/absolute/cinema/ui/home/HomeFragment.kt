@@ -58,25 +58,25 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
 
     private fun onScrollView() {
         binding.apply {
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
 
-                if (isSearchActive) return
+                    if (isSearchActive) return
 
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val visibleItemCount = layoutManager.childCount
-                val totalItemCount = layoutManager.itemCount
-                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
 
-                lastVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                    lastVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-                if (visibleItemCount + pastVisibleItems >= totalItemCount && dy > 0) {
-                    progressBar.visibility = View.VISIBLE
-                    viewModel.fetchMovies(isPageScrolled = true)
+                    if (visibleItemCount + pastVisibleItems >= totalItemCount && dy > 0) {
+                        progressBar.visibility = View.VISIBLE
+                        viewModel.fetchMovies(isPageScrolled = true)
+                    }
                 }
-            }
-        })
+            })
         }
     }
 
@@ -153,18 +153,20 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
 
 
     private fun setupDialogs() {
-        binding.positionName.setOnClickListener {
-            CityDialogFragment().show(parentFragmentManager, "PositionDialog")
-        }
+        binding.apply {
+            positionName.setOnClickListener {
+                CityDialogFragment().show(parentFragmentManager, "PositionDialog")
+            }
 
-        binding.languageName.setOnClickListener {
-            LanguageDialogFragment().show(parentFragmentManager, "LanguageDialog")
-        }
+            languageName.setOnClickListener {
+                LanguageDialogFragment().show(parentFragmentManager, "LanguageDialog")
+            }
 
-        binding.searchIv.setOnClickListener {
-            val searchDialogFragment = SearchDialogFragment()
-            searchDialogFragment.searchCallBack = this
-            searchDialogFragment.show(parentFragmentManager, "SearchDialog")
+            searchIv.setOnClickListener {
+                val searchDialogFragment = SearchDialogFragment()
+                searchDialogFragment.searchCallBack = this@HomeFragment
+                searchDialogFragment.show(parentFragmentManager, "SearchDialog")
+            }
         }
     }
 
