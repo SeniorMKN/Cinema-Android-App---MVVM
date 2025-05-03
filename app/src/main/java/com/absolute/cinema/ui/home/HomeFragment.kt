@@ -91,18 +91,20 @@ class HomeFragment : Fragment(), LoginCallback, SearchCallBack {
     }
 
     private fun login() {
-        val isLoggedIn = ProfileSharedPreferences.getIsLoggedIn(requireContext())
-        if (isLoggedIn) {
-            binding.loginButton.text = getString(R.string.profile)
-            binding.loginButton.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-            }
-        } else {
-            binding.loginButton.text = getString(R.string.login)
-            binding.loginButton.setOnClickListener {
-                val loginDialogFragment = LoginDialogFragment()
-                loginDialogFragment.setLoginCallback(this)
-                loginDialogFragment.show(parentFragmentManager, "LoginDialog")
+        binding.apply {
+            val isLoggedIn = ProfileSharedPreferences.getIsLoggedIn(requireContext())
+            if (isLoggedIn) {
+                loginButton.text = getString(R.string.profile)
+                loginButton.setOnClickListener {
+                    findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+                }
+            } else {
+                loginButton.text = getString(R.string.login)
+                loginButton.setOnClickListener {
+                    val loginDialogFragment = LoginDialogFragment()
+                    loginDialogFragment.setLoginCallback(this@HomeFragment)
+                    loginDialogFragment.show(parentFragmentManager, "LoginDialog")
+                }
             }
         }
     }
